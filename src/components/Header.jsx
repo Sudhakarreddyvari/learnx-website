@@ -123,8 +123,12 @@ const Header = ({ setIsFormOpen, hideHeader }) => {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
-            <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-violet-600 to-rose-500 flex items-center justify-center">
-              <span className="font-bold text-white text-xl">LX</span>
+            <div className="h-12 w-12 rounded-xl flex items-center justify-center overflow-hidden">
+              <img
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LearnX%20-Logo-yVpBmzoHbcSZPJFoySqW3YsLsmtt0o.png"
+                alt="LearnX Logo"
+                style={{ height: "100%", width: "100%", objectFit: "cover" }}
+              />
             </div>
             <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-rose-500">
               LearnX
