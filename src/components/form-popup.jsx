@@ -2,7 +2,6 @@
 
 import { X } from "lucide-react"
 import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
 
 const FormPopup = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
@@ -13,7 +12,6 @@ const FormPopup = ({ isOpen, onClose }) => {
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showThankYou, setShowThankYou] = useState(false)
-  const navigate = useNavigate()
 
   useEffect(() => {
     if (!isOpen) {
@@ -29,66 +27,185 @@ const FormPopup = ({ isOpen, onClose }) => {
     }
   }, [isOpen])
 
+  // Integrate Zoho Bigin validation functions
+  useEffect(() => {
+    if (isOpen) {
+      // Make sure Zoho validation functions are available
+      window.mndFileds = new Array("Last\\x20Name")
+      window.fldLangVal = new Array("Last Name")
+
+      window.removeError = (fieldObj) => {
+        var parentElement = fieldObj.closest(".wf-field"),
+          childEle = parentElement.getElementsByClassName("wf-field-error")[0]
+        if (childEle) {
+          parentElement.classList.remove("wf-field-error-active")
+          parentElement.removeChild(parentElement.getElementsByClassName("wf-field-error")[0])
+          parentElement.parentElement.classList.remove("wf-row-with-supplementary")
+        }
+      }
+
+      window.setError = (fieldObj, label) => {
+        var parentElement = fieldObj.closest(".wf-field"),
+          childEle = parentElement.getElementsByClassName("wf-field-error")[0]
+        if (!childEle) {
+          var spanEle = document.createElement("SPAN")
+          spanEle.setAttribute("class", "wf-field-error wf-row-with-supplementary")
+          spanEle.innerHTML = label
+          parentElement.append(spanEle)
+          parentElement.classList.add("wf-field-error-active")
+          parentElement.parentElement.classList.add("wf-row-with-supplementary")
+        }
+      }
+
+      window.validateFields819627000000348119 = () => {
+        var isReturn = true
+        var form = document.forms["BiginWebToRecordForm819627000000348119"]
+        if (!form) return true
+
+        var validateFld = form.querySelectorAll("[fvalidate=true]")
+        var i
+        for (i = 0; i < validateFld.length; i++) {
+          var validateFldVal = validateFld[i].value
+          if (validateFldVal !== "") {
+            var fLabel =
+              validateFld[i].parentElement.parentElement.parentElement.getElementsByClassName("wf-label")[0].innerHTML
+            switch (validateFld[i].getAttribute("ftype")) {
+              case "email":
+                if (validateFldVal.match(/^([A-Za-z0-9-._%'+/]+@[A-Za-z0-9.-]+.[a-zA-Z]{2,22})$/) === null) {
+                  window.setError(validateFld[i], "Enter valid " + fLabel)
+                  isReturn = false
+                }
+                break
+              case "mobile":
+                if (validateFldVal.match(/^[0-9a-zA-Z+.()\-;\s]+$/) === null) {
+                  window.setError(validateFld[i], "Enter valid " + fLabel)
+                  isReturn = false
+                }
+                break
+            }
+          }
+        }
+        return isReturn
+      }
+
+      window.validateForm819627000000348119 = () => {
+        var isReturn = true
+        let i
+        for (i = 0; i < window.mndFileds.length; i++) {
+          var fieldObj = document.forms["BiginWebToRecordForm819627000000348119"][window.mndFileds[i]]
+          if (fieldObj) {
+            if (fieldObj.value.replace(/^\s+|\s+$/g, "").length == 0) {
+              window.setError(fieldObj, window.fldLangVal[i] + " cannot be empty")
+              isReturn = false
+            }
+          }
+        }
+
+        if (!window.validateFields819627000000348119()) {
+          isReturn = false
+        }
+
+        if (!isReturn) {
+          var errEle = document.getElementsByClassName("wf-field-error")
+          if (errEle && errEle.length > 0) {
+            var inputEle = errEle[0].parentElement.getElementsByTagName("input")
+            if (inputEle && inputEle.length > 0) {
+              inputEle[0].focus()
+            }
+          }
+        } else {
+          document.getElementById("formsubmit").disabled = true
+        }
+        return isReturn
+      }
+    }
+  }, [isOpen])
+
   if (!isOpen) return null
-
-  const validateForm = () => {
-    const newErrors = {}
-
-    // Name validation
-    if (!formData.lastName.trim()) {
-      newErrors.lastName = "Full Name is required"
-    }
-
-    // Phone validation
-    if (!formData.phone.trim()) {
-      newErrors.phone = "Phone number is required"
-    } else if (!/^[0-9+\-().\\s]+$/.test(formData.phone)) {
-      newErrors.phone = "Please enter a valid phone number"
-    }
-
-    // Email validation
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required"
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address"
-    }
-
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
+
+    // Map form field names to state properties
+    const fieldMapping = {
+      "Last Name": "lastName",
+      Phone: "phone",
+      Email: "email",
+    }
+
+    const stateField = fieldMapping[name] || name
+
     setFormData({
       ...formData,
-      [name]: value,
+      [stateField]: value,
     })
 
     // Clear error when user starts typing
-    if (errors[name]) {
+    if (errors[stateField]) {
       setErrors({
         ...errors,
-        [name]: "",
+        [stateField]: "",
       })
+    }
+
+    // Call Zoho's removeError function
+    if (window.removeError) {
+      window.removeError(e.target)
     }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (validateForm()) {
+    // Manually validate the form
+    let isValid = true
+    const newErrors = {}
+
+    // Validate name (required)
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = "Full Name is required"
+      isValid = false
+    }
+
+    // Validate phone (if provided)
+    if (formData.phone && !/^[0-9+\-().\\s]+$/.test(formData.phone)) {
+      newErrors.phone = "Please enter a valid phone number"
+      isValid = false
+    }
+
+    // Validate email (if provided)
+    if (formData.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address"
+      isValid = false
+    }
+
+    setErrors(newErrors)
+
+    if (isValid) {
       setIsSubmitting(true)
 
-      // Simulate form submission to Zoho Bigin
-      setTimeout(() => {
-        setShowThankYou(true)
+      // Directly submit to Zoho Bigin
+      const form = document.getElementById("BiginWebToRecordForm819627000000348119")
 
-        // Redirect to thank you page after showing the thank you message briefly
+      // Update form fields with current state values
+      if (form) {
+        form.elements["Last Name"].value = formData.lastName
+        form.elements["Phone"].value = formData.phone
+        form.elements["Email"].value = formData.email
+
+        // Show thank you message
         setTimeout(() => {
-          onClose()
-          navigate("/thank-you")
-        }, 2000)
-      }, 1500)
+          setShowThankYou(true)
+
+          // Submit the form after a short delay
+          setTimeout(() => {
+            form.submit()
+          }, 2000)
+        }, 1000)
+      } else {
+        console.error("Form element not found")
+        setIsSubmitting(false)
+      }
     }
   }
 
@@ -128,12 +245,33 @@ const FormPopup = ({ isOpen, onClose }) => {
             <>
               <h3 className="text-2xl font-bold text-white mb-6">Get in Touch</h3>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form
+                id="BiginWebToRecordForm819627000000348119"
+                name="BiginWebToRecordForm819627000000348119"
+                method="POST"
+                action="https://bigin.zoho.in/crm/WebToContactForm"
+                onSubmit={handleSubmit}
+                className="space-y-4"
+              >
+                <input
+                  type="hidden"
+                  name="xnQsjsdp"
+                  value="d490dd6acf390799ab81adde5eff5244ccad4e07e5d096686dec9cebb88b67ef"
+                />
+                <input type="hidden" name="zc_gad" id="zc_gad" value="" />
+                <input
+                  type="hidden"
+                  name="xmIwtLD"
+                  value="fcd2a5e065b4d7d651fbc84c00a15d856599ab91759cb86a5cf6f57d4b14bb530fdd7ad1c2b7797f83cb164641f250d4"
+                />
+                <input type="hidden" name="actionType" value="Q29udGFjdHM=" />
+                <input type="hidden" name="returnURL" value="https://learnxglobal.com/thank-you" />
+
                 <div className="wf-field">
                   <input
                     type="text"
-                    id="lastName"
-                    name="lastName"
+                    id="Last_Name"
+                    name="Last Name"
                     value={formData.lastName}
                     onChange={handleInputChange}
                     placeholder="Full Name"
@@ -147,11 +285,13 @@ const FormPopup = ({ isOpen, onClose }) => {
                 <div className="wf-field">
                   <input
                     type="tel"
-                    id="phone"
-                    name="phone"
+                    id="Phone"
+                    name="Phone"
                     value={formData.phone}
                     onChange={handleInputChange}
                     placeholder="Phone"
+                    fvalidate="true"
+                    ftype="mobile"
                     className={`w-full p-3 bg-white/10 border ${
                       errors.phone ? "border-red-500" : "border-gray-700"
                     } rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-violet-500`}
@@ -162,11 +302,13 @@ const FormPopup = ({ isOpen, onClose }) => {
                 <div className="wf-field">
                   <input
                     type="email"
-                    id="email"
-                    name="email"
+                    id="Email"
+                    name="Email"
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder="Email"
+                    fvalidate="true"
+                    ftype="email"
                     className={`w-full p-3 bg-white/10 border ${
                       errors.email ? "border-red-500" : "border-gray-700"
                     } rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-violet-500`}
@@ -175,6 +317,7 @@ const FormPopup = ({ isOpen, onClose }) => {
                 </div>
 
                 <button
+                  id="formsubmit"
                   type="submit"
                   disabled={isSubmitting}
                   className="w-full p-3 bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 text-white font-medium rounded-lg transition-colors flex items-center justify-center"
