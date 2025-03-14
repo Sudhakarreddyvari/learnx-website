@@ -20,40 +20,35 @@ const AllCoursesPage = ({ setIsFormOpen }) => {
     window.scrollTo(0, 0)
   }, [])
 
-  // Course categories for filtering
+  // Update the categories array to group related courses
   const categories = [
     { id: "all", name: "All Courses" },
-    { id: "ai-ml", name: "AI & Machine Learning" },
-    { id: "data-science", name: "Data Science" },
-    { id: "cybersecurity", name: "Cybersecurity" },
-    { id: "cloud", name: "Cloud Computing" },
-    { id: "blockchain", name: "Blockchain" },
-    { id: "devops", name: "DevOps" },
-    { id: "design", name: "UI/UX Design" },
-    { id: "development", name: "Full Stack Development" },
-    { id: "marketing", name: "Digital Marketing" },
-    { id: "testing", name: "Automation Testing" },
+    { id: "ai-data", name: "AI & Data Science" },
+    { id: "cloud-devops", name: "Cloud & DevOps" },
     { id: "salesforce", name: "Salesforce" },
-    { id: "business", name: "Business Analysis" },
+    { id: "development", name: "Development" },
+    { id: "design", name: "Design" },
+    { id: "marketing", name: "Marketing" },
+    { id: "business", name: "Business" },
+    { id: "testing", name: "Testing" },
   ]
 
-  // Sort options
   const sortOptions = [
     { id: "popular", name: "Most Popular" },
-    { id: "newest", name: "Newest First" },
+    { id: "newest", name: "Newest" },
     { id: "price-low", name: "Price: Low to High" },
     { id: "price-high", name: "Price: High to Low" },
-    { id: "duration", name: "Duration: Shortest First" },
+    { id: "duration", name: "Duration" },
   ]
 
-  // Course data
+  // Update the coursesData array to include the new courses and update categories
   const coursesData = [
     {
       id: 1,
       title: "AI & Machine Learning",
       slug: "ai-ml-course",
       shortDescription: "Master the fundamentals and advanced concepts of AI and Machine Learning",
-      category: "ai-ml",
+      category: "ai-data",
       rating: 4.9,
       reviewCount: 1245,
       duration: "6 months",
@@ -71,7 +66,7 @@ const AllCoursesPage = ({ setIsFormOpen }) => {
       title: "Data Science",
       slug: "data-science-course",
       shortDescription: "Learn to analyze complex data sets and derive meaningful insights",
-      category: "data-science",
+      category: "ai-data",
       rating: 4.8,
       reviewCount: 980,
       duration: "5 months",
@@ -89,7 +84,7 @@ const AllCoursesPage = ({ setIsFormOpen }) => {
       title: "Cybersecurity",
       slug: "cybersecurity-course",
       shortDescription: "Develop skills to protect systems and networks from digital attacks",
-      category: "cybersecurity",
+      category: "cloud-devops",
       rating: 4.7,
       reviewCount: 850,
       duration: "4 months",
@@ -107,7 +102,7 @@ const AllCoursesPage = ({ setIsFormOpen }) => {
       title: "Cloud Computing",
       slug: "cloud-computing-course",
       shortDescription: "Learn to design, deploy and manage applications in the cloud",
-      category: "cloud",
+      category: "cloud-devops",
       rating: 4.8,
       reviewCount: 720,
       duration: "4 months",
@@ -125,7 +120,7 @@ const AllCoursesPage = ({ setIsFormOpen }) => {
       title: "Blockchain",
       slug: "blockchain-course",
       shortDescription: "Understand blockchain technology and develop decentralized applications",
-      category: "blockchain",
+      category: "development",
       rating: 4.6,
       reviewCount: 560,
       duration: "3 months",
@@ -143,7 +138,7 @@ const AllCoursesPage = ({ setIsFormOpen }) => {
       title: "DevOps",
       slug: "devops-course",
       shortDescription: "Bridge the gap between development and operations with DevOps practices",
-      category: "devops",
+      category: "cloud-devops",
       rating: 4.7,
       reviewCount: 680,
       duration: "4 months",
@@ -263,6 +258,42 @@ const AllCoursesPage = ({ setIsFormOpen }) => {
       new: true,
       image: "/placeholder.svg?height=200&width=400&text=Business+Analysis",
       skills: ["Requirements Analysis", "Process Modeling", "Data Analysis", "Agile", "BPMN"],
+    },
+    {
+      id: 13,
+      title: "Salesforce CPQ",
+      slug: "salesforce-cpq-course",
+      shortDescription: "Master Configure, Price, Quote to streamline sales processes and drive revenue growth",
+      category: "salesforce",
+      rating: 4.8,
+      reviewCount: 480,
+      duration: "10 weeks",
+      level: "Intermediate to Advanced",
+      students: 1850,
+      price: 799,
+      discountedPrice: 599,
+      popular: false,
+      new: true,
+      image: "/placeholder.svg?height=200&width=400&text=Salesforce+CPQ",
+      skills: ["Product Configuration", "Pricing Rules", "Quote Templates", "Approval Workflows"],
+    },
+    {
+      id: 14,
+      title: "Salesforce Agent Force",
+      slug: "salesforce-agent-force-course",
+      shortDescription: "Deliver exceptional customer service experiences with Salesforce Service Cloud",
+      category: "salesforce",
+      rating: 4.7,
+      reviewCount: 510,
+      duration: "12 weeks",
+      level: "Beginner to Advanced",
+      students: 2100,
+      price: 749,
+      discountedPrice: 549,
+      popular: false,
+      new: true,
+      image: "/placeholder.svg?height=200&width=400&text=Agent+Force",
+      skills: ["Case Management", "Service Console", "Knowledge Base", "Omni-Channel"],
     },
   ]
 
@@ -461,14 +492,15 @@ const AllCoursesPage = ({ setIsFormOpen }) => {
         {/* Courses Grid */}
         <section className="py-10">
           <div className="container mx-auto px-6">
+            {/* Update the course card styling to ensure consistent sizing */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredAndSortedCourses.length > 0 ? (
                 filteredAndSortedCourses.map((course) => (
                   <div
                     key={course.id}
-                    className="backdrop-blur-md border border-violet-500/20 rounded-xl overflow-hidden group relative transition-all duration-300 hover:transform hover:scale-[1.02] hover:shadow-lg hover:shadow-violet-500/10"
+                    className="backdrop-blur-md border border-violet-500/20 rounded-xl overflow-hidden group relative transition-all duration-300 hover:transform hover:scale-[1.02] hover:shadow-lg hover:shadow-violet-500/10 h-full flex flex-col"
                   >
-                    <div className="bg-gray-900/60 p-6">
+                    <div className="bg-gray-900/60 p-6 flex flex-col flex-grow">
                       <h3 className="text-2xl font-bold mb-2">{course.title}</h3>
                       <p className="text-gray-300 mb-4">{course.shortDescription}</p>
 
@@ -506,7 +538,7 @@ const AllCoursesPage = ({ setIsFormOpen }) => {
                         )}
                       </div>
 
-                      <div className="flex gap-3">
+                      <div className="flex gap-3 mt-auto">
                         <Link
                           to={`/${course.slug}`}
                           className="flex-1 px-4 py-2.5 text-center border border-violet-500/50 hover:border-violet-500 hover:bg-violet-500/10 text-white rounded-lg transition-colors"

@@ -90,22 +90,24 @@ const Header = ({ setIsFormOpen, hideHeader }) => {
       ],
     },
     {
-      name: "Marketing & Business",
+      name: "Salesforce Ecosystem",
       courses: [
         {
-          title: "Digital Marketing",
-          path: "/digital-marketing-course",
-          description: "Learn strategies to promote brands digitally",
-        },
-        {
-          title: "Salesforce",
+          title: "Salesforce Development",
           path: "/salesforce-course",
           description: "Become a certified Salesforce professional",
+          popular: true,
         },
         {
-          title: "Automation Testing",
-          path: "/automation-testing-course",
-          description: "Implement automated testing for better quality",
+          title: "Salesforce CPQ",
+          path: "/salesforce-cpq-course",
+          description: "Master Configure, Price, Quote processes",
+          new: true,
+        },
+        {
+          title: "Salesforce Agent Force",
+          path: "/salesforce-agent-force-course",
+          description: "Deliver exceptional customer service experiences",
           new: true,
         },
       ],
