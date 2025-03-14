@@ -2,13 +2,28 @@
 
 import { X } from "lucide-react"
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 const FormPopup = ({ isOpen, onClose }) => {
+  const [formData, setFormData] = useState({
+    lastName: "",
+    phone: "",
+    email: "",
+  })
+  const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showThankYou, setShowThankYou] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!isOpen) {
+      // Reset form state when popup is closed
+      setFormData({
+        lastName: "",
+        phone: "",
+        email: "",
+      })
+      setErrors({})
       setShowThankYou(false)
       setIsSubmitting(false)
     }
@@ -16,25 +31,64 @@ const FormPopup = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null
 
+  const validateForm = () => {
+    const newErrors = {}
+
+    // Name validation
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = "Full Name is required"
+    }
+
+    // Phone validation
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone number is required"
+    } else if (!/^[0-9+\-().\\s]+$/.test(formData.phone)) {
+      newErrors.phone = "Please enter a valid phone number"
+    }
+
+    // Email validation
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required"
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address"
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData({
+      ...formData,
+      [name]: value,
+    })
+
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: "",
+      })
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    setIsSubmitting(true)
 
-    // Get the Zoho form
-    const form = document.getElementById("BiginWebToRecordForm819627000000348119")
+    if (validateForm()) {
+      setIsSubmitting(true)
 
-    // Check if the form is valid using Zoho's validation function
-    if (window.validateForm819627000000348119 && window.validateForm819627000000348119()) {
-      // Show thank you message first (since Zoho form submission will navigate away)
-      setShowThankYou(true)
-
-      // Submit the form after a short delay to allow the thank you message to be seen
+      // Simulate form submission to Zoho Bigin
       setTimeout(() => {
-        form.submit()
-      }, 2000)
-    } else {
-      // If validation fails, reset the submitting state
-      setIsSubmitting(false)
+        setShowThankYou(true)
+
+        // Redirect to thank you page after showing the thank you message briefly
+        setTimeout(() => {
+          onClose()
+          navigate("/thank-you")
+        }, 2000)
+      }, 1500)
     }
   }
 
@@ -74,71 +128,56 @@ const FormPopup = ({ isOpen, onClose }) => {
             <>
               <h3 className="text-2xl font-bold text-white mb-6">Get in Touch</h3>
 
-              <form
-                id="BiginWebToRecordForm819627000000348119"
-                name="BiginWebToRecordForm819627000000348119"
-                method="POST"
-                action="https://bigin.zoho.in/crm/WebToRecordForm"
-                onSubmit={handleSubmit}
-                className="space-y-4"
-              >
-                <input
-                  type="hidden"
-                  name="xnQsjsdp"
-                  value="d490dd6acf390799ab81adde5eff5244ccad4e07e5d096686dec9cebb88b67ef"
-                />
-                <input type="hidden" name="zc_gad" id="zc_gad" value="" />
-                <input
-                  type="hidden"
-                  name="xmIwtLD"
-                  value="fcd2a5e065b4d7d651fbc84c00a15d856599ab91759cb86a5cf6f57d4b14bb530fdd7ad1c2b7797f83cb164641f250d4"
-                />
-                <input type="hidden" name="actionType" value="Q29udGFjdHM=" />
-                <input type="hidden" name="returnURL" value="https://learnxglobal.com/thank-you" />
-
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="wf-field">
                   <input
                     type="text"
-                    id="Last_Name"
-                    name="Last Name"
+                    id="lastName"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
                     placeholder="Full Name"
-                    fvalidate="true"
-                    required
-                    className="w-full p-3 bg-white/10 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-violet-500"
+                    className={`w-full p-3 bg-white/10 border ${
+                      errors.lastName ? "border-red-500" : "border-gray-700"
+                    } rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-violet-500`}
                   />
+                  {errors.lastName && <span className="text-sm text-red-500 mt-1 block">{errors.lastName}</span>}
                 </div>
 
                 <div className="wf-field">
                   <input
                     type="tel"
-                    id="Phone"
-                    name="Phone"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
                     placeholder="Phone"
-                    fvalidate="true"
-                    ftype="mobile"
-                    required
-                    className="w-full p-3 bg-white/10 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-violet-500"
+                    className={`w-full p-3 bg-white/10 border ${
+                      errors.phone ? "border-red-500" : "border-gray-700"
+                    } rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-violet-500`}
                   />
+                  {errors.phone && <span className="text-sm text-red-500 mt-1 block">{errors.phone}</span>}
                 </div>
 
                 <div className="wf-field">
                   <input
                     type="email"
-                    id="Email"
-                    name="Email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
                     placeholder="Email"
-                    fvalidate="true"
-                    ftype="email"
-                    required
-                    className="w-full p-3 bg-white/10 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-violet-500"
+                    className={`w-full p-3 bg-white/10 border ${
+                      errors.email ? "border-red-500" : "border-gray-700"
+                    } rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-violet-500`}
                   />
+                  {errors.email && <span className="text-sm text-red-500 mt-1 block">{errors.email}</span>}
                 </div>
 
                 <button
-                  id="formsubmit"
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full p-3 bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 text-white font-medium rounded-lg transition-colors"
+                  className="w-full p-3 bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 text-white font-medium rounded-lg transition-colors flex items-center justify-center"
                 >
                   {isSubmitting ? (
                     <div className="flex items-center justify-center">
