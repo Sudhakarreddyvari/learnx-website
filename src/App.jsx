@@ -14,6 +14,8 @@ import FullStackDevelopmentCourse from "./pages/full-stack-development-course"
 import DigitalMarketingCourse from "./pages/digital-marketing-course"
 import AutomationTestingCourse from "./pages/automation-testing-course"
 import SalesforceCourse from "./pages/salesforce-course"
+import SalesforceCPQCourse from "./pages/salesforce-cpq-course"
+import SalesforceAgentForceCourse from "./pages/salesforce-agent-force-course"
 import BusinessAnalystCourse from "./pages/business-analyst-course"
 import FormPopup from "./components/form-popup"
 import HomePage from "./pages/HomePage"
@@ -67,6 +69,11 @@ function App() {
             element={<AutomationTestingCourse setIsFormOpen={setIsFormOpen} />}
           />
           <Route path="/salesforce-course" element={<SalesforceCourse setIsFormOpen={setIsFormOpen} />} />
+          <Route path="/salesforce-cpq-course" element={<SalesforceCPQCourse setIsFormOpen={setIsFormOpen} />} />
+          <Route
+            path="/salesforce-agent-force-course"
+            element={<SalesforceAgentForceCourse setIsFormOpen={setIsFormOpen} />}
+          />
           <Route path="/business-analyst-course" element={<BusinessAnalystCourse setIsFormOpen={setIsFormOpen} />} />
 
           {/* Information Pages */}
