@@ -1,0 +1,65 @@
+/* Smooth scrolling for the entire page */
+html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Sticky navigation styles */
+  .sticky-nav {
+    transition: all 0.3s ease;
+  }
+  
+  .sticky-nav.sticky {
+    background: rgba(17, 24, 39, 0.95);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  /* Button animations */
+  @keyframes glow {
+    0%,
+    100% {
+      box-shadow: 0 0 5px rgba(139, 92, 246, 0.5), 0 0 10px rgba(139, 92, 246, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.7), 0 0 20px rgba(139, 92, 246, 0.5);
+    }
+  }
+  
+  .glow-effect-small {
+    animation: glow 2s ease-in-out infinite;
+  }
+  
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .sticky-nav {
+      padding: 0.75rem 1rem;
+    }
+  
+    .sticky-nav button {
+      font-size: 0.875rem;
+      padding: 0.5rem 1rem;
+    }
+  }
+  
+  /* Transition animations */
+  .fade-enter {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  
+  .fade-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+  
+  .fade-exit {
+    opacity: 1;
+  }
+  
+  .fade-exit-active {
+    opacity: 0;
+    transition: opacity 300ms;
+  }
+  
+  
