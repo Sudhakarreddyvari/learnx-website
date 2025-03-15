@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { Menu, X, ChevronDown } from "lucide-react"
+import { Menu, X, ChevronDown, ChevronRight } from "lucide-react"
 
 const Header = ({ setIsFormOpen, hideHeader }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -289,12 +289,7 @@ const Header = ({ setIsFormOpen, hideHeader }) => {
               <div className="relative">
                 <button
                   className="flex items-center justify-between w-full px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-800/50 rounded-md transition-colors"
-                  onClick={() => {
-                    setMobileCoursesOpen(!mobileCoursesOpen)
-                    if (!mobileCoursesOpen) {
-                      window.location.href = "/courses"
-                    }
-                  }}
+                  onClick={() => setMobileCoursesOpen(!mobileCoursesOpen)}
                 >
                   <span>Courses</span>
                   <ChevronDown
@@ -338,24 +333,14 @@ const Header = ({ setIsFormOpen, hideHeader }) => {
                     <div className="pt-2 pb-1">
                       <Link
                         to="/courses"
-                        className="block px-4 py-2 text-violet-400 hover:text-violet-300 hover:bg-gray-800/50 rounded-lg transition-colors flex items-center gap-1"
-                        onClick={() => setIsMenuOpen(false)}
+                        className="block px-4 py-2 text-violet-400 hover:text-violet-300 hover:bg-gray-800/50 rounded-lg transition-colors flex items-center justify-between"
+                        onClick={() => {
+                          setIsMenuOpen(false)
+                          setMobileCoursesOpen(false)
+                        }}
                       >
-                        View All Courses
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="14"
-                          height="14"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M5 12h14"></path>
-                          <path d="m12 5 7 7-7 7"></path>
-                        </svg>
+                        <span>View All Courses</span>
+                        <ChevronRight size={16} className="transition-transform group-hover:translate-x-1" />
                       </Link>
                     </div>
                   </div>
