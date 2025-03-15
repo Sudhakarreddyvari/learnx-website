@@ -24,19 +24,26 @@ const HomePage = ({ setIsFormOpen }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Check for elements to animate on scroll
-      document.querySelectorAll(".animate-on-scroll").forEach((el) => {
-        const rect = el.getBoundingClientRect()
-        const isInView = rect.top <= window.innerHeight * 0.8
+      // Use requestAnimationFrame for smoother performance
+      requestAnimationFrame(() => {
+        // Check for elements to animate on scroll
+        document.querySelectorAll(".animate-on-scroll").forEach((el) => {
+          const rect = el.getBoundingClientRect()
+          // Trigger animations earlier for a more responsive feel
+          const isInView = rect.top <= window.innerHeight * 0.9
 
-        if (isInView) {
-          setIsVisible((prev) => ({ ...prev, [el.id]: true }))
-        }
+          if (isInView) {
+            setIsVisible((prev) => ({ ...prev, [el.id]: true }))
+          }
+        })
       })
     }
 
-    window.addEventListener("scroll", handleScroll)
-    handleScroll() // Initial check
+    // Add passive option for better scroll performance
+    window.addEventListener("scroll", handleScroll, { passive: true })
+
+    // Initial check to show elements that are already in view on load
+    setTimeout(handleScroll, 100)
 
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -77,7 +84,7 @@ const HomePage = ({ setIsFormOpen }) => {
             <div className="max-w-4xl mx-auto text-center">
               <div className="space-y-10 animate-on-scroll" id="hero-text">
                 <div
-                  className={`transition-all duration-1000 delay-300 transform ${
+                  className={`transition-all duration-500 delay-150 transform ${
                     isVisible["hero-text"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                   }`}
                 >
@@ -99,7 +106,7 @@ const HomePage = ({ setIsFormOpen }) => {
                 </div>
 
                 <div
-                  className={`flex flex-col sm:flex-row gap-5 justify-center transition-all duration-1000 delay-500 transform ${
+                  className={`flex flex-col sm:flex-row gap-5 justify-center transition-all duration-500 delay-250 transform ${
                     isVisible["hero-text"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                   }`}
                 >
@@ -108,16 +115,19 @@ const HomePage = ({ setIsFormOpen }) => {
                     className="px-8 py-4 text-base font-medium text-white rounded-md bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 transition-colors flex items-center justify-center gap-2 relative group overflow-hidden"
                   >
                     <span className="relative z-10">Explore Courses</span>
-                    <ChevronRight size={18} className="relative z-10 group-hover:translate-x-1 transition-transform" />
-                    <div className="absolute inset-0 translate-y-[102%] group-hover:translate-y-0 bg-white/10 transition-transform duration-300"></div>
-                    <div className="absolute inset-0 glow-effect opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <ChevronRight
+                      size={18}
+                      className="relative z-10 group-hover:translate-x-1 transition-transform duration-200"
+                    />
+                    <div className="absolute inset-0 translate-y-[102%] group-hover:translate-y-0 bg-white/10 transition-transform duration-200"></div>
+                    <div className="absolute inset-0 glow-effect opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                   </button>
                   <button
                     onClick={() => setIsFormOpen(true)}
                     className="px-8 py-4 text-base font-medium text-white rounded-md border border-violet-700/50 hover:border-violet-500 hover:bg-violet-700/20 transition-all relative group overflow-hidden"
                   >
                     <span className="relative z-10">Free Trial</span>
-                    <div className="absolute inset-0 translate-y-[102%] group-hover:translate-y-0 bg-gradient-to-r from-violet-800/20 to-violet-600/20 transition-transform duration-300"></div>
+                    <div className="absolute inset-0 translate-y-[102%] group-hover:translate-y-0 bg-gradient-to-r from-violet-800/20 to-violet-600/20 transition-transform duration-200"></div>
                   </button>
                 </div>
               </div>
@@ -137,7 +147,7 @@ const HomePage = ({ setIsFormOpen }) => {
           <div className="container relative mx-auto px-6">
             <div className="text-center max-w-3xl mx-auto mb-20 animate-on-scroll" id="about-heading">
               <div
-                className={`transition-all duration-1000 delay-300 transform ${isVisible["about-heading"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+                className={`transition-all duration-500 delay-150 transform ${isVisible["about-heading"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
               >
                 <div className="inline-flex items-center px-3 py-1 rounded-full bg-violet-900/30 border border-violet-500/30 text-sm mb-6">
                   <Shield size={14} className="mr-2 text-violet-400" />
@@ -199,7 +209,14 @@ const HomePage = ({ setIsFormOpen }) => {
               ].map((item, index) => (
                 <div
                   key={index}
-                  className={`backdrop-blur-md border rounded-xl overflow-hidden group relative transition-all duration-1000 ${item.delay} transform ${isVisible["about-cards"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+                  className={`backdrop-blur-md border rounded-xl overflow-hidden group relative transition-all duration-500 ${item.delay
+                    .replace("delay-300", "delay-150")
+                    .replace("delay-500", "delay-200")
+                    .replace("delay-700", "delay-250")
+                    .replace(
+                      "delay-900",
+                      "delay-300",
+                    )} transform ${isVisible["about-cards"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
                 >
                   {/* Background gradient */}
                   <div
@@ -240,7 +257,7 @@ const HomePage = ({ setIsFormOpen }) => {
               id="courses-heading"
             >
               <div
-                className={`transition-all duration-1000 delay-300 transform ${isVisible["courses-heading"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+                className={`transition-all duration-500 delay-150 transform ${isVisible["courses-heading"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
               >
                 <div className="inline-flex items-center px-3 py-1 rounded-full bg-violet-900/30 border border-violet-500/30 text-sm mb-6">
                   <Globe size={14} className="mr-2 text-violet-400" />
@@ -260,7 +277,7 @@ const HomePage = ({ setIsFormOpen }) => {
               </div>
               <Link
                 to="/courses"
-                className={`mt-8 md:mt-0 text-violet-400 hover:text-violet-300 flex items-center gap-2 group transition-all duration-1000 delay-500 transform ${isVisible["courses-heading"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+                className={`mt-8 md:mt-0 text-violet-400 hover:text-violet-300 flex items-center gap-2 group transition-all duration-500 delay-250 transform ${isVisible["courses-heading"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
               >
                 View all courses <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </Link>
@@ -277,7 +294,7 @@ const HomePage = ({ setIsFormOpen }) => {
                   level: "Intermediate to Advanced",
                   students: 13500,
                   technologies: ["JavaScript", "React", "Node.js"],
-                  path: "/courses/full-stack-development",
+                  path: "/full-stack-development-course",
                   delay: "delay-300",
                 },
                 {
@@ -289,7 +306,7 @@ const HomePage = ({ setIsFormOpen }) => {
                   level: "Intermediate",
                   students: 15000,
                   technologies: ["Python", "TensorFlow", "PyTorch"],
-                  path: "/courses/ai-ml",
+                  path: "/ai-ml-course",
                   delay: "delay-400",
                 },
                 {
@@ -301,7 +318,7 @@ const HomePage = ({ setIsFormOpen }) => {
                   level: "Intermediate",
                   students: 12500,
                   technologies: ["Python", "R", "SQL"],
-                  path: "/courses/data-science",
+                  path: "/data-science-course",
                   delay: "delay-500",
                 },
                 {
@@ -313,7 +330,7 @@ const HomePage = ({ setIsFormOpen }) => {
                   level: "Intermediate to Advanced",
                   students: 9800,
                   technologies: ["Network Security", "Ethical Hacking", "Cryptography"],
-                  path: "/courses/cybersecurity",
+                  path: "/cybersecurity-course",
                   delay: "delay-600",
                 },
                 {
@@ -325,7 +342,7 @@ const HomePage = ({ setIsFormOpen }) => {
                   level: "Beginner to Intermediate",
                   students: 9200,
                   technologies: ["Figma", "Adobe XD", "Prototyping"],
-                  path: "/courses/ui-ux-design",
+                  path: "/ui-ux-design-course",
                   delay: "delay-700",
                 },
                 {
@@ -337,13 +354,22 @@ const HomePage = ({ setIsFormOpen }) => {
                   level: "Beginner to Intermediate",
                   students: 8500,
                   technologies: ["AWS", "Azure", "Google Cloud"],
-                  path: "/courses/cloud-computing",
+                  path: "/cloud-computing-course",
                   delay: "delay-800",
                 },
               ].map((course, index) => (
                 <div
                   key={index}
-                  className={`backdrop-blur-md border border-violet-500/20 rounded-xl overflow-hidden group relative transition-all duration-1000 ${course.delay} transform ${isVisible["course-cards"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+                  className={`backdrop-blur-md border border-violet-500/20 rounded-xl overflow-hidden group relative transition-all duration-500 ${course.delay
+                    .replace("delay-300", "delay-150")
+                    .replace("delay-400", "delay-175")
+                    .replace("delay-500", "delay-200")
+                    .replace("delay-600", "delay-225")
+                    .replace("delay-700", "delay-250")
+                    .replace(
+                      "delay-800",
+                      "delay-275",
+                    )} transform ${isVisible["course-cards"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
                 >
                   <div className="bg-gray-900/60 p-6">
                     <h3 className="text-2xl font-bold mb-2">{course.title}</h3>
@@ -395,7 +421,7 @@ const HomePage = ({ setIsFormOpen }) => {
                         className="flex-1 px-4 py-2.5 text-center bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 text-white rounded-lg transition-colors flex items-center justify-center gap-2 group"
                       >
                         Enroll Now
-                        <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                        <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
                       </button>
                     </div>
                   </div>

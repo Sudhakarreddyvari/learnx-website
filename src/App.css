@@ -48,11 +48,11 @@ body {
 
 /* Glow effects */
 .glow-effect {
-  box-shadow: 0 0 15px 2px rgba(139, 92, 246, 0.5);
+  animation: glow-pulse 1.5s infinite ease-in-out;
 }
 
 .glow-effect-small {
-  box-shadow: 0 0 10px 1px rgba(139, 92, 246, 0.4);
+  animation: glow-pulse 1.5s infinite ease-in-out;
 }
 
 .glow-effect-violet {
@@ -148,6 +148,89 @@ section {
 
   h2 {
     font-size: 2rem !important;
+  }
+}
+
+/* Add optimized animation keyframes for smoother performance */
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes float-medium {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float-fast {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Optimize the animation durations */
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float-medium 4s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float-fast 3s ease-in-out infinite;
+}
+
+/* Optimize glow effect animations */
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(139, 92, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.7);
+  }
+}
+
+/* Add will-change properties for better performance */
+.transition-all {
+  will-change: transform, opacity;
+}
+
+/* Optimize hover transitions */
+.hover\:transform:hover {
+  transition-duration: 200ms;
+}
+
+/* Add prefers-reduced-motion media query for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-slow,
+  .animate-float-medium,
+  .animate-float-fast,
+  .glow-effect,
+  .glow-effect-small {
+    animation: none;
+  }
+
+  .transition-all,
+  .transition-colors,
+  .transition-opacity,
+  .transition-transform {
+    transition: none;
   }
 }
 
