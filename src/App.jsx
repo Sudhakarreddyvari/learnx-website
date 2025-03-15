@@ -1,96 +1,151 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import "./App.css"
-import AIMachineLearningCourse from "./pages/ai-ml-course"
-import DataScienceCourse from "./pages/data-science-course"
-import CybersecurityCourse from "./pages/cybersecurity-course"
-import CloudComputingCourse from "./pages/cloud-computing-course"
-import BlockchainCourse from "./pages/blockchain-course"
-import DevOpsCourse from "./pages/devops-course"
-import UIUXDesignCourse from "./pages/ui-ux-design-course"
-import FullStackDevelopmentCourse from "./pages/full-stack-development-course"
-import DigitalMarketingCourse from "./pages/digital-marketing-course"
-import AutomationTestingCourse from "./pages/automation-testing-course"
-import SalesforceCourse from "./pages/salesforce-course"
-import SalesforceCPQCourse from "./pages/salesforce-cpq-course"
-import SalesforceAgentForceCourse from "./pages/salesforce-agent-force-course"
-import BusinessAnalystCourse from "./pages/business-analyst-course"
-import FormPopup from "./components/form-popup"
-import HomePage from "./pages/HomePage"
-import AboutPage from "./pages/about-page"
-import PrivacyPolicyPage from "./pages/privacy-policy-page"
-import RazorpayPolicyPage from "./pages/razorpay-policy-page"
-import TermsOfServicePage from "./pages/terms-of-service-page"
-import RefundPolicyPage from "./pages/refund-policy-page"
-import ContactPage from "./pages/contact-page"
-import FAQPage from "./pages/faq-page"
-import AllCoursesPage from "./pages/all-courses-page"
-import ThankYouPage from "./pages/thank-you-page"
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
+import { Toaster } from "react-hot-toast"
+import { AuthProvider } from "./contexts/AuthContext"
+import { ThemeProvider } from "./contexts/ThemeContext"
+import ProtectedRoute from "./components/common/ProtectedRoute"
+
+// Layouts
+import DashboardLayout from "./layouts/DashboardLayout"
+
+// Auth Pages
+import Login from "./pages/auth/Login"
+import Register from "./pages/auth/Register"
+import ForgotPassword from "./pages/auth/ForgotPassword"
+import ResetPassword from "./pages/auth/ResetPassword"
+
+// Admin Pages
+import AdminDashboard from "./pages/admin/Dashboard"
+import UserManagement from "./pages/admin/UserManagement"
+import CourseManagement from "./pages/admin/CourseManagement"
+import TrainerManagement from "./pages/admin/TrainerManagement"
+import PaymentsAdmin from "./pages/admin/Payments"
+import NotificationsAdmin from "./pages/admin/Notifications"
+import SettingsAdmin from "./pages/admin/Settings"
+
+// Trainer Pages
+import TrainerDashboard from "./pages/trainer/Dashboard"
+import TrainerCourses from "./pages/trainer/Courses"
+import LiveClasses from "./pages/trainer/LiveClasses"
+import StudentEngagement from "./pages/trainer/StudentEngagement"
+import EarningsDashboard from "./pages/trainer/Earnings"
+
+// Student Pages
+import StudentDashboard from "./pages/student/Dashboard"
+import MyCourses from "./pages/student/MyCourses"
+import CourseDetails from "./pages/student/CourseDetails"
+import LiveClassesStudent from "./pages/student/LiveClasses"
+import Community from "./pages/student/Community"
+import Certifications from "./pages/student/Certifications"
+import PaymentsStudent from "./pages/student/Payments"
+
+// Public Pages
+import LandingPage from "./pages/public/LandingPage"
+import CourseCatalog from "./pages/public/CourseCatalog"
+import CoursePreview from "./pages/public/CoursePreview"
+import AboutUs from "./pages/public/AboutUs"
+import ContactUs from "./pages/public/ContactUs"
 
 function App() {
-  const [isFormOpen, setIsFormOpen] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Add scroll event listener
-    window.addEventListener("scroll", handleScroll)
-
-    return () => {
-      // Clean up the event listener
-      window.removeEventListener("scroll", handleScroll)
-    }
+    // Simulate initial loading
+    setTimeout(() => {
+      setLoading(false)
+    }, 1000)
   }, [])
 
-  const handleScroll = () => {
-    // Your scroll handling logic here
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-950">
+        <div className="w-16 h-16 border-4 border-violet-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    )
   }
 
   return (
-    <Router>
-      <div className="App">
-        <FormPopup isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
-        <Routes>
-          <Route path="/" element={<HomePage setIsFormOpen={setIsFormOpen} />} />
+    <ThemeProvider>
+      <AuthProvider>
+        <Router>
+          <Toaster position="top-right" />
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/courses" element={<CourseCatalog />} />
+            <Route path="/courses/:courseId" element={<CoursePreview />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/contact" element={<ContactUs />} />
 
-          {/* Course Routes */}
-          <Route path="/ai-ml-course" element={<AIMachineLearningCourse setIsFormOpen={setIsFormOpen} />} />
-          <Route path="/data-science-course" element={<DataScienceCourse setIsFormOpen={setIsFormOpen} />} />
-          <Route path="/cybersecurity-course" element={<CybersecurityCourse setIsFormOpen={setIsFormOpen} />} />
-          <Route path="/cloud-computing-course" element={<CloudComputingCourse setIsFormOpen={setIsFormOpen} />} />
-          <Route path="/blockchain-course" element={<BlockchainCourse setIsFormOpen={setIsFormOpen} />} />
-          <Route path="/devops-course" element={<DevOpsCourse setIsFormOpen={setIsFormOpen} />} />
-          <Route path="/ui-ux-design-course" element={<UIUXDesignCourse setIsFormOpen={setIsFormOpen} />} />
-          <Route
-            path="/full-stack-development-course"
-            element={<FullStackDevelopmentCourse setIsFormOpen={setIsFormOpen} />}
-          />
-          <Route path="/digital-marketing-course" element={<DigitalMarketingCourse setIsFormOpen={setIsFormOpen} />} />
-          <Route
-            path="/automation-testing-course"
-            element={<AutomationTestingCourse setIsFormOpen={setIsFormOpen} />}
-          />
-          <Route path="/salesforce-course" element={<SalesforceCourse setIsFormOpen={setIsFormOpen} />} />
-          <Route path="/salesforce-cpq-course" element={<SalesforceCPQCourse setIsFormOpen={setIsFormOpen} />} />
-          <Route
-            path="/salesforce-agent-force-course"
-            element={<SalesforceAgentForceCourse setIsFormOpen={setIsFormOpen} />}
-          />
-          <Route path="/business-analyst-course" element={<BusinessAnalystCourse setIsFormOpen={setIsFormOpen} />} />
+            {/* Auth Routes */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
 
-          {/* Information Pages */}
-          <Route path="/about" element={<AboutPage setIsFormOpen={setIsFormOpen} />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicyPage setIsFormOpen={setIsFormOpen} />} />
-          <Route path="/razorpay-policy" element={<RazorpayPolicyPage setIsFormOpen={setIsFormOpen} />} />
-          <Route path="/terms-of-service" element={<TermsOfServicePage setIsFormOpen={setIsFormOpen} />} />
-          <Route path="/refund-policy" element={<RefundPolicyPage setIsFormOpen={setIsFormOpen} />} />
-          <Route path="/contact" element={<ContactPage setIsFormOpen={setIsFormOpen} />} />
-          <Route path="/faq" element={<FAQPage setIsFormOpen={setIsFormOpen} />} />
-          <Route path="/courses" element={<AllCoursesPage setIsFormOpen={setIsFormOpen} />} />
-          <Route path="/thank-you" element={<ThankYouPage setIsFormOpen={setIsFormOpen} />} />
-        </Routes>
-      </div>
-    </Router>
+            {/* Admin Routes */}
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute allowedRoles={["admin"]}>
+                  <DashboardLayout userRole="admin" />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<Navigate to="/admin/dashboard" replace />} />
+              <Route path="dashboard" element={<AdminDashboard />} />
+              <Route path="users" element={<UserManagement />} />
+              <Route path="courses" element={<CourseManagement />} />
+              <Route path="trainers" element={<TrainerManagement />} />
+              <Route path="payments" element={<PaymentsAdmin />} />
+              <Route path="notifications" element={<NotificationsAdmin />} />
+              <Route path="settings" element={<SettingsAdmin />} />
+            </Route>
+
+            {/* Trainer Routes */}
+            <Route
+              path="/trainer"
+              element={
+                <ProtectedRoute allowedRoles={["trainer"]}>
+                  <DashboardLayout userRole="trainer" />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<Navigate to="/trainer/dashboard" replace />} />
+              <Route path="dashboard" element={<TrainerDashboard />} />
+              <Route path="courses" element={<TrainerCourses />} />
+              <Route path="live-classes" element={<LiveClasses />} />
+              <Route path="students" element={<StudentEngagement />} />
+              <Route path="earnings" element={<EarningsDashboard />} />
+            </Route>
+
+            {/* Student Routes */}
+            <Route
+              path="/student"
+              element={
+                <ProtectedRoute allowedRoles={["student"]}>
+                  <DashboardLayout userRole="student" />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<Navigate to="/student/dashboard" replace />} />
+              <Route path="dashboard" element={<StudentDashboard />} />
+              <Route path="courses" element={<MyCourses />} />
+              <Route path="courses/:courseId" element={<CourseDetails />} />
+              <Route path="live-classes" element={<LiveClassesStudent />} />
+              <Route path="community" element={<Community />} />
+              <Route path="certifications" element={<Certifications />} />
+              <Route path="payments" element={<PaymentsStudent />} />
+            </Route>
+
+            {/* Catch-all route */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Router>
+      </AuthProvider>
+    </ThemeProvider>
   )
 }
 
