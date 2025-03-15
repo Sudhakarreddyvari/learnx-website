@@ -236,18 +236,18 @@ const Header = ({ setIsFormOpen, hideHeader }) => {
               </div>
             </div>
 
-            <a href="#about" className="text-gray-300 hover:text-white transition-colors relative group">
+            <Link to="/about" className="text-gray-300 hover:text-white transition-colors relative group">
               About
               <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-violet-500 to-rose-500 group-hover:w-full transition-all duration-300"></span>
-            </a>
-            <a href="#testimonials" className="text-gray-300 hover:text-white transition-colors relative group">
+            </Link>
+            <Link to="/#testimonials" className="text-gray-300 hover:text-white transition-colors relative group">
               Testimonials
               <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-violet-500 to-rose-500 group-hover:w-full transition-all duration-300"></span>
-            </a>
-            <a href="#contact" className="text-gray-300 hover:text-white transition-colors relative group">
+            </Link>
+            <Link to="/contact" className="text-gray-300 hover:text-white transition-colors relative group">
               Contact
               <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-violet-500 to-rose-500 group-hover:w-full transition-all duration-300"></span>
-            </a>
+            </Link>
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
@@ -347,27 +347,27 @@ const Header = ({ setIsFormOpen, hideHeader }) => {
                 )}
               </div>
 
-              <a
-                href="#about"
+              <Link
+                to="/about"
                 className="px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-800/50 rounded-md transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About
-              </a>
-              <a
-                href="#testimonials"
+              </Link>
+              <Link
+                to="/#testimonials"
                 className="px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-800/50 rounded-md transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Testimonials
-              </a>
-              <a
-                href="#contact"
+              </Link>
+              <Link
+                to="/contact"
                 className="px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-800/50 rounded-md transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
-              </a>
+              </Link>
             </nav>
             <div className="flex gap-3 mt-5">
               <button
