@@ -5,6 +5,7 @@ import { Search, Filter, ChevronDown, Star, Clock, Users, Award, ArrowRight } fr
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import { Link } from "react-router-dom"
+import { scrollToTop } from "../utils/scrollUtils"
 
 const AllCoursesPage = ({ setIsFormOpen }) => {
   const [searchTerm, setSearchTerm] = useState("")
@@ -541,6 +542,7 @@ const AllCoursesPage = ({ setIsFormOpen }) => {
                       <div className="flex gap-3 mt-auto">
                         <Link
                           to={`/${course.slug}`}
+                          onClick={scrollToTop}
                           className="flex-1 px-4 py-2.5 text-center border border-violet-500/50 hover:border-violet-500 hover:bg-violet-500/10 text-white rounded-lg transition-colors"
                         >
                           View Course

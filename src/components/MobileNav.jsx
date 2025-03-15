@@ -1,8 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { ChevronDown } from "lucide-react"
-import { cn } from "@/lib/utils"
 
 const MobileNav = ({ activeSection, onSectionChange }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -38,7 +36,20 @@ const MobileNav = ({ activeSection, onSectionChange }) => {
         className="w-full flex items-center justify-between px-6 py-3 bg-gray-800/80 backdrop-blur-md rounded-lg border border-violet-500/20 text-white"
       >
         <span>{sections.find((s) => s.id === activeSection)?.label}</span>
-        <ChevronDown size={20} className={cn("transition-transform duration-300", isOpen && "rotate-180")} />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+        >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
       </button>
 
       {isOpen && (
@@ -47,12 +58,11 @@ const MobileNav = ({ activeSection, onSectionChange }) => {
             <button
               key={section.id}
               onClick={() => handleSelect(section.id)}
-              className={cn(
-                "w-full text-left px-6 py-3 transition-colors",
+              className={`w-full text-left px-6 py-3 transition-colors ${
                 activeSection === section.id
                   ? "bg-gradient-to-r from-violet-600/30 to-rose-500/30 text-white"
-                  : "text-gray-300 hover:bg-gray-700/50",
-              )}
+                  : "text-gray-300 hover:bg-gray-700/50"
+              }`}
             >
               {section.label}
             </button>

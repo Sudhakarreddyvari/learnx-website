@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { cn } from "@/lib/utils"
 
 const StickyNav = ({ activeSection, onSectionChange }) => {
   const [isSticky, setIsSticky] = useState(false)
@@ -61,10 +60,9 @@ const StickyNav = ({ activeSection, onSectionChange }) => {
     <div ref={sectionRef} className="relative z-20">
       <div
         ref={navRef}
-        className={cn(
-          "w-full transition-all duration-300 py-4",
-          isSticky && "fixed top-0 left-0 bg-gray-900/95 backdrop-blur-md border-b border-violet-500/20 shadow-lg",
-        )}
+        className={`w-full transition-all duration-300 py-4 ${
+          isSticky ? "fixed top-0 left-0 bg-gray-900/95 backdrop-blur-md border-b border-violet-500/20 shadow-lg" : ""
+        }`}
       >
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center gap-4">
@@ -72,12 +70,11 @@ const StickyNav = ({ activeSection, onSectionChange }) => {
               <button
                 key={section.id}
                 onClick={() => handleClick(section.id)}
-                className={cn(
-                  "px-6 py-3 rounded-lg text-base font-medium transition-all relative overflow-hidden",
+                className={`px-6 py-3 rounded-lg text-base font-medium transition-all relative overflow-hidden ${
                   activeSection === section.id
                     ? "bg-gradient-to-r from-violet-600 to-rose-500 text-white"
-                    : "bg-gray-800/50 text-gray-300 hover:bg-gray-800 border border-violet-500/20",
-                )}
+                    : "bg-gray-800/50 text-gray-300 hover:bg-gray-800 border border-violet-500/20"
+                }`}
               >
                 <span className="relative z-10">{section.label}</span>
                 {activeSection === section.id && (

@@ -18,6 +18,7 @@ import {
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import { Link } from "react-router-dom"
+import { scrollToTop } from "../utils/scrollUtils"
 
 const HomePage = ({ setIsFormOpen }) => {
   const [isVisible, setIsVisible] = useState({})
@@ -296,6 +297,7 @@ const HomePage = ({ setIsFormOpen }) => {
                   technologies: ["JavaScript", "React", "Node.js"],
                   path: "/full-stack-development-course",
                   delay: "delay-300",
+                  slug: "full-stack-development-course",
                 },
                 {
                   title: "AI & Machine Learning",
@@ -308,6 +310,7 @@ const HomePage = ({ setIsFormOpen }) => {
                   technologies: ["Python", "TensorFlow", "PyTorch"],
                   path: "/ai-ml-course",
                   delay: "delay-400",
+                  slug: "ai-ml-course",
                 },
                 {
                   title: "Data Science",
@@ -320,6 +323,7 @@ const HomePage = ({ setIsFormOpen }) => {
                   technologies: ["Python", "R", "SQL"],
                   path: "/data-science-course",
                   delay: "delay-500",
+                  slug: "data-science-course",
                 },
                 {
                   title: "Cybersecurity",
@@ -332,6 +336,7 @@ const HomePage = ({ setIsFormOpen }) => {
                   technologies: ["Network Security", "Ethical Hacking", "Cryptography"],
                   path: "/cybersecurity-course",
                   delay: "delay-600",
+                  slug: "cybersecurity-course",
                 },
                 {
                   title: "UI/UX Design",
@@ -344,6 +349,7 @@ const HomePage = ({ setIsFormOpen }) => {
                   technologies: ["Figma", "Adobe XD", "Prototyping"],
                   path: "/ui-ux-design-course",
                   delay: "delay-700",
+                  slug: "ui-ux-design-course",
                 },
                 {
                   title: "Cloud Computing",
@@ -356,6 +362,7 @@ const HomePage = ({ setIsFormOpen }) => {
                   technologies: ["AWS", "Azure", "Google Cloud"],
                   path: "/cloud-computing-course",
                   delay: "delay-800",
+                  slug: "cloud-computing-course",
                 },
               ].map((course, index) => (
                 <div
@@ -402,16 +409,12 @@ const HomePage = ({ setIsFormOpen }) => {
                           {tech}
                         </span>
                       ))}
-                      {course.technologies.length > 3 && (
-                        <span className="px-3 py-1 text-sm bg-gray-800 text-gray-300 rounded-full">
-                          +{course.technologies.length - 3} more
-                        </span>
-                      )}
                     </div>
 
                     <div className="flex gap-3">
                       <Link
                         to={course.path}
+                        onClick={scrollToTop}
                         className="flex-1 px-4 py-2.5 text-center border border-violet-500/50 hover:border-violet-500 hover:bg-violet-500/10 text-white rounded-lg transition-colors"
                       >
                         View Course

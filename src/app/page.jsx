@@ -1,8 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import StickyNav from "@/components/StickyNav"
-import MobileNav from "@/components/MobileNav"
+import StickyNav from "../components/StickyNav.jsx"
+import MobileNav from "../components/MobileNav.jsx"
 
 export default function Page() {
   const [activeSection, setActiveSection] = useState("curriculum")
