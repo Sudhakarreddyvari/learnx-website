@@ -8,16 +8,8 @@ const FormPopup = ({ isOpen, onClose }) => {
   const navigate = useNavigate()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  // Load Zoho scripts when component mounts
+  // Define the validation functions when component mounts
   useEffect(() => {
-    // Ensure $zoho is available
-    window.$zoho = window.$zoho || {}
-    window.$zoho.salesiq = window.$zoho.salesiq || {
-      widgetcode: "",
-      values: {},
-      ready: () => {},
-    }
-
     // Define the validation functions in the global scope
     window.validateEmail890464000000384209 = () => {
       var form = document.forms["WebToLeads890464000000384209"]
@@ -114,10 +106,6 @@ const FormPopup = ({ isOpen, onClose }) => {
 
       document.querySelector(".crmWebToEntityForm .formsubmit").setAttribute("disabled", true)
       return true
-    }
-
-    return () => {
-      // Clean up scripts when component unmounts
     }
   }, [])
 

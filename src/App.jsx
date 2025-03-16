@@ -33,26 +33,24 @@ function App() {
   const [isFormOpen, setIsFormOpen] = useState(false)
 
   useEffect(() => {
-    // Load SalesIQ script
-    const salesIQScript = document.createElement("script")
-    salesIQScript.type = "text/javascript"
-    salesIQScript.id = "zsiqscript"
-    salesIQScript.defer = true
-    salesIQScript.src = "https://salesiq.zoho.in/widget"
-
-    // Add the script to the document
-    document.body.appendChild(salesIQScript)
-
-    // Initialize Zoho SalesIQ
+    // Initialize Zoho SalesIQ - this must be done exactly as Zoho specifies
     window.$zoho = window.$zoho || {}
     window.$zoho.salesiq = window.$zoho.salesiq || {
       widgetcode: "siqaf431e377ca35ef1a2cb5d7d9740fac09c36b12e3d797cd4e22a718bae4b60bb0ab19819e9e94bd6088d0bbad1b2fc1a",
       values: {},
-      ready: () => {
-        // This function will be called when SalesIQ is ready
-        console.log("Zoho SalesIQ is ready")
-      },
+      ready: () => {},
     }
+
+    // Create and append the script element
+    const script = document.createElement("script")
+    script.type = "text/javascript"
+    script.id = "zsiqscript"
+    script.defer = true
+    script.src = "https://salesiq.zoho.in/widget"
+
+    // Add the script to the document
+    const firstScriptTag = document.getElementsByTagName("script")[0]
+    firstScriptTag.parentNode.insertBefore(script, firstScriptTag)
 
     return () => {
       // Clean up script when component unmounts
