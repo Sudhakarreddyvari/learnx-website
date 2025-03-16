@@ -6,18 +6,130 @@ import { useNavigate } from "react-router-dom"
 
 const FormPopup = ({ isOpen, onClose }) => {
   const navigate = useNavigate()
-  const [formData, setFormData] = useState({
-    "Last Name": "",
-    Phone: "",
-    Email: "",
-  })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const formRef = useRef(null)
   const zohoScriptsLoaded = useRef(false)
+  const iframeRef = useRef(null)
 
   // Load Zoho scripts when component mounts
   useEffect(() => {
     if (!zohoScriptsLoaded.current) {
+      // Define the global functions needed by Zoho
+      window.validateEmail890464000000384209 = () => {
+        var form = document.forms["WebToLeads890464000000384209"]
+        var emailFld = form.querySelectorAll("[ftype=email]")
+        var i
+        for (i = 0; i < emailFld.length; i++) {
+          var emailVal = emailFld[i].value
+          if (emailVal.replace(/^\s+|\s+$/g, "").length != 0) {
+            var atpos = emailVal.indexOf("@")
+            var dotpos = emailVal.lastIndexOf(".")
+            if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= emailVal.length) {
+              alert("Please enter a valid email address. ")
+              emailFld[i].focus()
+              return false
+            }
+          }
+        }
+        return true
+      }
+
+      window.checkMandatory890464000000384209 = () => {
+        var mndFileds = new Array("Last Name", "Email", "Phone")
+        var fldLangVal = new Array("Name", "Email", "Phone")
+        let i
+        for (i = 0; i < mndFileds.length; i++) {
+          var fieldObj = document.forms["WebToLeads890464000000384209"][mndFileds[i]]
+          if (fieldObj) {
+            if (fieldObj.value.replace(/^\s+|\s+$/g, "").length == 0) {
+              if (fieldObj.type == "file") {
+                alert("Please select a file to upload.")
+                fieldObj.focus()
+                return false
+              }
+              alert(fldLangVal[i] + " cannot be empty.")
+              fieldObj.focus()
+              return false
+            } else if (fieldObj.nodeName == "SELECT") {
+              if (fieldObj.options[fieldObj.selectedIndex].value == "-None-") {
+                alert(fldLangVal[i] + " cannot be none.")
+                fieldObj.focus()
+                return false
+              }
+            } else if (fieldObj.type == "checkbox") {
+              if (fieldObj.checked == false) {
+                alert("Please accept  " + fldLangVal[i])
+                fieldObj.focus()
+                return false
+              }
+            }
+            try {
+              if (fieldObj.name == "Last Name") {
+                name = fieldObj.value
+              }
+            } catch (e) {}
+          }
+        }
+
+        // Call trackVisitor function
+        window.trackVisitor890464000000384209()
+
+        if (!window.validateEmail890464000000384209()) {
+          return false
+        }
+
+        // Handle URL parameters for smarturl
+        var urlparams = new URLSearchParams(window.location.search)
+        if (urlparams.has("service") && urlparams.get("service") === "smarturl") {
+          var webform = document.getElementById("webform890464000000384209")
+          var service = urlparams.get("service")
+          var smarturlfield = document.createElement("input")
+          smarturlfield.setAttribute("type", "hidden")
+          smarturlfield.setAttribute("value", service)
+          smarturlfield.setAttribute("name", "service")
+          webform.appendChild(smarturlfield)
+        }
+
+        document.querySelector(".crmWebToEntityForm .formsubmit").setAttribute("disabled", true)
+
+        // In React, we need to return true to allow the form to submit
+        return true
+      }
+
+      // SalesIQ visitor tracking
+      window.$zoho = window.$zoho || {}
+      window.$zoho.salesiq = window.$zoho.salesiq || {
+        widgetcode:
+          "siqaf431e377ca35ef1a2cb5d7d9740fac09c36b12e3d797cd4e22a718bae4b60bb0ab19819e9e94bd6088d0bbad1b2fc1a",
+        values: {},
+        ready: () => {},
+      }
+
+      window.trackVisitor890464000000384209 = () => {
+        let name = ""
+        let email = ""
+        try {
+          if (window.$zoho) {
+            var LDTuvidObj = document.forms["WebToLeads890464000000384209"]["LDTuvid"]
+            if (LDTuvidObj && window.$zoho.salesiq.visitor) {
+              LDTuvidObj.value = window.$zoho.salesiq.visitor.uniqueid()
+            }
+            var firstnameObj = document.forms["WebToLeads890464000000384209"]["First Name"]
+            if (firstnameObj) {
+              name = firstnameObj.value + " " + name
+            }
+            if (window.$zoho.salesiq.visitor) {
+              window.$zoho.salesiq.visitor.name(name)
+              var emailObj = document.forms["WebToLeads890464000000384209"]["Email"]
+              if (emailObj) {
+                email = emailObj.value
+                window.$zoho.salesiq.visitor.email(email)
+              }
+            }
+          }
+        } catch (e) {}
+      }
+
       // Load SalesIQ script
       const salesIQScript = document.createElement("script")
       salesIQScript.type = "text/javascript"
@@ -32,15 +144,6 @@ const FormPopup = ({ isOpen, onClose }) => {
       analyticsScript.src =
         "https://crm.zohopublic.in/crm/WebFormAnalyticsServeServlet?rid=c69ae0692861057b61a5016030db5005bf4d02daa9bc103595be4b46a6f2fcb3e315750f97d17629511be567fc2d375fgid63a965e22d05c8faf1964473ae6977d3006a4307a4b51795c18a49d408f65147gidaa19a3b6681703cd9ed0d812272958930c8521e01e8b1c6be13e3e9f9735922egidf1a1687e9612a13f87fe2a0691cf533bf34eec5f6bc8439b76e1639b8e6763be&tw=fcb5c3c35f1c41a945043a36703e9b8acf01e50d21bfd384eaee624fd3beffea"
       document.body.appendChild(analyticsScript)
-
-      // Initialize Zoho SalesIQ
-      window.$zoho = window.$zoho || {}
-      window.$zoho.salesiq = window.$zoho.salesiq || {
-        widgetcode:
-          "siqaf431e377ca35ef1a2cb5d7d9740fac09c36b12e3d797cd4e22a718bae4b60bb0ab19819e9e94bd6088d0bbad1b2fc1a",
-        values: {},
-        ready: () => {},
-      }
 
       zohoScriptsLoaded.current = true
     }
@@ -58,108 +161,33 @@ const FormPopup = ({ isOpen, onClose }) => {
     }
   }, [isOpen])
 
-  if (!isOpen) return null
-
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
-  }
-
-  const validateEmail = () => {
-    const emailVal = formData["Email"]
-    if (emailVal.replace(/^\s+|\s+$/g, "").length !== 0) {
-      const atpos = emailVal.indexOf("@")
-      const dotpos = emailVal.lastIndexOf(".")
-      if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= emailVal.length) {
-        alert("Please enter a valid email address.")
-        return false
-      }
-    }
-    return true
-  }
-
-  // Track visitor function from Zoho
-  const trackVisitor = () => {
-    try {
-      if (window.$zoho) {
-        // Set visitor name
-        const name = formData["Last Name"]
-        if (name) {
-          window.$zoho.salesiq.visitor.name(name)
-        }
-
-        // Set visitor email
-        const email = formData["Email"]
-        if (email) {
-          window.$zoho.salesiq.visitor.email(email)
-        }
-
-        // Set unique visitor ID if available
-        if (window.$zoho.salesiq.visitor && typeof window.$zoho.salesiq.visitor.uniqueid === "function") {
-          const uniqueId = window.$zoho.salesiq.visitor.uniqueid()
-          // You would normally set this to a hidden field in the form
-          console.log("Visitor unique ID:", uniqueId)
-        }
-      }
-    } catch (e) {
-      console.error("Error tracking visitor:", e)
-    }
-  }
-
-  const checkMandatory = () => {
-    const mndFields = ["Last Name", "Email", "Phone"]
-    const fldLangVal = ["Name", "Email", "Phone"]
-
-    for (let i = 0; i < mndFields.length; i++) {
-      const fieldValue = formData[mndFields[i]]
-      if (!fieldValue || fieldValue.replace(/^\s+|\s+$/g, "").length === 0) {
-        alert(fldLangVal[i] + " cannot be empty.")
-        return false
-      }
-    }
-
-    // Track visitor before validating email
-    trackVisitor()
-
-    return validateEmail()
-  }
-
+  // Handle form submission
   const handleSubmit = (e) => {
-    e.preventDefault()
+    // We don't prevent default here because we want the form to actually submit
+    setIsSubmitting(true)
 
-    if (checkMandatory()) {
-      setIsSubmitting(true)
+    // Create a hidden iframe to handle the form submission without page navigation
+    if (!iframeRef.current) {
+      const iframe = document.createElement("iframe")
+      iframe.name = "zoho_submission_frame"
+      iframe.style.display = "none"
+      document.body.appendChild(iframe)
+      iframeRef.current = iframe
 
-      // In a real implementation, you would submit to Zoho CRM here
-      // For frontend-only, we'll simulate the submission
-
-      // Disable submit button as Zoho does
-      if (formRef.current) {
-        const submitBtn = formRef.current.querySelector(".formsubmit")
-        if (submitBtn) {
-          submitBtn.setAttribute("disabled", true)
+      // When the iframe loads after submission, redirect to thank you page
+      iframe.onload = () => {
+        if (isSubmitting) {
+          setTimeout(() => {
+            setIsSubmitting(false)
+            onClose()
+            navigate("/thank-you")
+          }, 1000)
         }
       }
-
-      // Simulate form submission
-      setTimeout(() => {
-        setIsSubmitting(false)
-        onClose()
-        navigate("/thank-you")
-      }, 1500)
     }
   }
 
-  const handleReset = () => {
-    setFormData({
-      "Last Name": "",
-      Phone: "",
-      Email: "",
-    })
-  }
+  if (!isOpen) return null
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-gray-950/80 backdrop-blur-sm">
@@ -183,9 +211,19 @@ const FormPopup = ({ isOpen, onClose }) => {
             id="webform890464000000384209"
             ref={formRef}
             name="WebToLeads890464000000384209"
-            onSubmit={handleSubmit}
+            action="https://crm.zoho.in/crm/WebToLeadForm"
+            method="POST"
+            target="zoho_submission_frame"
+            onSubmit={(e) => {
+              const isValid = window.checkMandatory890464000000384209()
+              if (isValid) {
+                handleSubmit(e)
+              } else {
+                e.preventDefault()
+              }
+            }}
+            acceptCharset="UTF-8"
             className="p-6"
-            accept-charset="UTF-8"
           >
             {/* Hidden fields */}
             <input
@@ -222,8 +260,6 @@ const FormPopup = ({ isOpen, onClose }) => {
                   type="text"
                   id="Last_Name"
                   name="Last Name"
-                  value={formData["Last Name"]}
-                  onChange={handleChange}
                   aria-required="true"
                   aria-label="Last Name"
                   aria-valuemax="80"
@@ -245,8 +281,6 @@ const FormPopup = ({ isOpen, onClose }) => {
                   type="text"
                   id="Phone"
                   name="Phone"
-                  value={formData["Phone"]}
-                  onChange={handleChange}
                   aria-required="true"
                   aria-label="Phone"
                   aria-valuemax="30"
@@ -269,8 +303,6 @@ const FormPopup = ({ isOpen, onClose }) => {
                   ftype="email"
                   id="Email"
                   name="Email"
-                  value={formData["Email"]}
-                  onChange={handleChange}
                   aria-required="true"
                   aria-label="Email"
                   aria-valuemax="100"
@@ -319,8 +351,7 @@ const FormPopup = ({ isOpen, onClose }) => {
                   )}
                 </button>
                 <button
-                  type="button"
-                  onClick={handleReset}
+                  type="reset"
                   className="zcwf_button px-6 py-2 border border-gray-300 text-gray-700 font-medium rounded-md hover:bg-gray-50 transition-colors"
                 >
                   Reset
