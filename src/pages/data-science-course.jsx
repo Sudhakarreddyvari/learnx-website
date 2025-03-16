@@ -22,7 +22,7 @@ const DataScienceCourse = ({ setIsFormOpen }) => {
     duration: "14 Weeks",
     level: "Beginner to Advanced",
     rating: 4.8,
-    students: 2980,
+    students: 1580,
     image:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     price: "$649",

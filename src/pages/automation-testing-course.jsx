@@ -22,7 +22,7 @@ const AutomationTestingCourse = ({ setIsFormOpen }) => {
     duration: "12 Weeks",
     level: "Intermediate",
     rating: 4.8,
-    students: 1950,
+    students: 1150,
     image:
       "https://images.unsplash.com/photo-1581472723648-909f4851d4ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     price: "$649",

@@ -240,10 +240,10 @@ const Header = ({ setIsFormOpen, hideHeader }) => {
               About
               <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-violet-500 to-rose-500 group-hover:w-full transition-all duration-300"></span>
             </Link>
-            <Link to="/#testimonials" className="text-gray-300 hover:text-white transition-colors relative group">
+            {/* <Link to="/#testimonials" className="text-gray-300 hover:text-white transition-colors relative group">
               Testimonials
               <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-violet-500 to-rose-500 group-hover:w-full transition-all duration-300"></span>
-            </Link>
+            </Link> */}
             <Link to="/contact" className="text-gray-300 hover:text-white transition-colors relative group">
               Contact
               <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-violet-500 to-rose-500 group-hover:w-full transition-all duration-300"></span>
