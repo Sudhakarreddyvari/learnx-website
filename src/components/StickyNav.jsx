@@ -1,97 +1,196 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import { useNavigate } from "react-router-dom"
+import { ChevronDown } from "lucide-react"
+import MobileNav from "./MobileNav"
 
-const StickyNav = ({ activeSection, onSectionChange }) => {
-  const [isSticky, setIsSticky] = useState(false)
-  const [hasViewedCurriculum, setHasViewedCurriculum] = useState(false)
-  const navRef = useRef(null)
-  const sectionRef = useRef(null)
-
-  const sections = [
-    { id: "curriculum", label: "Curriculum" },
-    { id: "placements", label: "Placements" },
-    { id: "certifications", label: "Certifications" },
-    { id: "career", label: "Career Counselling" },
-  ]
+const StickyNav = ({ toggleForm }) => {
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isCoursesOpen, setIsCoursesOpen] = useState(false)
+  const dropdownRef = useRef(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!navRef.current || !sectionRef.current) return
-
-      const { top: navTop } = navRef.current.getBoundingClientRect()
-      const { bottom: sectionBottom } = sectionRef.current.getBoundingClientRect()
-
-      // Check if user has scrolled past curriculum section
-      const curriculumSection = document.getElementById("curriculum-section")
-      if (curriculumSection) {
-        const { bottom: curriculumBottom } = curriculumSection.getBoundingClientRect()
-        if (curriculumBottom < window.innerHeight) {
-          setHasViewedCurriculum(true)
-        }
+      if (window.scrollY > 50) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
       }
+    }
 
-      // Only enable sticky behavior after viewing curriculum
-      if (hasViewedCurriculum) {
-        setIsSticky(navTop <= 0 && sectionBottom > 0)
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsCoursesOpen(false)
       }
     }
 
     window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [hasViewedCurriculum])
+    document.addEventListener("mousedown", handleClickOutside)
 
-  const handleClick = (sectionId) => {
-    onSectionChange(sectionId)
-    const element = document.getElementById(`${sectionId}-section`)
-    if (element) {
-      const offset = isSticky ? 80 : 0 // Account for sticky nav height
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - offset
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      })
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      document.removeEventListener("mousedown", handleClickOutside)
     }
+  }, [])
+
+  const handleNavigation = (path) => {
+    setIsCoursesOpen(false)
+    navigate(path)
+    window.scrollTo(0, 0)
   }
 
   return (
-    <div ref={sectionRef} className="relative z-20">
-      <div
-        ref={navRef}
-        className={`w-full transition-all duration-300 py-4 ${
-          isSticky ? "fixed top-0 left-0 bg-gray-900/95 backdrop-blur-md border-b border-violet-500/20 shadow-lg" : ""
-        }`}
-      >
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap justify-center gap-4">
-            {sections.map((section) => (
-              <button
-                key={section.id}
-                onClick={() => handleClick(section.id)}
-                className={`px-6 py-3 rounded-lg text-base font-medium transition-all relative overflow-hidden ${
-                  activeSection === section.id
-                    ? "bg-gradient-to-r from-violet-600 to-rose-500 text-white"
-                    : "bg-gray-800/50 text-gray-300 hover:bg-gray-800 border border-violet-500/20"
-                }`}
-              >
-                <span className="relative z-10">{section.label}</span>
-                {activeSection === section.id && (
-                  <>
-                    <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div className="absolute inset-0 glow-effect-small opacity-50" />
-                  </>
-                )}
-              </button>
-            ))}
+    <header
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-transparent"}`}
+    >
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center py-4">
+          <div onClick={() => handleNavigation("/")} className="flex items-center cursor-pointer">
+            <img src="/logo.png" alt="LearnX Logo" className="h-10" />
           </div>
+
+          <div className="hidden lg:flex items-center space-x-8">
+            <nav>
+              <ul className="flex space-x-8">
+                <li>
+                  <div
+                    onClick={() => handleNavigation("/")}
+                    className="text-gray-800 hover:text-blue-600 font-medium cursor-pointer"
+                  >
+                    Home
+                  </div>
+                </li>
+                <li className="relative" ref={dropdownRef}>
+                  <button
+                    onClick={() => setIsCoursesOpen(!isCoursesOpen)}
+                    className="flex items-center text-gray-800 hover:text-blue-600 font-medium focus:outline-none"
+                  >
+                    Courses <ChevronDown size={16} className="ml-1" />
+                  </button>
+
+                  {isCoursesOpen && (
+                    <div className="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-lg overflow-hidden z-20">
+                      <div className="py-2 max-h-[70vh] overflow-y-auto">
+                        <div
+                          onClick={() => handleNavigation("/ai-ml-course")}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 cursor-pointer"
+                        >
+                          AI & Machine Learning
+                        </div>
+                        <div
+                          onClick={() => handleNavigation("/data-science-course")}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 cursor-pointer"
+                        >
+                          Data Science
+                        </div>
+                        <div
+                          onClick={() => handleNavigation("/cybersecurity-course")}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 cursor-pointer"
+                        >
+                          Cybersecurity
+                        </div>
+                        <div
+                          onClick={() => handleNavigation("/cloud-computing-course")}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 cursor-pointer"
+                        >
+                          Cloud Computing
+                        </div>
+                        <div
+                          onClick={() => handleNavigation("/blockchain-course")}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 cursor-pointer"
+                        >
+                          Blockchain
+                        </div>
+                        <div
+                          onClick={() => handleNavigation("/devops-course")}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 cursor-pointer"
+                        >
+                          DevOps
+                        </div>
+                        <div
+                          onClick={() => handleNavigation("/ui-ux-design-course")}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 cursor-pointer"
+                        >
+                          UI/UX Design
+                        </div>
+                        <div
+                          onClick={() => handleNavigation("/full-stack-development-course")}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 cursor-pointer"
+                        >
+                          Full Stack Development
+                        </div>
+                        <div
+                          onClick={() => handleNavigation("/digital-marketing-course")}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 cursor-pointer"
+                        >
+                          Digital Marketing
+                        </div>
+                        <div
+                          onClick={() => handleNavigation("/automation-testing-course")}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 cursor-pointer"
+                        >
+                          Automation Testing
+                        </div>
+                        <div
+                          onClick={() => handleNavigation("/salesforce-course")}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 cursor-pointer"
+                        >
+                          Salesforce
+                        </div>
+                        <div
+                          onClick={() => handleNavigation("/business-analyst-course")}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 cursor-pointer"
+                        >
+                          Business Analyst
+                        </div>
+                        <div
+                          onClick={() => handleNavigation("/salesforce-cpq-course")}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 cursor-pointer"
+                        >
+                          Salesforce CPQ
+                        </div>
+                        <div
+                          onClick={() => handleNavigation("/salesforce-agent-force-course")}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 cursor-pointer"
+                        >
+                          Salesforce Agent Force
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </li>
+                <li>
+                  <div
+                    onClick={() => handleNavigation("/about")}
+                    className="text-gray-800 hover:text-blue-600 font-medium cursor-pointer"
+                  >
+                    About Us
+                  </div>
+                </li>
+                <li>
+                  <div
+                    onClick={() => handleNavigation("/contact")}
+                    className="text-gray-800 hover:text-blue-600 font-medium cursor-pointer"
+                  >
+                    Contact Us
+                  </div>
+                </li>
+              </ul>
+            </nav>
+            <button
+              onClick={toggleForm}
+              className="py-2 px-6 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-md hover:from-blue-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300"
+            >
+              Enquire Now
+            </button>
+          </div>
+
+          <MobileNav toggleForm={toggleForm} />
         </div>
       </div>
-
-      {/* Spacer to prevent content jump when nav becomes sticky */}
-      {isSticky && <div className="h-[72px]" />}
-    </div>
+    </header>
   )
 }
 

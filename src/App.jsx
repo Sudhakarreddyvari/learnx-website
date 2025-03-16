@@ -29,6 +29,7 @@ import ContactPage from "./pages/contact-page"
 import FAQPage from "./pages/faq-page"
 import AllCoursesPage from "./pages/all-courses-page"
 import ThankYouPage from "./pages/thank-you-page"
+import ScrollToTop from "./ScrollToTop"
 
 function App() {
   const [isFormOpen, setIsFormOpen] = useState(false)
@@ -76,6 +77,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <div className="App">
         <FormPopup isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
         <FloatingPhoneButton phoneNumber="+91 8019333796" />
