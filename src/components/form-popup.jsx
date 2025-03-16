@@ -10,18 +10,10 @@ const FormPopup = ({ isOpen, onClose }) => {
 
   // Load Zoho scripts when component mounts
   useEffect(() => {
-    // Load SalesIQ script
-    const salesIQScript = document.createElement("script")
-    salesIQScript.type = "text/javascript"
-    salesIQScript.id = "zsiqscript"
-    salesIQScript.defer = true
-    salesIQScript.src = "https://salesiq.zoho.in/widget"
-    document.body.appendChild(salesIQScript)
-
-    // Initialize Zoho SalesIQ
+    // Ensure $zoho is available
     window.$zoho = window.$zoho || {}
     window.$zoho.salesiq = window.$zoho.salesiq || {
-      widgetcode: "siqaf431e377ca35ef1a2cb5d7d9740fac09c36b12e3d797cd4e22a718bae4b60bb0ab19819e9e94bd6088d0bbad1b2fc1a",
+      widgetcode: "",
       values: {},
       ready: () => {},
     }
@@ -126,8 +118,6 @@ const FormPopup = ({ isOpen, onClose }) => {
 
     return () => {
       // Clean up scripts when component unmounts
-      const zsiqScript = document.getElementById("zsiqscript")
-      if (zsiqScript) zsiqScript.remove()
     }
   }, [])
 
