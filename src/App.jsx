@@ -49,7 +49,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <FormPopup isOpen={isFormOpen} setIsOpen={setIsFormOpen} />
+        <FormPopup isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
         <Routes>
           <Route path="/" element={<HomePage setIsFormOpen={setIsFormOpen} />} />
 

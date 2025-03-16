@@ -23,9 +23,30 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://learnxglobal.com/" />
     
-    <!-- Removed the CDN Tailwind reference -->
-    <script type="module" crossorigin src="/assets/index-8zysUT7D.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BS7FniNB.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              violet: {
+                500: '#8B5CF6',
+                600: '#7C3AED',
+                700: '#6D28D9',
+                900: '#4C1D95',
+              },
+              rose: {
+                500: '#F43F5E',
+                600: '#E11D48',
+              },
+            },
+          },
+        },
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-CANFIEnq.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-C6gTBp-R.css">
   </head>
   <body>
     <div id="root"></div>
