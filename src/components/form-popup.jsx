@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { X } from "lucide-react"
+import axios from "axios"
 
 const FormPopup = ({ isOpen, setIsOpen }) => {
   const [formData, setFormData] = useState({
@@ -65,15 +66,48 @@ const FormPopup = ({ isOpen, setIsOpen }) => {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = (e) => {
+  // Function to track visitor (similar to Zoho's trackVisitor function)
+  const trackVisitor = () => {
+    try {
+      if (window.$zoho && window.$zoho.salesiq) {
+        return window.$zoho.salesiq.visitor.uniqueid()
+      }
+    } catch (e) {
+      console.error("Error tracking visitor:", e)
+    }
+    return ""
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if (validateForm()) {
-      setIsSubmitting(true)
+    if (!validateForm()) return
 
-      // Simulate API call
-      setTimeout(() => {
-        setIsSubmitting(false)
+    setIsSubmitting(true)
+
+    const visitorId = trackVisitor()
+    const zohoFormData = {
+      xnQsjsdp: "4114b5853074135c7f8cddb27822a5607b062f736ffaa05a2d89b4047fd8441d",
+      xmIwtLD: "1735ac9ccb53d804bfb82ca894198953d1f7fa76448eea3d71cfd50fd68dba668ed5fd267e4a6f4f2c0fafa34373e445",
+      actionType: "TGVhZHM=",
+      returnURL: "https://learn-x.in/thank-you/",
+      LDTuvid: visitorId,
+      "Last Name": formData.name,
+      Phone: formData.phone,
+      Email: formData.email,
+    }
+
+    try {
+      console.log("Submitting form data:", zohoFormData)
+
+      // Use the server URL
+      const response = await axios.post("http://localhost:5000/submit-form", zohoFormData)
+
+      console.log("Server response:", response.data)
+
+      setIsSubmitting(false)
+
+      if (response.data.success) {
         setIsSubmitted(true)
 
         // Reset form after submission
@@ -89,7 +123,13 @@ const FormPopup = ({ isOpen, setIsOpen }) => {
           // Redirect to thank you page
           window.location.href = "/thank-you"
         }, 2000)
-      }, 1500)
+      } else {
+        alert("Error submitting the form. Please try again.")
+      }
+    } catch (error) {
+      console.error("Form submission error:", error)
+      setIsSubmitting(false)
+      alert("Submission failed! Please try again later.")
     }
   }
 

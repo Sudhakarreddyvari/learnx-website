@@ -1,6 +1,6 @@
 "use client"
 
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { useState, useEffect } from "react"
 import ScrollToTop from "./components/ScrollToTop.jsx"
 import FormPopup from "./components/form-popup.jsx"
@@ -35,6 +35,7 @@ import ContactPage from "./pages/contact-page.jsx"
 import FaqPage from "./pages/faq-page.jsx"
 import AllCoursesPage from "./pages/all-courses-page.jsx"
 import ThankYouPage from "./pages/thank-you-page.jsx"
+import NotFoundPage from "./pages/NotFoundPage.jsx"
 
 function App() {
   const [isFormOpen, setIsFormOpen] = useState(false)
@@ -119,8 +120,8 @@ function App() {
           element={<SalesforceAgentForceCourse setIsFormOpen={setIsFormOpen} />}
         />
 
-        {/* Fallback route for any unmatched paths */}
-        <Route path="*" element={<Navigate to="/" replace />} />
+        {/* 404 Page */}
+        <Route path="*" element={<NotFoundPage setIsFormOpen={setIsFormOpen} />} />
       </Routes>
     </Router>
   )
