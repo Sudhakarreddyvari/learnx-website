@@ -113,11 +113,11 @@ const ContactPage = ({ setIsFormOpen }) => {
                     <div>
                       <h3 className="text-lg font-semibold mb-2">Our Location</h3>
                       <p className="text-gray-300">
-                          8-2-293/82/PLN/406, Guttala_Begumpet, Kavuri Hills
+                        123 Tech Street, Innovation City
                         <br />
-                        Madhapur, Hyderabad
+                        California, CA 91234
                         <br />
-                        Telangana 500033
+                        United States
                       </p>
                     </div>
                   </div>
@@ -129,11 +129,11 @@ const ContactPage = ({ setIsFormOpen }) => {
                     <div>
                       <h3 className="text-lg font-semibold mb-2">Email Us</h3>
                       <p className="text-gray-300">
-                        General Inquiries: info@learn-x.com
+                        General Inquiries: info@learnx.com
                         <br />
-                        Support: learnxinstitute@gmail.com
+                        Support: support@learnx.com
                         <br />
-                        Admissions: learnxinstitute@gmail.com
+                        Admissions: admissions@learnx.com
                       </p>
                     </div>
                   </div>
@@ -145,11 +145,11 @@ const ContactPage = ({ setIsFormOpen }) => {
                     <div>
                       <h3 className="text-lg font-semibold mb-2">Call Us</h3>
                       <p className="text-gray-300">
-                        Main Office: +91 8019333796
+                        Main Office: +1 (555) 123-4567
                         <br />
-                        Support Hotline: +91 8019333796
+                        Support Hotline: +1 (555) 987-6543
                         <br />
-                        Hours: Monday-Friday, 7AM-10PM PST
+                        Hours: Monday-Friday, 9AM-6PM PST
                       </p>
                     </div>
                   </div>
