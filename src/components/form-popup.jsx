@@ -4,6 +4,10 @@ import { useState, useEffect } from "react"
 import { X } from "lucide-react"
 import axios from "axios"
 
+// Update this to your AWS EC2 instance URL
+const SERVER_URL = "http://13.232.176.52:5000/submit-form"
+// Example: const SERVER_URL = "http://54.123.45.678:5000/submit-form";
+
 const FormPopup = ({ isOpen, setIsOpen }) => {
   const [formData, setFormData] = useState({
     name: "",
@@ -100,8 +104,8 @@ const FormPopup = ({ isOpen, setIsOpen }) => {
     try {
       console.log("Submitting form data:", zohoFormData)
 
-      // Use the server URL
-      const response = await axios.post("http://localhost:5000/submit-form", zohoFormData)
+      // Use the EC2 server URL instead of localhost
+      const response = await axios.post(SERVER_URL, zohoFormData)
 
       console.log("Server response:", response.data)
 
