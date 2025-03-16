@@ -18,6 +18,7 @@ import SalesforceCPQCourse from "./pages/salesforce-cpq-course"
 import SalesforceAgentForceCourse from "./pages/salesforce-agent-force-course"
 import BusinessAnalystCourse from "./pages/business-analyst-course"
 import FormPopup from "./components/form-popup"
+import FloatingPhoneButton from "./components/FloatingPhoneButton"
 import HomePage from "./pages/HomePage"
 import AboutPage from "./pages/about-page"
 import PrivacyPolicyPage from "./pages/privacy-policy-page"
@@ -77,6 +78,7 @@ function App() {
     <Router>
       <div className="App">
         <FormPopup isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
+        <FloatingPhoneButton phoneNumber="+91 8019333796" />
         <Routes>
           <Route path="/" element={<HomePage setIsFormOpen={setIsFormOpen} />} />
 
