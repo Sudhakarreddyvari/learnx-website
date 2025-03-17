@@ -113,11 +113,11 @@ const ContactPage = ({ setIsFormOpen }) => {
                     <div>
                       <h3 className="text-lg font-semibold mb-2">Our Location</h3>
                       <p className="text-gray-300">
-                        123 Tech Street, Innovation City
+                        8-2-293/82/PLN/406, Guttala_Begumpet, Kavuri Hills
                         <br />
-                        California, CA 91234
+                        Madhapur, Hyderabad
                         <br />
-                        United States
+                        Telangana 500033
                       </p>
                     </div>
                   </div>
@@ -129,11 +129,11 @@ const ContactPage = ({ setIsFormOpen }) => {
                     <div>
                       <h3 className="text-lg font-semibold mb-2">Email Us</h3>
                       <p className="text-gray-300">
-                        General Inquiries: info@learnx.com
+                        General Inquiries: learnxinstitute@gmail.com
                         <br />
-                        Support: support@learnx.com
+                        Support: learnxinstitute@gmail.com
                         <br />
-                        Admissions: admissions@learnx.com
+                        Admissions: learnxinstitute@gmail.com
                       </p>
                     </div>
                   </div>
@@ -145,11 +145,11 @@ const ContactPage = ({ setIsFormOpen }) => {
                     <div>
                       <h3 className="text-lg font-semibold mb-2">Call Us</h3>
                       <p className="text-gray-300">
-                        Main Office: +1 (555) 123-4567
+                        Main Office: +91 8019333796
                         <br />
-                        Support Hotline: +1 (555) 987-6543
+                        Support Hotline: +91 8019333796
                         <br />
-                        Hours: Monday-Friday, 9AM-6PM PST
+                        Hours: Monday-Friday, 7AM-10PM IST
                       </p>
                     </div>
                   </div>

@@ -148,15 +148,15 @@ const Footer = ({ setIsFormOpen }) => {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin className="w-5 h-5 mr-3 text-violet-400 mt-1 shrink-0" />
-                <span className="text-gray-400">123 Tech Street, Innovation City, CA 91234</span>
+                <span className="text-gray-400">8-2-293/82/PLN/406, Guttala_Begumpet, Kavuri Hills, Madhapur, Hyderabad, Telangana 500033</span>
               </li>
               <li className="flex items-center">
                 <Mail className="w-5 h-5 mr-3 text-violet-400 shrink-0" />
-                <span className="text-gray-400">info@learnx.com</span>
+                <span className="text-gray-400">learnxinstitute@gmail.com</span>
               </li>
               <li className="flex items-center">
                 <Phone className="w-5 h-5 mr-3 text-violet-400 shrink-0" />
-                <span className="text-gray-400">+1 (555) 123-4567</span>
+                <span className="text-gray-400">+91 8019333796</span>
               </li>
             </ul>
           </div>
