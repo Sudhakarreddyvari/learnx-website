@@ -22,16 +22,16 @@ const Footer = ({ setIsFormOpen }) => {
               landed their dream jobs.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm">
+              <a href="https://www.facebook.com/share/1BM4TaJjf7/" className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm">
                 Facebook
               </a>
-              <a href="#" className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm">
+              <a href="https://x.com/LearnX_official" className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm">
                 Twitter
               </a>
-              <a href="#" className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm">
+              <a href="https://www.linkedin.com/company/learnx-official/?viewAsMember=true" className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm">
                 LinkedIn
               </a>
-              <a href="#" className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm">
+              <a href="https://www.instagram.com/learnx_official/" className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm">
                 Instagram
               </a>
             </div>
