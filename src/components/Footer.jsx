@@ -1,5 +1,3 @@
-"use client"
-
 import { Link } from "react-router-dom"
 import { Mail, Phone, MapPin, ChevronRight } from "lucide-react"
 
@@ -22,16 +20,40 @@ const Footer = ({ setIsFormOpen }) => {
               landed their dream jobs.
             </p>
             <div className="flex space-x-4">
-              <a href="https://www.facebook.com/share/1BM4TaJjf7/" className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm">
+              <a
+                href="https://www.facebook.com/share/1BM4TaJjf7/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm text-gray-300 hover:text-white"
+                style={{ cursor: "pointer", display: "inline-block", position: "relative", zIndex: 10 }}
+              >
                 Facebook
               </a>
-              <a href="https://x.com/LearnX_official" className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm">
+              <a
+                href="https://x.com/LearnX_official"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm text-gray-300 hover:text-white"
+                style={{ cursor: "pointer", display: "inline-block", position: "relative", zIndex: 10 }}
+              >
                 Twitter
               </a>
-              <a href="https://www.linkedin.com/company/learnx-official/?viewAsMember=true" className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm">
+              <a
+                href="https://www.linkedin.com/company/learnx-official/?viewAsMember=true"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm text-gray-300 hover:text-white"
+                style={{ cursor: "pointer", display: "inline-block", position: "relative", zIndex: 10 }}
+              >
                 LinkedIn
               </a>
-              <a href="https://www.instagram.com/learnx_official/" className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm">
+              <a
+                href="https://www.instagram.com/learnx_official/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm text-gray-300 hover:text-white"
+                style={{ cursor: "pointer", display: "inline-block", position: "relative", zIndex: 10 }}
+              >
                 Instagram
               </a>
             </div>
@@ -126,22 +148,22 @@ const Footer = ({ setIsFormOpen }) => {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin className="w-5 h-5 mr-3 text-violet-400 mt-1 shrink-0" />
-                <span className="text-gray-400">8-2-293/82/PLN/406, Guttala_Begumpet, Kavuri Hills, Madhapur, Hyderabad, Telangana 500033</span>
+                <span className="text-gray-400">123 Tech Street, Innovation City, CA 91234</span>
               </li>
               <li className="flex items-center">
                 <Mail className="w-5 h-5 mr-3 text-violet-400 shrink-0" />
-                <span className="text-gray-400">info@learn-x.com</span>
+                <span className="text-gray-400">info@learnx.com</span>
               </li>
               <li className="flex items-center">
                 <Phone className="w-5 h-5 mr-3 text-violet-400 shrink-0" />
-                <span className="text-gray-400">+918019333796</span>
+                <span className="text-gray-400">+1 (555) 123-4567</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-12 pt-8 text-center">
-          <p className="text-gray-400 text-sm">&copy; 2020 LearnX. All rights reserved.</p>
+          <p className="text-gray-400 text-sm">&copy; 2024 LearnX. All rights reserved.</p>
         </div>
       </div>
     </footer>

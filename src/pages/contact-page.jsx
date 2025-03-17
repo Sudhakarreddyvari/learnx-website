@@ -162,28 +162,49 @@ const ContactPage = ({ setIsFormOpen }) => {
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <a
-                      href="#"
-                      className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm"
+                      href="https://www.facebook.com/share/1BM4TaJjf7/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ cursor: "pointer", display: "inline-block", position: "relative", zIndex: 10 }}
+                      className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm text-gray-200 hover:text-white"
                     >
                       Facebook
                     </a>
                     <a
-                      href="#"
-                      className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm"
+                      href="https://x.com/LearnX_official"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ cursor: "pointer", display: "inline-block", position: "relative", zIndex: 10 }}
+                      className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm text-gray-200 hover:text-white"
                     >
                       Twitter
                     </a>
                     <a
-                      href="#"
-                      className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm"
+                      href="https://www.instagram.com/learnx_official/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ cursor: "pointer", display: "inline-block", position: "relative", zIndex: 10 }}
+                      className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm text-gray-200 hover:text-white"
                     >
                       Instagram
                     </a>
                     <a
-                      href="#"
-                      className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm"
+                      href="https://www.linkedin.com/company/learnx-official/?viewAsMember=true"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ cursor: "pointer", display: "inline-block", position: "relative", zIndex: 10 }}
+                      className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm text-gray-200 hover:text-white"
                     >
                       LinkedIn
+                    </a>
+                    <a
+                      href="https://youtube.com/@learnx-d3u?si=n_XU71JTXlYgvG1n"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ cursor: "pointer", display: "inline-block", position: "relative", zIndex: 10 }}
+                      className="px-3 py-1 rounded-md bg-gray-800 hover:bg-violet-900/30 transition-colors text-sm text-gray-200 hover:text-white"
+                    >
+                      YouTube
                     </a>
                   </div>
                 </div>
