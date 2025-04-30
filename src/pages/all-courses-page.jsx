@@ -7,7 +7,7 @@ import Footer from "../components/Footer"
 import { Link } from "react-router-dom"
 import { scrollToTop } from "../utils/scrollUtils"
 
-const AllCoursesPage = ({ setIsFormOpen }) => {
+const AllCoursesPage = ({ setIsContactOpen }) => {
   const [searchTerm, setSearchTerm] = useState("")
   const [activeFilter, setActiveFilter] = useState("all")
   const [sortBy, setSortBy] = useState("popular")
@@ -334,7 +334,7 @@ const AllCoursesPage = ({ setIsFormOpen }) => {
         <div className="absolute inset-0 bg-grid-lines opacity-5"></div>
       </div>
 
-      <Header setIsFormOpen={setIsFormOpen} hideHeader={false} />
+      <Header setIsFormOpen={setIsContactOpen} hideHeader={false} />
 
       <main className="relative z-10">
         {/* Hero Section */}
@@ -550,7 +550,7 @@ const AllCoursesPage = ({ setIsFormOpen }) => {
                         <button
                           onClick={(e) => {
                             e.preventDefault()
-                            setIsFormOpen(true)
+                            setIsContactOpen(true)
                           }}
                           className="flex-1 px-4 py-2.5 text-center bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 text-white rounded-lg transition-colors flex items-center justify-center gap-2 group"
                         >
@@ -596,7 +596,10 @@ const AllCoursesPage = ({ setIsFormOpen }) => {
 
               <div className="flex flex-col sm:flex-row gap-5 justify-center">
                 <button
-                  onClick={() => setIsFormOpen(true)}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setIsContactOpen(true)
+                  }}
                   className="px-8 py-4 text-base font-medium text-white rounded-md bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 transition-colors relative group overflow-hidden"
                 >
                   <span className="relative z-10">Get Personalized Guidance</span>
@@ -616,7 +619,7 @@ const AllCoursesPage = ({ setIsFormOpen }) => {
         </section>
       </main>
 
-      <Footer setIsFormOpen={setIsFormOpen} />
+      <Footer setIsFormOpen={setIsContactOpen} />
     </div>
   )
 }

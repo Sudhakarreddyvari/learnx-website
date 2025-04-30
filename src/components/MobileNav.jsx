@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { useNavigate } from "react-router-dom"
 import { X, Menu, ChevronDown, ChevronUp } from "lucide-react"
 
-const MobileNav = ({ toggleForm }) => {
+const MobileNav = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isCoursesOpen, setIsCoursesOpen] = useState(false)
   const navRef = useRef(null)
@@ -257,17 +257,6 @@ const MobileNav = ({ toggleForm }) => {
                   >
                     Contact Us
                   </div>
-                </li>
-                <li className="pt-4">
-                  <button
-                    onClick={() => {
-                      closeNav()
-                      toggleForm()
-                    }}
-                    className="w-full py-3 px-6 bg-gradient-to-r from-violet-600 to-rose-500 text-white rounded-lg hover:from-violet-700 hover:to-rose-600 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-opacity-50 transition-all duration-300"
-                  >
-                    Enquire Now
-                  </button>
                 </li>
               </ul>
             </nav>

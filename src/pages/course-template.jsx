@@ -56,7 +56,7 @@ const CourseTemplate = ({
       testimonials: [],
     },
   },
-  setIsFormOpen,
+  setIsContactOpen,
   setIsNavSticky,
 }) => {
   const [isVisible, setIsVisible] = useState({})
@@ -175,7 +175,7 @@ const CourseTemplate = ({
               <button
                 onClick={() => {
                   scrollToTop()
-                  setIsFormOpen(true)
+                  setIsContactOpen(true)
                 }}
                 className="px-8 py-4 rounded-lg bg-gradient-to-r from-violet-600 to-rose-500 text-white font-semibold hover:from-violet-700 hover:to-rose-600 transition-colors flex items-center"
               >
@@ -185,6 +185,7 @@ const CourseTemplate = ({
               <button
                 onClick={() => {
                   scrollToTop()
+                  setIsContactOpen(true)
                 }}
                 className="px-8 py-4 rounded-lg border border-violet-500/30 text-white font-semibold hover:bg-violet-500/10 transition-colors flex items-center"
               >
@@ -608,7 +609,7 @@ const CourseTemplate = ({
                       <button
                         onClick={() => {
                           scrollToTop()
-                          setIsFormOpen(true)
+                          setIsContactOpen(true)
                         }}
                         className="px-6 py-3 text-base font-medium text-white rounded-md bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 transition-colors relative group overflow-hidden flex items-center"
                       >
@@ -660,7 +661,7 @@ const CourseTemplate = ({
               <button
                 onClick={() => {
                   scrollToTop()
-                  setIsFormOpen(true)
+                  setIsContactOpen(true)
                 }}
                 className="px-10 py-5 text-base font-medium text-white rounded-md border border-violet-500/50 hover:border-violet-500 hover:bg-violet-700/20 transition-all relative group overflow-hidden flex items-center justify-center"
               >

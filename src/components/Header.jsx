@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react"
 
-const Header = ({ setIsFormOpen, hideHeader }) => {
+const Header = ({ hideHeader, setIsContactOpen }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [mobileCoursesOpen, setMobileCoursesOpen] = useState(false)
   const [scrollPosition, setScrollPosition] = useState(0)
@@ -116,26 +116,22 @@ const Header = ({ setIsFormOpen, hideHeader }) => {
 
   return (
     <header
-      className={`sticky top-0 z-[100] backdrop-blur-xl transition-all duration-300 ${
-        scrollPosition > 50 ? "bg-gray-950/90 py-3" : "bg-transparent py-5"
-      } ${hideHeader ? "transform -translate-y-full" : "transform translate-y-0"}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        hideHeader ? "opacity-0 pointer-events-none" : ""
+      } ${scrollPosition > 0 ? "bg-gray-900/95 backdrop-blur-md shadow-lg" : ""}`}
     >
       <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between py-4">
           <Link to="/" className="flex items-center gap-3">
-            <div className="h-12 w-12 rounded-xl flex items-center justify-center overflow-hidden">
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LearnX%20-Logo-yVpBmzoHbcSZPJFoySqW3YsLsmtt0o.png"
-                alt="LearnX Logo"
-                style={{ height: "100%", width: "100%", objectFit: "cover" }}
-              />
+            <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-violet-600 to-rose-500 flex items-center justify-center">
+              <span className="font-bold text-white text-xl">LX</span>
             </div>
             <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-rose-500">
               LearnX
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-10">
+          <nav className="hidden md:flex items-center gap-8">
             <Link to="/" className="text-gray-300 hover:text-white transition-colors relative group">
               Home
               <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-violet-500 to-rose-500 group-hover:w-full transition-all duration-300"></span>
@@ -225,10 +221,11 @@ const Header = ({ setIsFormOpen, hideHeader }) => {
                         </p>
                       </div>
                       <button
-                        onClick={() => setIsFormOpen(true)}
-                        className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg border border-white/20 transition-colors"
+                        onClick={() => setIsContactOpen(true)}
+                        className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 text-white rounded-lg transition-colors"
                       >
-                        Talk to an Advisor
+                        Get Expert Advice
+                        <ChevronRight size={16} />
                       </button>
                     </div>
                   </div>
@@ -248,25 +245,16 @@ const Header = ({ setIsFormOpen, hideHeader }) => {
               Contact
               <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-violet-500 to-rose-500 group-hover:w-full transition-all duration-300"></span>
             </Link>
-          </nav>
 
-          <div className="hidden md:flex items-center gap-4">
+            {/* Contact Now Button */}
             <button
-              onClick={() => setIsFormOpen(true)}
-              className="px-5 py-2.5 text-sm font-medium text-white rounded-md border border-violet-700/50 hover:border-violet-500 hover:bg-violet-700/20 transition-all relative group overflow-hidden"
+              onClick={() => setIsContactOpen(true)}
+              className="px-6 py-2 text-white rounded-lg bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 transition-colors flex items-center gap-2"
             >
-              <span className="relative z-10">Log In</span>
-              <div className="absolute inset-0 translate-y-full group-hover:translate-y-0 bg-gradient-to-r from-violet-800/20 to-violet-600/20 transition-transform duration-300"></div>
+              Contact Now
+              <ChevronRight size={16} />
             </button>
-            <button
-              onClick={() => setIsFormOpen(true)}
-              className="px-5 py-2.5 text-sm font-medium text-white rounded-md bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 transition-colors relative group overflow-hidden"
-            >
-              <span className="relative z-10">Sign Up</span>
-              <div className="absolute inset-0 translate-y-full group-hover:translate-y-0 bg-white/10 transition-transform duration-300"></div>
-              <div className="absolute inset-0 glow-effect-small opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </button>
-          </div>
+          </nav>
 
           <button className="md:hidden text-gray-300 hover:text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -361,34 +349,17 @@ const Header = ({ setIsFormOpen, hideHeader }) => {
               >
                 Testimonials
               </Link>
-              <Link
-                to="/contact"
-                className="px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-800/50 rounded-md transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+              <button
+                onClick={() => {
+                  setIsContactOpen(true)
+                  setIsMenuOpen(false)
+                }}
+                className="px-4 py-3 text-white bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 rounded-md transition-colors flex items-center justify-between"
               >
-                Contact
-              </Link>
+                <span>Contact Now</span>
+                <ChevronRight size={16} />
+              </button>
             </nav>
-            <div className="flex gap-3 mt-5">
-              <button
-                onClick={() => {
-                  setIsMenuOpen(false)
-                  setIsFormOpen(true)
-                }}
-                className="flex-1 px-4 py-3 text-sm font-medium text-white rounded-md border border-violet-700/50 hover:bg-violet-700/20 transition-colors"
-              >
-                Log In
-              </button>
-              <button
-                onClick={() => {
-                  setIsMenuOpen(false)
-                  setIsFormOpen(true)
-                }}
-                className="flex-1 px-4 py-3 text-sm font-medium text-white rounded-md bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 transition-colors"
-              >
-                Sign Up
-              </button>
-            </div>
           </div>
         )}
       </div>

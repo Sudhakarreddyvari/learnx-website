@@ -5,7 +5,7 @@ import CourseTemplate from "./course-template"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 
-const DataScienceCourse = ({ setIsFormOpen }) => {
+const DataScienceCourse = ({ setIsContactOpen }) => {
   const [isNavSticky, setIsNavSticky] = useState(false)
 
   // Course data specific to Data Science
@@ -184,11 +184,11 @@ const DataScienceCourse = ({ setIsFormOpen }) => {
         <div className="absolute inset-0 bg-grid-lines opacity-5"></div>
       </div>
 
-      <Header setIsFormOpen={setIsFormOpen} hideHeader={false} />
+      <Header setIsContactOpen={setIsContactOpen} hideHeader={false} />
       <main className="relative z-10">
-        <CourseTemplate courseData={courseData} setIsFormOpen={setIsFormOpen} setIsNavSticky={setIsNavSticky} />
+        <CourseTemplate courseData={courseData} setIsContactOpen={setIsContactOpen} setIsNavSticky={setIsNavSticky} />
       </main>
-      <Footer setIsFormOpen={setIsFormOpen} />
+      <Footer setIsContactOpen={setIsContactOpen} />
     </div>
   )
 }

@@ -62,18 +62,25 @@ const StickyNavigation = ({ activeTab, setActiveTab, onStickyChange }) => {
   const handleTabClick = (tab) => {
     setActiveTab(tab)
 
-    // Scroll to the section
-    const section = document.getElementById(`section-${tab}`)
-    if (section) {
-      const offset = headerHeight + (isSticky ? 72 : 0) // Account for header and sticky nav
-      const elementPosition = section.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - offset
+    // Scroll to the section with a small delay to ensure rendering
+    setTimeout(() => {
+      const section = document.getElementById(`section-${tab}`)
+      if (section) {
+        // Calculate the total offset including the header and sticky nav
+        const totalOffset = headerHeight + 72 // 72px is the height of the sticky nav
+        
+        // Get the element's position relative to the top of the page
+        const elementPosition = section.getBoundingClientRect().top + window.pageYOffset
+        
+        // Calculate final scroll position
+        const scrollPosition = elementPosition - totalOffset
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      })
-    }
+        window.scrollTo({
+          top: scrollPosition,
+          behavior: "smooth"
+        })
+      }
+    }, 100)
   }
 
   return (

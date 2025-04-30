@@ -20,7 +20,7 @@ import Footer from "../components/Footer"
 import { Link } from "react-router-dom"
 import { scrollToTop } from "../utils/scrollUtils"
 
-const HomePage = ({ setIsFormOpen }) => {
+const HomePage = ({ setIsContactOpen }) => {
   const [isVisible, setIsVisible] = useState({})
 
   useEffect(() => {
@@ -67,7 +67,7 @@ const HomePage = ({ setIsFormOpen }) => {
       </div>
 
       {/* Header */}
-      <Header setIsFormOpen={setIsFormOpen} />
+      <Header setIsContactOpen={setIsContactOpen} />
 
       <main className="relative z-10">
         {/* Hero Section */}
@@ -112,7 +112,7 @@ const HomePage = ({ setIsFormOpen }) => {
                   }`}
                 >
                   <button
-                    onClick={() => setIsFormOpen(true)}
+                    onClick={() => setIsContactOpen(true)}
                     className="px-8 py-4 text-base font-medium text-white rounded-md bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 transition-colors flex items-center justify-center gap-2 relative group overflow-hidden"
                   >
                     <span className="relative z-10">Explore Courses</span>
@@ -124,7 +124,7 @@ const HomePage = ({ setIsFormOpen }) => {
                     <div className="absolute inset-0 glow-effect opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                   </button>
                   <button
-                    onClick={() => setIsFormOpen(true)}
+                    onClick={() => setIsContactOpen(true)}
                     className="px-8 py-4 text-base font-medium text-white rounded-md border border-violet-700/50 hover:border-violet-500 hover:bg-violet-700/20 transition-all relative group overflow-hidden"
                   >
                     <span className="relative z-10">Free Trial</span>
@@ -420,7 +420,7 @@ const HomePage = ({ setIsFormOpen }) => {
                         View Course
                       </Link>
                       <button
-                        onClick={() => setIsFormOpen(true)}
+                        onClick={() => setIsContactOpen(true)}
                         className="flex-1 px-4 py-2.5 text-center bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 text-white rounded-lg transition-colors flex items-center justify-center gap-2 group"
                       >
                         Enroll Now
@@ -436,7 +436,7 @@ const HomePage = ({ setIsFormOpen }) => {
       </main>
 
       {/* Footer */}
-      <Footer setIsFormOpen={setIsFormOpen} />
+      <Footer setIsContactOpen={setIsContactOpen} />
     </div>
   )
 }

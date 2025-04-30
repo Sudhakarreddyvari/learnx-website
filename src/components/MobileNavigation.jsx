@@ -58,21 +58,26 @@ const MobileNavigation = ({ activeTab, setActiveTab, onStickyChange }) => {
     setActiveTab(tab)
     setIsOpen(false)
 
-    // Scroll to the section
-    const section = document.getElementById(`section-${tab}`)
-    if (section) {
-      const headerHeight = 64 // Approximate mobile header height
-      const navHeight = 56 // Approximate mobile nav height
-      const offset = headerHeight + (isSticky ? navHeight : 0)
+    // Scroll to the section with a small delay to ensure rendering
+    setTimeout(() => {
+      const section = document.getElementById(`section-${tab}`)
+      if (section) {
+        const headerHeight = 64 // Approximate mobile header height
+        const navHeight = 56 // Approximate mobile nav height
+        const totalOffset = headerHeight + navHeight // Always include both offsets for consistent behavior
+        
+        // Get the element's position relative to the top of the page
+        const elementPosition = section.getBoundingClientRect().top + window.pageYOffset
+        
+        // Calculate final scroll position
+        const scrollPosition = elementPosition - totalOffset
 
-      const elementPosition = section.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - offset
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      })
-    }
+        window.scrollTo({
+          top: scrollPosition,
+          behavior: "smooth"
+        })
+      }
+    }, 100)
   }
 
   return (

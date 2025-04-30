@@ -5,7 +5,7 @@ import CourseTemplate from "./course-template"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 
-const AIMachineLearningCourse = ({ setIsFormOpen }) => {
+const AIMachineLearningCourse = ({ setIsContactOpen }) => {
   const [isNavSticky, setIsNavSticky] = useState(false)
 
   // Course data specific to AI and Machine Learning
@@ -196,11 +196,11 @@ const AIMachineLearningCourse = ({ setIsFormOpen }) => {
         <div className="absolute inset-0 bg-grid-lines opacity-5"></div>
       </div>
 
-      <Header setIsFormOpen={setIsFormOpen} hideHeader={false} />
+      <Header setIsContactOpen={setIsContactOpen} hideHeader={false} />
       <main className="relative z-10">
-        <CourseTemplate courseData={courseData} setIsFormOpen={setIsFormOpen} setIsNavSticky={setIsNavSticky} />
+        <CourseTemplate courseData={courseData} setIsContactOpen={setIsContactOpen} setIsNavSticky={setIsNavSticky} />
       </main>
-      <Footer setIsFormOpen={setIsFormOpen} />
+      <Footer setIsContactOpen={setIsContactOpen} />
     </div>
   )
 }
