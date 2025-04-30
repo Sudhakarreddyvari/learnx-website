@@ -43,7 +43,39 @@ const MobileNav = ({ toggleForm }) => {
   const handleNavigation = (path) => {
     closeNav()
     navigate(path)
-    window.scrollTo(0, 0)
+    
+    // Smooth scroll to top with a slight delay to ensure navigation completes
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      })
+    }, 100)
+  }
+
+  const handleCourseClick = (path) => {
+    closeNav()
+    navigate(path)
+    
+    // Smooth scroll to the course content section if it exists
+    setTimeout(() => {
+      const courseSection = document.getElementById("course-content-section")
+      if (courseSection) {
+        const headerHeight = 64 // Approximate mobile header height
+        const yOffset = -headerHeight
+        const y = courseSection.getBoundingClientRect().top + window.pageYOffset + yOffset
+        window.scrollTo({
+          top: y,
+          behavior: "smooth"
+        })
+      } else {
+        // If no course section found, scroll to top
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        })
+      }
+    }, 100)
   }
 
   return (
@@ -58,14 +90,14 @@ const MobileNav = ({ toggleForm }) => {
 
       {isOpen && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-50">
-          <div ref={navRef} className="fixed top-0 right-0 h-full w-[80%] max-w-sm bg-white shadow-xl overflow-y-auto">
-            <div className="p-4 flex justify-between items-center border-b">
+          <div ref={navRef} className="fixed top-0 right-0 h-full w-[80%] max-w-sm bg-gray-900 shadow-xl overflow-y-auto">
+            <div className="p-4 flex justify-between items-center border-b border-gray-800">
               <div onClick={() => handleNavigation("/")} className="cursor-pointer">
                 <img src="/logo.png" alt="LearnX Logo" className="h-8" />
               </div>
               <button
                 onClick={closeNav}
-                className="p-2 text-gray-600 hover:text-gray-900 focus:outline-none"
+                className="p-2 text-gray-300 hover:text-white focus:outline-none"
                 aria-label="Close mobile menu"
               >
                 <X size={24} />
@@ -73,11 +105,11 @@ const MobileNav = ({ toggleForm }) => {
             </div>
 
             <nav className="p-4">
-              <ul className="space-y-4">
+              <ul className="space-y-2">
                 <li>
                   <div
                     onClick={() => handleNavigation("/")}
-                    className="block py-2 text-gray-800 hover:text-blue-600 font-medium cursor-pointer"
+                    className="block py-2 text-gray-300 hover:text-white font-medium cursor-pointer"
                   >
                     Home
                   </div>
@@ -86,9 +118,9 @@ const MobileNav = ({ toggleForm }) => {
                   <div className="flex justify-between items-center py-2">
                     <button
                       onClick={() => setIsCoursesOpen(!isCoursesOpen)}
-                      className="flex items-center text-gray-800 hover:text-blue-600 font-medium focus:outline-none"
+                      className="flex items-center text-gray-300 hover:text-white font-medium focus:outline-none w-full justify-between"
                     >
-                      Courses
+                      <span>Courses</span>
                       {isCoursesOpen ? (
                         <ChevronUp size={16} className="ml-1" />
                       ) : (
@@ -97,90 +129,115 @@ const MobileNav = ({ toggleForm }) => {
                     </button>
                   </div>
                   {isCoursesOpen && (
-                    <div className="pl-4 mt-2 space-y-2 max-h-[50vh] overflow-y-auto bg-gray-50 rounded-md shadow-inner p-2">
-                      <div
-                        onClick={() => handleNavigation("/ai-ml-course")}
-                        className="block py-2 hover:text-blue-600 cursor-pointer"
-                      >
-                        AI & Machine Learning
+                    <div className="mt-2 max-h-[60vh] overflow-y-auto bg-gray-800/50 rounded-lg border border-gray-700/50">
+                      {/* Programming & Development */}
+                      <div className="p-3 border-b border-gray-700/50">
+                        <h3 className="text-sm font-semibold text-gray-400 mb-2">Programming & Development</h3>
+                        <div className="space-y-2">
+                          <div
+                            onClick={() => handleCourseClick("/full-stack-development-course")}
+                            className="flex justify-between items-center py-2 px-3 hover:bg-gray-700/50 rounded-lg cursor-pointer text-gray-300 hover:text-white"
+                          >
+                            <span>Full Stack Development</span>
+                            <span className="text-xs px-2 py-1 bg-rose-500/20 text-rose-400 rounded-full">Popular</span>
+                          </div>
+                          <div
+                            onClick={() => handleCourseClick("/ui-ux-design-course")}
+                            className="flex justify-between items-center py-2 px-3 hover:bg-gray-700/50 rounded-lg cursor-pointer text-gray-300 hover:text-white"
+                          >
+                            <span>UI/UX Design</span>
+                            <span className="text-xs px-2 py-1 bg-rose-500/20 text-rose-400 rounded-full">Popular</span>
+                          </div>
+                          <div
+                            onClick={() => handleCourseClick("/devops-course")}
+                            className="flex justify-between items-center py-2 px-3 hover:bg-gray-700/50 rounded-lg cursor-pointer text-gray-300 hover:text-white"
+                          >
+                            <span>DevOps</span>
+                          </div>
+                        </div>
                       </div>
-                      <div
-                        onClick={() => handleNavigation("/data-science-course")}
-                        className="block py-2 hover:text-blue-600 cursor-pointer"
-                      >
-                        Data Science
+
+                      {/* Data & AI */}
+                      <div className="p-3 border-b border-gray-700/50">
+                        <h3 className="text-sm font-semibold text-gray-400 mb-2">Data & AI</h3>
+                        <div className="space-y-2">
+                          <div
+                            onClick={() => handleCourseClick("/ai-ml-course")}
+                            className="flex justify-between items-center py-2 px-3 hover:bg-gray-700/50 rounded-lg cursor-pointer text-gray-300 hover:text-white"
+                          >
+                            <span>AI & Machine Learning</span>
+                            <span className="text-xs px-2 py-1 bg-rose-500/20 text-rose-400 rounded-full">Popular</span>
+                          </div>
+                          <div
+                            onClick={() => handleCourseClick("/data-science-course")}
+                            className="flex justify-between items-center py-2 px-3 hover:bg-gray-700/50 rounded-lg cursor-pointer text-gray-300 hover:text-white"
+                          >
+                            <span>Data Science</span>
+                            <span className="text-xs px-2 py-1 bg-rose-500/20 text-rose-400 rounded-full">Popular</span>
+                          </div>
+                          <div
+                            onClick={() => handleCourseClick("/business-analyst-course")}
+                            className="flex justify-between items-center py-2 px-3 hover:bg-gray-700/50 rounded-lg cursor-pointer text-gray-300 hover:text-white"
+                          >
+                            <span>Business Analyst</span>
+                            <span className="text-xs px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-full">New</span>
+                          </div>
+                        </div>
                       </div>
-                      <div
-                        onClick={() => handleNavigation("/cybersecurity-course")}
-                        className="block py-2 hover:text-blue-600 cursor-pointer"
-                      >
-                        Cybersecurity
+
+                      {/* Security & Infrastructure */}
+                      <div className="p-3 border-b border-gray-700/50">
+                        <h3 className="text-sm font-semibold text-gray-400 mb-2">Security & Infrastructure</h3>
+                        <div className="space-y-2">
+                          <div
+                            onClick={() => handleCourseClick("/cybersecurity-course")}
+                            className="flex justify-between items-center py-2 px-3 hover:bg-gray-700/50 rounded-lg cursor-pointer text-gray-300 hover:text-white"
+                          >
+                            <span>Cybersecurity</span>
+                            <span className="text-xs px-2 py-1 bg-rose-500/20 text-rose-400 rounded-full">Popular</span>
+                          </div>
+                          <div
+                            onClick={() => handleCourseClick("/cloud-computing-course")}
+                            className="flex justify-between items-center py-2 px-3 hover:bg-gray-700/50 rounded-lg cursor-pointer text-gray-300 hover:text-white"
+                          >
+                            <span>Cloud Computing</span>
+                          </div>
+                          <div
+                            onClick={() => handleCourseClick("/blockchain-course")}
+                            className="flex justify-between items-center py-2 px-3 hover:bg-gray-700/50 rounded-lg cursor-pointer text-gray-300 hover:text-white"
+                          >
+                            <span>Blockchain</span>
+                            <span className="text-xs px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-full">New</span>
+                          </div>
+                        </div>
                       </div>
-                      <div
-                        onClick={() => handleNavigation("/cloud-computing-course")}
-                        className="block py-2 hover:text-blue-600 cursor-pointer"
-                      >
-                        Cloud Computing
-                      </div>
-                      <div
-                        onClick={() => handleNavigation("/blockchain-course")}
-                        className="block py-2 hover:text-blue-600 cursor-pointer"
-                      >
-                        Blockchain
-                      </div>
-                      <div
-                        onClick={() => handleNavigation("/devops-course")}
-                        className="block py-2 hover:text-blue-600 cursor-pointer"
-                      >
-                        DevOps
-                      </div>
-                      <div
-                        onClick={() => handleNavigation("/ui-ux-design-course")}
-                        className="block py-2 hover:text-blue-600 cursor-pointer"
-                      >
-                        UI/UX Design
-                      </div>
-                      <div
-                        onClick={() => handleNavigation("/full-stack-development-course")}
-                        className="block py-2 hover:text-blue-600 cursor-pointer"
-                      >
-                        Full Stack Development
-                      </div>
-                      <div
-                        onClick={() => handleNavigation("/digital-marketing-course")}
-                        className="block py-2 hover:text-blue-600 cursor-pointer"
-                      >
-                        Digital Marketing
-                      </div>
-                      <div
-                        onClick={() => handleNavigation("/automation-testing-course")}
-                        className="block py-2 hover:text-blue-600 cursor-pointer"
-                      >
-                        Automation Testing
-                      </div>
-                      <div
-                        onClick={() => handleNavigation("/salesforce-course")}
-                        className="block py-2 hover:text-blue-600 cursor-pointer"
-                      >
-                        Salesforce
-                      </div>
-                      <div
-                        onClick={() => handleNavigation("/business-analyst-course")}
-                        className="block py-2 hover:text-blue-600 cursor-pointer"
-                      >
-                        Business Analyst
-                      </div>
-                      <div
-                        onClick={() => handleNavigation("/salesforce-cpq-course")}
-                        className="block py-2 hover:text-blue-600 cursor-pointer"
-                      >
-                        Salesforce CPQ
-                      </div>
-                      <div
-                        onClick={() => handleNavigation("/salesforce-agent-force-course")}
-                        className="block py-2 hover:text-blue-600 cursor-pointer"
-                      >
-                        Salesforce Agent Force
+
+                      {/* Salesforce Ecosystem */}
+                      <div className="p-3">
+                        <h3 className="text-sm font-semibold text-gray-400 mb-2">Salesforce Ecosystem</h3>
+                        <div className="space-y-2">
+                          <div
+                            onClick={() => handleCourseClick("/salesforce-course")}
+                            className="flex justify-between items-center py-2 px-3 hover:bg-gray-700/50 rounded-lg cursor-pointer text-gray-300 hover:text-white"
+                          >
+                            <span>Salesforce Development</span>
+                            <span className="text-xs px-2 py-1 bg-rose-500/20 text-rose-400 rounded-full">Popular</span>
+                          </div>
+                          <div
+                            onClick={() => handleCourseClick("/salesforce-cpq-course")}
+                            className="flex justify-between items-center py-2 px-3 hover:bg-gray-700/50 rounded-lg cursor-pointer text-gray-300 hover:text-white"
+                          >
+                            <span>Salesforce CPQ</span>
+                            <span className="text-xs px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-full">New</span>
+                          </div>
+                          <div
+                            onClick={() => handleCourseClick("/salesforce-agent-force-course")}
+                            className="flex justify-between items-center py-2 px-3 hover:bg-gray-700/50 rounded-lg cursor-pointer text-gray-300 hover:text-white"
+                          >
+                            <span>Salesforce Agent Force</span>
+                            <span className="text-xs px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-full">New</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   )}
@@ -188,7 +245,7 @@ const MobileNav = ({ toggleForm }) => {
                 <li>
                   <div
                     onClick={() => handleNavigation("/about")}
-                    className="block py-2 text-gray-800 hover:text-blue-600 font-medium cursor-pointer"
+                    className="block py-2 text-gray-300 hover:text-white font-medium cursor-pointer"
                   >
                     About Us
                   </div>
@@ -196,7 +253,7 @@ const MobileNav = ({ toggleForm }) => {
                 <li>
                   <div
                     onClick={() => handleNavigation("/contact")}
-                    className="block py-2 text-gray-800 hover:text-blue-600 font-medium cursor-pointer"
+                    className="block py-2 text-gray-300 hover:text-white font-medium cursor-pointer"
                   >
                     Contact Us
                   </div>
@@ -207,7 +264,7 @@ const MobileNav = ({ toggleForm }) => {
                       closeNav()
                       toggleForm()
                     }}
-                    className="w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-md hover:from-blue-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300"
+                    className="w-full py-3 px-6 bg-gradient-to-r from-violet-600 to-rose-500 text-white rounded-lg hover:from-violet-700 hover:to-rose-600 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-opacity-50 transition-all duration-300"
                   >
                     Enquire Now
                   </button>

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 import "./App.css"
 import HomePage from "./pages/HomePage"
 import AboutPage from "./pages/about-page"
@@ -83,6 +83,7 @@ function App() {
         <Route path="/about" element={<AboutPage setIsFormOpen={setIsFormOpen} />} />
         <Route path="/contact" element={<ContactPage setIsFormOpen={setIsFormOpen} />} />
         <Route path="/faq" element={<FaqPage setIsFormOpen={setIsFormOpen} />} />
+        <Route path="/courses" element={<Navigate to="/all-courses" replace />} />
         <Route path="/all-courses" element={<AllCoursesPage setIsFormOpen={setIsFormOpen} />} />
         <Route path="/ai-ml-course" element={<AiMlCourse setIsFormOpen={setIsFormOpen} />} />
         <Route path="/data-science-course" element={<DataScienceCourse setIsFormOpen={setIsFormOpen} />} />
