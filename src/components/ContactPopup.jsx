@@ -6,20 +6,14 @@ import { useLocation } from "react-router-dom"
 
 const ContactPopup = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
-    lastName: "",
-    phone: "",
-    email: "",
+    "Last Name": "",
+    Phone: "",
+    Email: "",
   })
 
   const formRef = useRef(null)
   const iframeRef = useRef(null)
 
-  // Helper to map React state keys to Zoho field names for submission
-  const mapFormDataToZohoFields = (data) => ({
-    "Last Name": data.lastName,
-    "Phone": data.phone,
-    "Email": data.email,
-  })
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null)
@@ -38,6 +32,20 @@ const ContactPopup = ({ isOpen, onClose }) => {
   }, [isOpen])
 
   useEffect(() => {
+    // Dynamically load Zoho WebformScriptServlet script
+    const script = document.createElement("script")
+    script.id = "wf_script"
+    script.src =
+      "https://bigin.zoho.in/crm/WebformScriptServlet?rid=a135b800a3ecb60a4e110e8e96cc18f6fb3a58a8457b5a1ce12fcc4f0dc144d516f9c674f950d6a174cd29283aebcf17gida154bf9892c9f2072c6ad1be42488e87b18322c4b2da661b31fb06fbdaaf0a4a"
+    script.async = true
+    document.body.appendChild(script)
+
+    return () => {
+      document.body.removeChild(script)
+    }
+  }, [])
+
+  useEffect(() => {
     const iframe = iframeRef.current
     if (!iframe) return
 
@@ -46,7 +54,7 @@ const ContactPopup = ({ isOpen, onClose }) => {
         // Assume submission success if iframe loads content
         setSubmitStatus("success")
         setIsSubmitting(false)
-        setFormData({ lastName: "", phone: "", email: "" })
+        setFormData({ "Last Name": "", Phone: "", Email: "" })
         setTimeout(() => {
           onClose()
           setSubmitStatus(null)
@@ -63,24 +71,24 @@ const ContactPopup = ({ isOpen, onClose }) => {
   const validate = () => {
     const newErrors = {}
 
-    // Last Name: mandatory, only letters allowed (like provided form)
-    if (!formData.lastName.trim()) {
-      newErrors.lastName = "Last Name cannot be empty"
-    } else if (!/^[A-Za-z\s]+$/.test(formData.lastName.trim())) {
-      newErrors.lastName = "Only letters are allowed."
+    // Last Name: mandatory, only letters allowed
+    if (!formData["Last Name"].trim()) {
+      newErrors["Last Name"] = "Last Name cannot be empty"
+    } else if (!/^[A-Za-z\s]+$/.test(formData["Last Name"].trim())) {
+      newErrors["Last Name"] = "Only letters are allowed."
     }
 
     // Phone: optional but if present validate mobile pattern (alphanumeric, +, (), -, ., spaces)
-    if (formData.phone.trim()) {
-      if (!/^[0-9a-zA-Z+.()\-;\s]+$/.test(formData.phone.trim())) {
-        newErrors.phone = "Enter valid Phone"
+    if (formData.Phone.trim()) {
+      if (!/^[0-9a-zA-Z+.()\-;\s]+$/.test(formData.Phone.trim())) {
+        newErrors.Phone = "Enter valid Phone"
       }
     }
 
     // Email: optional but if present validate email format
-    if (formData.email.trim()) {
-      if (!/^([A-Za-z0-9-._%'+/]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,22})$/.test(formData.email.trim())) {
-        newErrors.email = "Enter valid Email"
+    if (formData.Email.trim()) {
+      if (!/^([A-Za-z0-9-._%'+/]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,22})$/.test(formData.Email.trim())) {
+        newErrors.Email = "Enter valid Email"
       }
     }
 
@@ -109,7 +117,6 @@ const ContactPopup = ({ isOpen, onClose }) => {
     }
     setIsSubmitting(true)
     setSubmitStatus(null)
-    // Submit the form to Zoho by submitting the form element targeting the hidden iframe
     if (formRef.current) {
       formRef.current.submit()
     }
@@ -137,119 +144,146 @@ const ContactPopup = ({ isOpen, onClose }) => {
           </button>
 
           <div className="p-6">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-bold text-white">Get Course Details</h3>
-              <p className="text-gray-400 mt-2">Fill out the form below to receive course information</p>
-            </div>
-
             <form
+              id="BiginWebToRecordForm819627000000393013"
+              name="BiginWebToRecordForm819627000000393013"
               ref={formRef}
               onSubmit={handleSubmit}
-              className="space-y-4"
-              noValidate
+              className="wf-form-component"
+              data-ux-form-alignment="top"
+              style={{ fontFamily: "Arial", position: "relative", fontSize: "15px" }}
               method="POST"
               encType="multipart/form-data"
               target="hidden819627000000393013Frame"
               acceptCharset="UTF-8"
-              action="https://bigin.zoho.in/crm/WebToLeadForm"
             >
               {/* Hidden Zoho inputs */}
-              <input type="text" name="xnQsjsdp" value="1bd97c9d650c864ac3393e03e0215e584397f897d454c77aa497f2711cdfa4c0" readOnly hidden />
+              <input type="text" name="xnQsjsdp" value="a154bf9892c9f2072c6ad1be42488e87b18322c4b2da661b31fb06fbdaaf0a4a" readOnly hidden />
               <input type="hidden" name="zc_gad" id="zc_gad" value="" />
-              <input type="text" name="xmIwtLD" value="db288c8984051944867cb8f35575073ebf025f211c035d6e7b2c542c9f9266a6c6033f64ce05c89ad596ac61909950fe" readOnly hidden />
+              <input type="text" name="xmIwtLD" value="a135b800a3ecb60a4e110e8e96cc18f6fb3a58a8457b5a1ce12fcc4f0dc144d516f9c674f950d6a174cd29283aebcf17" readOnly hidden />
               <input type="text" name="actionType" value="Q29udGFjdHM=" readOnly hidden />
               <input type="hidden" name="rmsg" id="rmsg" value="true" />
               <input type="text" name="returnURL" value="null" readOnly hidden />
 
-              <div>
-                <label htmlFor="lastName" className="block text-sm font-medium text-gray-300 mb-1">
-                  Last Name<span className="text-rose-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-2 bg-gray-800 border rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 text-white placeholder-gray-400 ${
-                    errors.lastName ? "border-red-500" : "border-gray-700"
-                  }`}
-                  placeholder="Enter your last name"
-                  aria-invalid={errors.lastName ? "true" : "false"}
-                  aria-describedby={errors.lastName ? "lastName-error" : undefined}
-                  required
-                />
-                {errors.lastName && (
-                  <p id="lastName-error" className="text-red-500 text-xs mt-1">
-                    {errors.lastName}
-                  </p>
-                )}
+              <div className="wf-header">Get Course Details</div>
+              <div id="elementDiv819627000000393013" className="wf-form-wrapper">
+                <div className="wf-row">
+                  <div className="wf-label">Name</div>
+                  <div className="wf-field wf-field-mandatory">
+                    <div className="wf-field-inner">
+                      <input
+                        name="Last Name"
+                        maxLength="80"
+                        type="text"
+                        value={formData["Last Name"]}
+                        onChange={handleChange}
+                        className={`wf-field-item wf-field-input ${
+                          errors["Last Name"] ? "border-red-500" : ""
+                        }`}
+                        onInput={() => {
+                          if (errors["Last Name"]) {
+                            setErrors((prev) => {
+                              const newErrors = { ...prev }
+                              delete newErrors["Last Name"]
+                              return newErrors
+                            })
+                          }
+                        }}
+                      />
+                    </div>
+                    {errors["Last Name"] && (
+                      <p className="text-red-500 text-xs mt-1">{errors["Last Name"]}</p>
+                    )}
+                  </div>
+                </div>
+                <div className="wf-row">
+                  <div className="wf-label">Phone</div>
+                  <div className="wf-field">
+                    <div className="wf-field-inner">
+                      <input
+                        fvalidate="true"
+                        ftype="mobile"
+                        name="Phone"
+                        maxLength="50"
+                        type="text"
+                        value={formData.Phone}
+                        onChange={handleChange}
+                        className={`wf-field-item wf-field-input ${errors.Phone ? "border-red-500" : ""}`}
+                        onInput={() => {
+                          if (errors.Phone) {
+                            setErrors((prev) => {
+                              const newErrors = { ...prev }
+                              delete newErrors.Phone
+                              return newErrors
+                            })
+                          }
+                        }}
+                      />
+                    </div>
+                    {errors.Phone && <p className="text-red-500 text-xs mt-1">{errors.Phone}</p>}
+                  </div>
+                </div>
+                <div className="wf-row">
+                  <div className="wf-label">Email</div>
+                  <div className="wf-field">
+                    <div className="wf-field-inner">
+                      <input
+                        fvalidate="true"
+                        ftype="email"
+                        name="Email"
+                        maxLength="100"
+                        type="text"
+                        value={formData.Email}
+                        onChange={handleChange}
+                        className={`wf-field-item wf-field-input ${errors.Email ? "border-red-500" : ""}`}
+                        onInput={() => {
+                          if (errors.Email) {
+                            setErrors((prev) => {
+                              const newErrors = { ...prev }
+                              delete newErrors.Email
+                              return newErrors
+                            })
+                          }
+                        }}
+                      />
+                    </div>
+                    {errors.Email && <p className="text-red-500 text-xs mt-1">{errors.Email}</p>}
+                  </div>
+                </div>
+                <div className="wform-btn-wrap" data-ux-pos="center">
+                  <button
+                    id="formsubmit"
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="wf-btn"
+                    style={{
+                      backgroundColor: "#1980d8",
+                      color: "#fff",
+                      border: "1px solid #1980d8",
+                      width: "auto",
+                      padding: "10px 20px",
+                      borderRadius: "4px",
+                      fontSize: "15px",
+                      cursor: "pointer",
+                      fontWeight: "bold",
+                      fontFamily: "inherit",
+                      opacity: isSubmitting ? 0.5 : 1,
+                      pointerEvents: isSubmitting ? "none" : "auto",
+                    }}
+                  >
+                    {isSubmitting ? "Submitting..." : "Submit"}
+                  </button>
+                </div>
               </div>
-
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-1">
-                  Phone
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-2 bg-gray-800 border rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 text-white placeholder-gray-400 ${
-                    errors.phone ? "border-red-500" : "border-gray-700"
-                  }`}
-                  placeholder="Enter your phone number"
-                  aria-invalid={errors.phone ? "true" : "false"}
-                  aria-describedby={errors.phone ? "phone-error" : undefined}
-                />
-                {errors.phone && (
-                  <p id="phone-error" className="text-red-500 text-xs mt-1">
-                    {errors.phone}
-                  </p>
-                )}
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-2 bg-gray-800 border rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 text-white placeholder-gray-400 ${
-                    errors.email ? "border-red-500" : "border-gray-700"
-                  }`}
-                  placeholder="Enter your email"
-                  aria-invalid={errors.email ? "true" : "false"}
-                  aria-describedby={errors.email ? "email-error" : undefined}
-                />
-                {errors.email && (
-                  <p id="email-error" className="text-red-500 text-xs mt-1">
-                    {errors.email}
-                  </p>
-                )}
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-3 px-6 bg-gradient-to-r from-violet-600 to-rose-500 text-white rounded-lg hover:from-violet-700 hover:to-rose-600 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-opacity-50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? "Submitting..." : "Submit"}
-              </button>
-
-              {submitStatus === "success" && (
-                <div className="text-emerald-500 text-sm text-center">Form submitted successfully!</div>
-              )}
-
-              {submitStatus === "error" && (
-                <div className="text-rose-500 text-sm text-center">Error submitting form. Please try again.</div>
-              )}
             </form>
+
+            {submitStatus === "success" && (
+              <div className="text-emerald-500 text-sm text-center mt-4">Form submitted successfully!</div>
+            )}
+
+            {submitStatus === "error" && (
+              <div className="text-rose-500 text-sm text-center mt-4">Error submitting form. Please try again.</div>
+            )}
 
             <p className="text-xs text-gray-400 text-center mt-6">
               By submitting this form, you agree to our{" "}
