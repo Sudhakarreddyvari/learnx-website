@@ -32,17 +32,8 @@ const ContactPopup = ({ isOpen, onClose }) => {
   }, [isOpen])
 
   useEffect(() => {
-    // Dynamically load Zoho WebformScriptServlet script
-    const script = document.createElement("script")
-    script.id = "wf_script"
-    script.src =
-      "https://bigin.zoho.in/crm/WebformScriptServlet?rid=a135b800a3ecb60a4e110e8e96cc18f6fb3a58a8457b5a1ce12fcc4f0dc144d516f9c674f950d6a174cd29283aebcf17gida154bf9892c9f2072c6ad1be42488e87b18322c4b2da661b31fb06fbdaaf0a4a"
-    script.async = true
-    document.body.appendChild(script)
-
-    return () => {
-      document.body.removeChild(script)
-    }
+    // Please include the following script tag in your main HTML (e.g., public/index.html) instead of loading it dynamically here:
+    // <script id="wf_script" src="https://bigin.zoho.in/crm/WebformScriptServlet?rid=a135b800a3ecb60a4e110e8e96cc18f6fb3a58a8457b5a1ce12fcc4f0dc144d516f9c674f950d6a174cd29283aebcf17gida154bf9892c9f2072c6ad1be42488e87b18322c4b2da661b31fb06fbdaaf0a4a"></script>
   }, [])
 
   useEffect(() => {
