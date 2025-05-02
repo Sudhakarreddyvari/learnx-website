@@ -33,7 +33,7 @@ const ContactPopup = ({ isOpen, onClose }) => {
 
   useEffect(() => {
     // Please include the following script tag in your main HTML (e.g., public/index.html) instead of loading it dynamically here:
-    // <script id="wf_script" src="https://bigin.zoho.in/crm/WebformScriptServlet?rid=a135b800a3ecb60a4e110e8e96cc18f6fb3a58a8457b5a1ce12fcc4f0dc144d516f9c674f950d6a174cd29283aebcf17gida154bf9892c9f2072c6ad1be42488e87b18322c4b2da661b31fb06fbdaaf0a4a"></script>
+    // <script id="wf_script" src="https://bigin.zoho.in/crm/WebformScriptServlet?rid=31e70886bf98209f02b0a9cdffc5588f6535ff973f227b54e4a0d67b6b863bd1008c2fd9e96d2e6498156f404ede5034"></script>
   }, [])
 
   useEffect(() => {
@@ -64,23 +64,23 @@ const ContactPopup = ({ isOpen, onClose }) => {
 
     // Last Name: mandatory, only letters allowed
     if (!formData["Last Name"].trim()) {
-      newErrors["Last Name"] = "Last Name cannot be empty"
+      newErrors["Last Name"] = "Name cannot be empty"
     } else if (!/^[A-Za-z\s]+$/.test(formData["Last Name"].trim())) {
       newErrors["Last Name"] = "Only letters are allowed."
     }
 
-    // Phone: optional but if present validate mobile pattern (alphanumeric, +, (), -, ., spaces)
-    if (formData.Phone.trim()) {
-      if (!/^[0-9a-zA-Z+.()\-;\s]+$/.test(formData.Phone.trim())) {
-        newErrors.Phone = "Enter valid Phone"
-      }
+    // Phone: mandatory, validate mobile pattern (alphanumeric, +, (), -, ., spaces)
+    if (!formData.Phone.trim()) {
+      newErrors.Phone = "Phone cannot be empty"
+    } else if (!/^[0-9a-zA-Z+.()\-;\s]+$/.test(formData.Phone.trim())) {
+      newErrors.Phone = "Enter valid Phone"
     }
 
-    // Email: optional but if present validate email format
-    if (formData.Email.trim()) {
-      if (!/^([A-Za-z0-9-._%'+/]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,22})$/.test(formData.Email.trim())) {
-        newErrors.Email = "Enter valid Email"
-      }
+    // Email: mandatory, validate email format
+    if (!formData.Email.trim()) {
+      newErrors.Email = "Email cannot be empty"
+    } else if (!/^([A-Za-z0-9-._%'+/]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,22})$/.test(formData.Email.trim())) {
+      newErrors.Email = "Enter valid Email"
     }
 
     setErrors(newErrors)
@@ -149,9 +149,9 @@ const ContactPopup = ({ isOpen, onClose }) => {
               acceptCharset="UTF-8"
             >
               {/* Hidden Zoho inputs */}
-              <input type="text" name="xnQsjsdp" value="a154bf9892c9f2072c6ad1be42488e87b18322c4b2da661b31fb06fbdaaf0a4a" readOnly hidden />
+              <input type="text" name="xnQsjsdp" value="f9ea54d0473d9f6b6831b9bb759fee65e7c37ec6f26ba802e817befde2c79541" readOnly hidden />
               <input type="hidden" name="zc_gad" id="zc_gad" value="" />
-              <input type="text" name="xmIwtLD" value="a135b800a3ecb60a4e110e8e96cc18f6fb3a58a8457b5a1ce12fcc4f0dc144d516f9c674f950d6a174cd29283aebcf17" readOnly hidden />
+              <input type="text" name="xmIwtLD" value="31e70886bf98209f02b0a9cdffc5588f6535ff973f227b54e4a0d67b6b863bd1008c2fd9e96d2e6498156f404ede5034" readOnly hidden />
               <input type="text" name="actionType" value="Q29udGFjdHM=" readOnly hidden />
               <input type="hidden" name="rmsg" id="rmsg" value="true" />
               <input type="text" name="returnURL" value="null" readOnly hidden />
@@ -168,9 +168,7 @@ const ContactPopup = ({ isOpen, onClose }) => {
                         type="text"
                         value={formData["Last Name"]}
                         onChange={handleChange}
-                        className={`wf-field-item wf-field-input ${
-                          errors["Last Name"] ? "border-red-500" : ""
-                        }`}
+                        className={`wf-field-item wf-field-input ${errors["Last Name"] ? "border-red-500" : ""}`}
                         onInput={() => {
                           if (errors["Last Name"]) {
                             setErrors((prev) => {
@@ -189,7 +187,7 @@ const ContactPopup = ({ isOpen, onClose }) => {
                 </div>
                 <div className="wf-row">
                   <div className="wf-label">Phone</div>
-                  <div className="wf-field">
+                  <div className="wf-field wf-field-mandatory">
                     <div className="wf-field-inner">
                       <input
                         fvalidate="true"
@@ -216,7 +214,7 @@ const ContactPopup = ({ isOpen, onClose }) => {
                 </div>
                 <div className="wf-row">
                   <div className="wf-label">Email</div>
-                  <div className="wf-field">
+                  <div className="wf-field wf-field-mandatory">
                     <div className="wf-field-inner">
                       <input
                         fvalidate="true"
