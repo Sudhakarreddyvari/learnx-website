@@ -121,7 +121,7 @@ const Header = ({ hideHeader, setIsContactOpen }) => {
       } ${scrollPosition > 0 ? "bg-gray-900/95 backdrop-blur-md shadow-lg" : ""}`}
     >
       <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center py-4">
           <Link to="/" className="flex items-center gap-3">
             <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-violet-600 to-rose-500 flex items-center justify-center">
               <span className="font-bold text-white text-xl">LX</span>
@@ -131,122 +131,124 @@ const Header = ({ hideHeader, setIsContactOpen }) => {
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8">
-            <Link to="/" className="text-gray-300 hover:text-white transition-colors relative group">
-              Home
-              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-violet-500 to-rose-500 group-hover:w-full transition-all duration-300"></span>
-            </Link>
-
-            {/* Mega Menu Dropdown */}
-            <div className="relative group">
-              <Link
-                to="/courses"
-                className="text-gray-300 hover:text-white transition-colors relative flex items-center gap-1"
-              >
-                Courses
-                <ChevronDown size={16} className="ml-1 transition-transform duration-200 group-hover:rotate-180" />
+          <div className="flex-grow flex justify-center">
+            <nav className="hidden md:flex items-center gap-8">
+              <Link to="/" className="text-gray-300 hover:text-white transition-colors relative group">
+                Home
                 <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-violet-500 to-rose-500 group-hover:w-full transition-all duration-300"></span>
               </Link>
 
-              {/* Mega Menu */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-[1000px] rounded-xl bg-gray-900/95 backdrop-blur-lg shadow-xl border border-violet-500/20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 -translate-y-3 group-hover:translate-y-0">
-                <div className="relative p-6">
-                  {/* Header section */}
-                  <div className="relative mb-6 flex justify-between items-center">
-                    <h3 className="text-lg font-bold text-white">Explore Our Courses</h3>
-                    <Link
-                      to="/courses"
-                      className="text-sm text-violet-400 hover:text-violet-300 flex items-center gap-1"
-                    >
-                      View All Courses
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M5 12h14"></path>
-                        <path d="m12 5 7 7-7 7"></path>
-                      </svg>
-                    </Link>
-                  </div>
+              {/* Mega Menu Dropdown */}
+              <div className="relative group">
+                <Link
+                  to="/courses"
+                  className="text-gray-300 hover:text-white transition-colors relative flex items-center gap-1"
+                >
+                  Courses
+                  <ChevronDown size={16} className="ml-1 transition-transform duration-200 group-hover:rotate-180" />
+                  <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-violet-500 to-rose-500 group-hover:w-full transition-all duration-300"></span>
+                </Link>
 
-                  {/* Main mega menu grid */}
-                  <div className="relative grid grid-cols-4 gap-6">
-                    {courseCategories.map((category, idx) => (
-                      <div key={idx} className="space-y-4">
-                        <h4 className="text-sm font-semibold text-gray-400 mb-3">{category.name}</h4>
-                        <div className="space-y-4">
-                          {category.courses.map((course, courseIdx) => (
-                            <Link
-                              key={courseIdx}
-                              to={course.path}
-                              className="block bg-gray-800/40 hover:bg-gray-800/70 border border-gray-700/50 hover:border-violet-500/50 rounded-lg p-4 transition-all"
-                            >
-                              <div className="mb-2 flex justify-between">
-                                <div className="flex gap-1">
-                                  {course.popular && (
-                                    <span className="inline-flex items-center rounded-full bg-rose-500/20 px-2 py-1 text-xs font-medium text-rose-400">
-                                      Popular
-                                    </span>
-                                  )}
-                                  {course.new && (
-                                    <span className="inline-flex items-center rounded-full bg-emerald-500/20 px-2 py-1 text-xs font-medium text-emerald-400">
-                                      New
-                                    </span>
-                                  )}
+                {/* Mega Menu */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-[1000px] rounded-xl bg-gray-900/95 backdrop-blur-lg shadow-xl border border-violet-500/20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 -translate-y-3 group-hover:translate-y-0">
+                  <div className="relative p-6">
+                    {/* Header section */}
+                    <div className="relative mb-6 flex justify-between items-center">
+                      <h3 className="text-lg font-bold text-white">Explore Our Courses</h3>
+                      <Link
+                        to="/courses"
+                        className="text-sm text-violet-400 hover:text-violet-300 flex items-center gap-1"
+                      >
+                        View All Courses
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M5 12h14"></path>
+                          <path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                      </Link>
+                    </div>
+
+                    {/* Main mega menu grid */}
+                    <div className="relative grid grid-cols-4 gap-6">
+                      {courseCategories.map((category, idx) => (
+                        <div key={idx} className="space-y-4">
+                          <h4 className="text-sm font-semibold text-gray-400 mb-3">{category.name}</h4>
+                          <div className="space-y-4">
+                            {category.courses.map((course, courseIdx) => (
+                              <Link
+                                key={courseIdx}
+                                to={course.path}
+                                className="block bg-gray-800/40 hover:bg-gray-800/70 border border-gray-700/50 hover:border-violet-500/50 rounded-lg p-4 transition-all"
+                              >
+                                <div className="mb-2 flex justify-between">
+                                  <div className="flex gap-1">
+                                    {course.popular && (
+                                      <span className="inline-flex items-center rounded-full bg-rose-500/20 px-2 py-1 text-xs font-medium text-rose-400">
+                                        Popular
+                                      </span>
+                                    )}
+                                    {course.new && (
+                                      <span className="inline-flex items-center rounded-full bg-emerald-500/20 px-2 py-1 text-xs font-medium text-emerald-400">
+                                        New
+                                      </span>
+                                    )}
+                                  </div>
                                 </div>
-                              </div>
-                              <h5 className="font-semibold text-white mb-1">{course.title}</h5>
-                              <p className="text-xs text-gray-400">{course.description}</p>
-                            </Link>
-                          ))}
+                                <h5 className="font-semibold text-white mb-1">{course.title}</h5>
+                                <p className="text-xs text-gray-400">{course.description}</p>
+                              </Link>
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
 
-                  {/* Footer/CTA section */}
-                  <div className="relative mt-6 p-4 bg-gradient-to-r from-violet-900/30 to-rose-900/30 rounded-lg border border-violet-500/20">
-                    <div className="flex flex-wrap items-center justify-between gap-4">
-                      <div>
-                        <h4 className="text-white font-semibold">Not sure which course to choose?</h4>
-                        <p className="text-sm text-gray-300">
-                          Get personalized recommendations based on your career goals
-                        </p>
+                    {/* Footer/CTA section */}
+                    <div className="relative mt-6 p-4 bg-gradient-to-r from-violet-900/30 to-rose-900/30 rounded-lg border border-violet-500/20">
+                      <div className="flex flex-wrap items-center justify-between gap-4">
+                        <div>
+                          <h4 className="text-white font-semibold">Not sure which course to choose?</h4>
+                          <p className="text-sm text-gray-300">
+                            Get personalized recommendations based on your career goals
+                          </p>
+                        </div>
+                        <button
+                          onClick={() => setIsContactOpen(true)}
+                          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 text-white rounded-lg transition-colors"
+                        >
+                          Get Expert Advice
+                          <ChevronRight size={16} />
+                        </button>
                       </div>
-                      <button
-                        onClick={() => setIsContactOpen(true)}
-                        className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 text-white rounded-lg transition-colors"
-                      >
-                        Get Expert Advice
-                        <ChevronRight size={16} />
-                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+              <Link to="/about" className="text-gray-300 hover:text-white transition-colors relative group">
+                About
+                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-violet-500 to-rose-500 group-hover:w-full transition-all duration-300"></span>
+              </Link>
+              {/* <Link to="/#testimonials" className="text-gray-300 hover:text-white transition-colors relative group">
+                Testimonials
+                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-violet-500 to-rose-500 group-hover:w-full transition-all duration-300"></span>
+              </Link> */}
+              <Link to="/contact" className="text-gray-300 hover:text-white transition-colors relative group">
+                Contact
+                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-violet-500 to-rose-500 group-hover:w-full transition-all duration-300"></span>
+              </Link>
+            </nav>
+          </div>
 
-            <Link to="/about" className="text-gray-300 hover:text-white transition-colors relative group">
-              About
-              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-violet-500 to-rose-500 group-hover:w-full transition-all duration-300"></span>
-            </Link>
-            {/* <Link to="/#testimonials" className="text-gray-300 hover:text-white transition-colors relative group">
-              Testimonials
-              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-violet-500 to-rose-500 group-hover:w-full transition-all duration-300"></span>
-            </Link> */}
-            <Link to="/contact" className="text-gray-300 hover:text-white transition-colors relative group">
-              Contact
-              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-violet-500 to-rose-500 group-hover:w-full transition-all duration-300"></span>
-            </Link>
-
-            {/* Contact Now Button */}
+          <div className="hidden md:flex">
             <button
               onClick={() => setIsContactOpen(true)}
               className="px-6 py-2 text-white rounded-lg bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 transition-colors flex items-center gap-2"
@@ -254,118 +256,15 @@ const Header = ({ hideHeader, setIsContactOpen }) => {
               Contact Now
               <ChevronRight size={16} />
             </button>
-          </nav>
+          </div>
 
           <button className="md:hidden text-gray-300 hover:text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
-
-        {/* Mobile menu */}
-        {isMenuOpen && (
-          <div className="md:hidden pt-6 pb-3">
-            <nav className="flex flex-col gap-3">
-              <Link
-                to="/"
-                className="px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-800/50 rounded-md transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Home
-              </Link>
-
-              {/* Mobile Courses Dropdown */}
-              <div className="relative">
-                <button
-                  className="flex items-center justify-between w-full px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-800/50 rounded-md transition-colors"
-                  onClick={() => setMobileCoursesOpen(!mobileCoursesOpen)}
-                >
-                  <span>Courses</span>
-                  <ChevronDown
-                    size={16}
-                    className={`transition-transform duration-200 ${mobileCoursesOpen ? "rotate-180" : ""}`}
-                  />
-                </button>
-
-                {/* Mobile Courses Submenu */}
-                {mobileCoursesOpen && (
-                  <div className="mt-1 space-y-4 pl-4">
-                    {courseCategories.map((category, idx) => (
-                      <div key={idx} className="pl-2 border-l-2 border-violet-500/30">
-                        <h4 className="text-sm font-semibold text-gray-400 mb-2">{category.name}</h4>
-                        <div className="space-y-2">
-                          {category.courses.map((course, courseIdx) => (
-                            <Link
-                              key={courseIdx}
-                              to={course.path}
-                              className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-800/50 rounded-lg transition-colors flex justify-between items-center"
-                              onClick={() => setIsMenuOpen(false)}
-                            >
-                              <span>{course.title}</span>
-                              {(course.popular || course.new) && (
-                                <span
-                                  className={`text-xs px-2 py-0.5 rounded-full ${
-                                    course.popular
-                                      ? "bg-rose-500/20 text-rose-400"
-                                      : "bg-emerald-500/20 text-emerald-400"
-                                  }`}
-                                >
-                                  {course.popular ? "Popular" : "New"}
-                                </span>
-                              )}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-
-                    <div className="pt-2 pb-1">
-                      <Link
-                        to="/courses"
-                        className="block px-4 py-2 text-violet-400 hover:text-violet-300 hover:bg-gray-800/50 rounded-lg transition-colors flex items-center justify-between"
-                        onClick={() => {
-                          setIsMenuOpen(false)
-                          setMobileCoursesOpen(false)
-                        }}
-                      >
-                        <span>View All Courses</span>
-                        <ChevronRight size={16} className="transition-transform group-hover:translate-x-1" />
-                      </Link>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <Link
-                to="/about"
-                className="px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-800/50 rounded-md transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                About
-              </Link>
-              <Link
-                to="/#testimonials"
-                className="px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-800/50 rounded-md transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Testimonials
-              </Link>
-              <button
-                onClick={() => {
-                  setIsContactOpen(true)
-                  setIsMenuOpen(false)
-                }}
-                className="px-4 py-3 text-white bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 rounded-md transition-colors flex items-center justify-between"
-              >
-                <span>Contact Now</span>
-                <ChevronRight size={16} />
-              </button>
-            </nav>
-          </div>
-        )}
       </div>
     </header>
   )
 }
 
 export default Header
-
