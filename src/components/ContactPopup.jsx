@@ -20,6 +20,10 @@ const ContactPopup = ({ isOpen, onClose }) => {
   const [submitStatus, setSubmitStatus] = useState(null)
   const location = useLocation()
 
+  // Mandatory fields configuration from Zoho
+  const mndFields = ['Last Name', 'Phone', 'Email']
+  const fldLangVal = ['Name', 'Phone', 'Email']
+
   // Handle body overflow when popup opens/closes
   useEffect(() => {
     if (isOpen) {
@@ -46,17 +50,12 @@ const ContactPopup = ({ isOpen, onClose }) => {
 
     const script = document.createElement("script")
     script.id = scriptId
-    script.src = "https://in.bigin.online/org60035385701/forms/get-course-details?script=$sYG"
+    script.src = "https://bigin.zoho.in/crm/WebformScriptServlet?rid=b75850a34780549d7c38e087646cf8bf2181238260e2102ba868c98d35efb04545b0cd2047051fc6cc38a8cb165139c2gid5165d24a217d9d7572b123b1bb4e139d4956afe4c5cdd3a3004146c049330b5d"
     script.async = true
     
     script.onload = () => {
       scriptLoaded.current = true
       console.log("Zoho Bigin script loaded successfully")
-      
-      // Initialize Zoho form handler after script loads
-      if (window.ZohoHC) {
-        window.ZohoHC.init()
-      }
     }
 
     script.onerror = () => {
@@ -75,11 +74,74 @@ const ContactPopup = ({ isOpen, onClose }) => {
     }
   }, [isOpen])
 
-  // Enhanced form submission handling
+  // Zoho validation functions adapted for React
+  const removeError = (fieldName) => {
+    setErrors(prev => {
+      const newErrors = { ...prev }
+      delete newErrors[fieldName]
+      return newErrors
+    })
+  }
+
+  const setError = (fieldName, message) => {
+    setErrors(prev => ({
+      ...prev,
+      [fieldName]: message
+    }))
+  }
+
+  const validateFields = () => {
+    let isValid = true
+
+    // Validate email field
+    if (formData.Email && !/^([A-Za-z0-9-._%'+/]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,22})$/.test(formData.Email)) {
+      setError("Email", "Enter valid Email")
+      isValid = false
+    }
+
+    // Validate phone field
+    if (formData.Phone && !/^[0-9a-zA-Z+.()\-;\s]+$/.test(formData.Phone)) {
+      setError("Phone", "Enter valid Phone")
+      isValid = false
+    }
+
+    return isValid
+  }
+
+  const checkMandatory = () => {
+    let isReturn = true
+
+    mndFields.forEach((field, i) => {
+      if (!formData[field]?.trim()) {
+        setError(field, `${fldLangVal[i]} cannot be empty`)
+        isReturn = false
+      }
+    })
+
+    if (!validateFields()) {
+      isReturn = false
+    }
+
+    return isReturn
+  }
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+    }))
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      removeError(name)
+    }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     
-    if (!validate()) {
+    if (!checkMandatory()) {
       return
     }
 
@@ -87,81 +149,37 @@ const ContactPopup = ({ isOpen, onClose }) => {
     setSubmitStatus(null)
 
     try {
-      // Ensure Zoho script is fully loaded
+      // Fallback to regular form submission if Zoho script isn't loaded
       if (!scriptLoaded.current) {
         throw new Error("Zoho script not loaded")
       }
 
-      // Manually trigger Zoho form submission
-      if (window.ZohoHC && formRef.current) {
-        window.ZohoHC.submit(formRef.current.id, {
-          onSuccess: function(data) {
-            console.log("Form submitted successfully to Zoho:", data)
-            setSubmitStatus("success")
-            setIsSubmitting(false)
-            setFormData({ "Last Name": "", Phone: "", Email: "" })
-            
-            setTimeout(() => {
-              onClose()
-              setSubmitStatus(null)
-            }, 2000)
-          },
-          onError: function(error) {
-            console.error("Zoho submission error:", error)
-            setSubmitStatus("error")
-            setIsSubmitting(false)
-          }
-        })
-      } else {
-        // Fallback to regular form submission
-        formRef.current.submit()
-      }
+      // Create hidden iframe for submission
+      const iframe = document.createElement('iframe')
+      iframe.name = 'hidden819627000000393013Frame'
+      iframe.style.display = 'none'
+      document.body.appendChild(iframe)
+
+      // Submit the form
+      formRef.current.submit()
+
+      // Assume success after submission
+      setTimeout(() => {
+        setSubmitStatus("success")
+        setIsSubmitting(false)
+        setFormData({ "Last Name": "", Phone: "", Email: "" })
+        
+        setTimeout(() => {
+          onClose()
+          setSubmitStatus(null)
+          document.body.removeChild(iframe)
+        }, 2000)
+      }, 1000)
+
     } catch (error) {
       console.error("Submission error:", error)
       setSubmitStatus("error")
       setIsSubmitting(false)
-    }
-  }
-
-  // Validation function remains the same
-  const validate = () => {
-    const newErrors = {}
-
-    if (!formData["Last Name"].trim()) {
-      newErrors["Last Name"] = "Name is required"
-    } else if (!/^[A-Za-z\s]+$/.test(formData["Last Name"].trim())) {
-      newErrors["Last Name"] = "Only letters are allowed"
-    }
-
-    if (!formData.Phone.trim()) {
-      newErrors.Phone = "Phone is required"
-    } else if (!/^[0-9a-zA-Z+.()\-;\s]+$/.test(formData.Phone.trim())) {
-      newErrors.Phone = "Enter a valid phone number"
-    }
-
-    if (!formData.Email.trim()) {
-      newErrors.Email = "Email is required"
-    } else if (!/^([A-Za-z0-9-._%'+/]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,22})$/.test(formData.Email.trim())) {
-      newErrors.Email = "Enter a valid email"
-    }
-
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
-
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
-    
-    if (errors[name]) {
-      setErrors((prev) => {
-        const newErrors = { ...prev }
-        delete newErrors[name]
-        return newErrors
-      })
     }
   }
 
@@ -188,98 +206,120 @@ const ContactPopup = ({ isOpen, onClose }) => {
               name="BiginWebToRecordForm819627000000393013"
               ref={formRef}
               onSubmit={handleSubmit}
-              className="space-y-5"
+              className="wf-form-component"
+              data-ux-form-alignment="top"
+              style={{ fontFamily: "Arial", position: "relative", fontSize: "15px" }}
               method="POST"
               encType="multipart/form-data"
               acceptCharset="UTF-8"
             >
-              {/* Hidden Zoho inputs - Verify these values with your Zoho Bigin form settings */}
-              <input type="hidden" name="xnQsjsdp" value="f9ea54d0473d9f6b6831b9bb759fee65e7c37ec6f26ba802e817befde2c79541" />
+              {/* Hidden Zoho inputs */}
+              <input type="text" name="xnQsjsdp" value="5165d24a217d9d7572b123b1bb4e139d4956afe4c5cdd3a3004146c049330b5d" readOnly hidden />
               <input type="hidden" name="zc_gad" id="zc_gad" value="" />
-              <input type="hidden" name="xmIwtLD" value="31e70886bf98209f02b0a9cdffc5588f6535ff973f227b54e4a0d67b6b863bd1008c2fd9e96d2e6498156f404ede5034" />
-              <input type="hidden" name="actionType" value="Q29udGFjdHM=" />
+              <input type="text" name="xmIwtLD" value="b75850a34780549d7c38e087646cf8bf2181238260e2102ba868c98d35efb04545b0cd2047051fc6cc38a8cb165139c2" readOnly hidden />
+              <input type="text" name="actionType" value="Q29udGFjdHM=" readOnly hidden />
               <input type="hidden" name="rmsg" id="rmsg" value="true" />
-              <input type="hidden" name="returnURL" value={window.location.href} />
-              <input type="hidden" name="zf_referrer_name" value={document.referrer} />
+              <input type="text" name="returnURL" value="null" readOnly hidden />
 
-              {/* Name Field */}
-              <div className="space-y-1">
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                  Name <span className="text-red-500">*</span>
-                </label>
-                <input
-                  id="name"
-                  name="Last Name"
-                  type="text"
-                  value={formData["Last Name"]}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors["Last Name"] ? "border-red-500" : "border-gray-300"
-                  }`}
-                  placeholder="Enter your name"
-                />
-                {errors["Last Name"] && (
-                  <p className="mt-1 text-sm text-red-600">{errors["Last Name"]}</p>
-                )}
-              </div>
+              <div className="wf-header">Get Course Details</div>
+              <div id="elementDiv819627000000393013" className="wf-form-wrapper">
+                {/* Name Field */}
+                <div className="wf-row">  
+                  <div className="wf-label">Name</div>
+                  <div className={`wf-field wf-field-mandatory ${errors["Last Name"] ? "wf-field-error-active" : ""}`}>
+                    <div className="wf-field-inner">
+                      <input
+                        name="Last Name"
+                        maxLength="80"
+                        type="text"
+                        value={formData["Last Name"]}
+                        onChange={handleChange}
+                        className="wf-field-item wf-field-input"
+                      />
+                    </div>
+                    {errors["Last Name"] && (
+                      <div className="wf-error-parent-ele">
+                        <span className="wf-field-error">{errors["Last Name"]}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
 
-              {/* Phone Field */}
-              <div className="space-y-1">
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-                  Phone <span className="text-red-500">*</span>
-                </label>
-                <input
-                  id="phone"
-                  name="Phone"
-                  type="tel"
-                  value={formData.Phone}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.Phone ? "border-red-500" : "border-gray-300"
-                  }`}
-                  placeholder="Enter your phone number"
-                />
-                {errors.Phone && (
-                  <p className="mt-1 text-sm text-red-600">{errors.Phone}</p>
-                )}
-              </div>
+                {/* Phone Field */}
+                <div className="wf-row">  
+                  <div className="wf-label">Phone</div>
+                  <div className={`wf-field wf-field-mandatory ${errors.Phone ? "wf-field-error-active" : ""}`}>
+                    <div className="wf-field-inner">
+                      <input
+                        fvalidate="true"
+                        ftype="mobile"
+                        name="Phone"
+                        maxLength="50"
+                        type="text"
+                        value={formData.Phone}
+                        onChange={handleChange}
+                        className="wf-field-item wf-field-input"
+                      />
+                    </div>
+                    {errors.Phone && (
+                      <div className="wf-error-parent-ele">
+                        <span className="wf-field-error">{errors.Phone}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
 
-              {/* Email Field */}
-              <div className="space-y-1">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                  Email <span className="text-red-500">*</span>
-                </label>
-                <input
-                  id="email"
-                  name="Email"
-                  type="email"
-                  value={formData.Email}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.Email ? "border-red-500" : "border-gray-300"
-                  }`}
-                  placeholder="Enter your email address"
-                />
-                {errors.Email && (
-                  <p className="mt-1 text-sm text-red-600">{errors.Email}</p>
-                )}
-              </div>
+                {/* Email Field */}
+                <div className="wf-row">  
+                  <div className="wf-label">Email</div>
+                  <div className={`wf-field wf-field-mandatory ${errors.Email ? "wf-field-error-active" : ""}`}>
+                    <div className="wf-field-inner">
+                      <input
+                        fvalidate="true"
+                        ftype="email"
+                        name="Email"
+                        maxLength="100"
+                        type="text"
+                        value={formData.Email}
+                        onChange={handleChange}
+                        className="wf-field-item wf-field-input"
+                      />
+                    </div>
+                    {errors.Email && (
+                      <div className="wf-error-parent-ele">
+                        <span className="wf-field-error">{errors.Email}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
 
-              {/* Submit Button */}
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={`w-full py-3 px-4 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors ${
-                    isSubmitting ? "opacity-70 cursor-not-allowed" : ""
-                  }`}
-                >
-                  {isSubmitting ? "Submitting..." : "Submit"}
-                </button>
+                {/* Submit Button */}
+                <div className="wform-btn-wrap" data-ux-pos="center">
+                  <button
+                    id="formsubmit"
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="wf-btn"
+                    style={{
+                      backgroundColor: "#1980d8",
+                      color: "#fff",
+                      border: "1px solid #1980d8",
+                      width: "auto",
+                      padding: "10px 20px",
+                      borderRadius: "4px",
+                      fontSize: "15px",
+                      cursor: "pointer",
+                      fontWeight: "bold",
+                      fontFamily: "inherit",
+                      opacity: isSubmitting ? 0.7 : 1,
+                    }}
+                  >
+                    {isSubmitting ? "Submitting..." : "Submit"}
+                  </button>
+                </div>
               </div>
             </form>
 
-            {/* Submission Status */}
             {submitStatus === "success" && (
               <div className="mt-4 p-3 bg-green-50 text-green-700 rounded-lg text-sm text-center">
                 Form submitted successfully! We'll contact you shortly.
@@ -292,7 +332,6 @@ const ContactPopup = ({ isOpen, onClose }) => {
               </div>
             )}
 
-            {/* Privacy Policy */}
             <p className="mt-6 text-xs text-gray-500 text-center">
               By submitting this form, you agree to our{" "}
               <a
@@ -307,15 +346,6 @@ const ContactPopup = ({ isOpen, onClose }) => {
           </div>
         </div>
       </div>
-
-      {/* Hidden iframe for form submission */}
-      <iframe
-        id="hidden819627000000393013Frame"
-        name="hidden819627000000393013Frame"
-        style={{ display: "none" }}
-        ref={iframeRef}
-        title="hidden-zoho-form-frame"
-      />
     </>
   )
 }
