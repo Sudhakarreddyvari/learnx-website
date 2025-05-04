@@ -13,6 +13,7 @@ const ContactPopup = ({ isOpen, onClose }) => {
 
   const formRef = useRef(null)
   const iframeRef = useRef(null)
+  const scriptLoaded = useRef(false)
 
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -32,13 +33,14 @@ const ContactPopup = ({ isOpen, onClose }) => {
     }
   }, [isOpen])
 
-  // Dynamically load Bigin script
+  // Dynamically load Bigin script with proper initialization
   useEffect(() => {
-    if (!isOpen) return
+    if (!isOpen || scriptLoaded.current) return
 
     const scriptId = "formScript819627000000393013"
     
     if (document.getElementById(scriptId)) {
+      scriptLoaded.current = true
       return
     }
 
@@ -47,8 +49,18 @@ const ContactPopup = ({ isOpen, onClose }) => {
     script.src = "https://in.bigin.online/org60035385701/forms/get-course-details?script=$sYG"
     script.async = true
     
+    script.onload = () => {
+      scriptLoaded.current = true
+      console.log("Zoho Bigin script loaded successfully")
+      
+      // Initialize Zoho form handler after script loads
+      if (window.ZohoHC) {
+        window.ZohoHC.init()
+      }
+    }
+
     script.onerror = () => {
-      console.error("Failed to load the form script")
+      console.error("Failed to load the Zoho Bigin script")
       setSubmitStatus("error")
     }
 
@@ -58,35 +70,60 @@ const ContactPopup = ({ isOpen, onClose }) => {
       const existingScript = document.getElementById(scriptId)
       if (existingScript) {
         existingScript.remove()
+        scriptLoaded.current = false
       }
     }
   }, [isOpen])
 
-  // Handle iframe load events
-  useEffect(() => {
-    const iframe = iframeRef.current
-    if (!iframe) return
-
-    const handleLoad = () => {
-      if (isSubmitting) {
-        setSubmitStatus("success")
-        setIsSubmitting(false)
-        setFormData({ "Last Name": "", Phone: "", Email: "" })
-        
-        setTimeout(() => {
-          onClose()
-          setSubmitStatus(null)
-        }, 2000)
-      }
-    }
-
-    iframe.addEventListener("load", handleLoad)
+  // Enhanced form submission handling
+  const handleSubmit = async (e) => {
+    e.preventDefault()
     
-    return () => {
-      iframe.removeEventListener("load", handleLoad)
+    if (!validate()) {
+      return
     }
-  }, [isSubmitting, onClose])
 
+    setIsSubmitting(true)
+    setSubmitStatus(null)
+
+    try {
+      // Ensure Zoho script is fully loaded
+      if (!scriptLoaded.current) {
+        throw new Error("Zoho script not loaded")
+      }
+
+      // Manually trigger Zoho form submission
+      if (window.ZohoHC && formRef.current) {
+        window.ZohoHC.submit(formRef.current.id, {
+          onSuccess: function(data) {
+            console.log("Form submitted successfully to Zoho:", data)
+            setSubmitStatus("success")
+            setIsSubmitting(false)
+            setFormData({ "Last Name": "", Phone: "", Email: "" })
+            
+            setTimeout(() => {
+              onClose()
+              setSubmitStatus(null)
+            }, 2000)
+          },
+          onError: function(error) {
+            console.error("Zoho submission error:", error)
+            setSubmitStatus("error")
+            setIsSubmitting(false)
+          }
+        })
+      } else {
+        // Fallback to regular form submission
+        formRef.current.submit()
+      }
+    } catch (error) {
+      console.error("Submission error:", error)
+      setSubmitStatus("error")
+      setIsSubmitting(false)
+    }
+  }
+
+  // Validation function remains the same
   const validate = () => {
     const newErrors = {}
 
@@ -128,19 +165,6 @@ const ContactPopup = ({ isOpen, onClose }) => {
     }
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (!validate()) {
-      return
-    }
-    setIsSubmitting(true)
-    setSubmitStatus(null)
-    
-    if (formRef.current) {
-      formRef.current.submit()
-    }
-  }
-
   if (!isOpen) return null
 
   return (
@@ -167,16 +191,16 @@ const ContactPopup = ({ isOpen, onClose }) => {
               className="space-y-5"
               method="POST"
               encType="multipart/form-data"
-              target="hidden819627000000393013Frame"
               acceptCharset="UTF-8"
             >
-              {/* Hidden Zoho inputs */}
-              <input type="text" name="xnQsjsdp" value="f9ea54d0473d9f6b6831b9bb759fee65e7c37ec6f26ba802e817befde2c79541" readOnly hidden />
+              {/* Hidden Zoho inputs - Verify these values with your Zoho Bigin form settings */}
+              <input type="hidden" name="xnQsjsdp" value="f9ea54d0473d9f6b6831b9bb759fee65e7c37ec6f26ba802e817befde2c79541" />
               <input type="hidden" name="zc_gad" id="zc_gad" value="" />
-              <input type="text" name="xmIwtLD" value="31e70886bf98209f02b0a9cdffc5588f6535ff973f227b54e4a0d67b6b863bd1008c2fd9e96d2e6498156f404ede5034" readOnly hidden />
-              <input type="text" name="actionType" value="Q29udGFjdHM=" readOnly hidden />
+              <input type="hidden" name="xmIwtLD" value="31e70886bf98209f02b0a9cdffc5588f6535ff973f227b54e4a0d67b6b863bd1008c2fd9e96d2e6498156f404ede5034" />
+              <input type="hidden" name="actionType" value="Q29udGFjdHM=" />
               <input type="hidden" name="rmsg" id="rmsg" value="true" />
-              <input type="text" name="returnURL" value="null" readOnly hidden />
+              <input type="hidden" name="returnURL" value={window.location.href} />
+              <input type="hidden" name="zf_referrer_name" value={document.referrer} />
 
               {/* Name Field */}
               <div className="space-y-1">
@@ -258,13 +282,13 @@ const ContactPopup = ({ isOpen, onClose }) => {
             {/* Submission Status */}
             {submitStatus === "success" && (
               <div className="mt-4 p-3 bg-green-50 text-green-700 rounded-lg text-sm text-center">
-                Form submitted successfully!
+                Form submitted successfully! We'll contact you shortly.
               </div>
             )}
 
             {submitStatus === "error" && (
               <div className="mt-4 p-3 bg-red-50 text-red-700 rounded-lg text-sm text-center">
-                Error submitting form. Please try again.
+                Error submitting form. Please try again or contact support.
               </div>
             )}
 
@@ -274,6 +298,8 @@ const ContactPopup = ({ isOpen, onClose }) => {
               <a
                 href="/privacy-policy"
                 className="text-blue-600 hover:text-blue-800 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 Privacy Policy
               </a>
