@@ -21,7 +21,7 @@ const Footer = ({ setIsContactOpen }) => {
             </p>
             <div className="flex gap-4">
               <a
-                href="https://twitter.com/learnx"
+                href="https://x.com/LearnX_official"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
@@ -36,7 +36,7 @@ const Footer = ({ setIsContactOpen }) => {
                 </svg>
               </a>
               <a
-                href="https://linkedin.com/company/learnx"
+                href="https://www.linkedin.com/company/learnx-official/?viewAsMember=true"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
@@ -51,7 +51,7 @@ const Footer = ({ setIsContactOpen }) => {
                 </svg>
               </a>
               <a
-                href="https://facebook.com/learnx"
+                href="https://www.facebook.com/profile.php?id=61565045664782&sk=about"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
@@ -70,7 +70,7 @@ const Footer = ({ setIsContactOpen }) => {
                 </svg>
               </a>
               <a
-                href="https://instagram.com/learnx"
+                href="https://www.instagram.com/learnx_official/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
