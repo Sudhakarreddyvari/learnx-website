@@ -28,8 +28,8 @@ import TermsOfServicePage from "./pages/terms-of-service-page"
 import RefundPolicyPage from "./pages/refund-policy-page"
 import ThankYouPage from "./pages/thank-you"
 import ScrollToTop from "./ScrollToTop"
-import FloatingPhoneButton from "./components/FloatingPhoneButton"
-import FloatingWhatsAppButton from "./components/FloatingWhatsAppButton" // Import the WhatsApp button
+import FloatingContactButtons from "./components/FloatingContactButtons"
+
 import ContactPopup from "./components/ContactPopup"
 
 function App() {
@@ -44,8 +44,7 @@ function App() {
     <Router>
       <ScrollToTop />
       {/* Floating action buttons */}
-      <FloatingPhoneButton phoneNumber="+91 80193 33796" />
-      <FloatingWhatsAppButton phoneNumber="+91 80193 33796" />
+      <FloatingContactButtons whatsappNumber="+91 80193 33796" phoneNumber="+91 80193 33796" />
       
       <ContactPopup isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
       <Routes>

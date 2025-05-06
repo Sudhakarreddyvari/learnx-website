@@ -8,7 +8,7 @@ const FloatingContactButtons = ({ whatsappNumber = "+919876543210", phoneNumber 
   const phoneLink = `tel:${phoneNumber.replace(/[^0-9]/g, "")}`
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-4">
+    <div className="fixed bottom-8 right-6 z-50 flex flex-col gap-4">
       {/* WhatsApp Button */}
       <a
         href={whatsappLink}
