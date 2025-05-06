@@ -58,7 +58,7 @@ const AboutPage = ({ setIsFormOpen }) => {
             <div className="text-center max-w-3xl mx-auto">
               <div className="inline-flex items-center px-3 py-1 rounded-full bg-violet-900/30 border border-violet-500/30 text-sm mb-6">
                 <Globe size={14} className="mr-2 text-violet-400" />
-                <span>Transforming Tech Education Since 2015</span>
+                <span>Transforming Tech Education Since 2020</span>
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
                 About{" "}
@@ -86,7 +86,7 @@ const AboutPage = ({ setIsFormOpen }) => {
                     <div className="text-center">
                       <h3 className="text-2xl font-bold mb-4">Our Team</h3>
                       <p className="text-gray-300 mb-6">
-                        Founded in 2015, our dedicated team of educators and industry professionals has been
+                        Founded in 2020, our dedicated team of educators and industry professionals has been
                         transforming tech education for over 8 years.
                       </p>
                       <div className="flex justify-center gap-4">
@@ -110,14 +110,14 @@ const AboutPage = ({ setIsFormOpen }) => {
                     </span>
                   </h2>
                   <p className="text-gray-300 mb-4">
-                    Founded in 2015, LearnX began with a simple vision: to bridge the gap between traditional education
+                    Founded in 2020, LearnX began with a simple vision: to bridge the gap between traditional education
                     and the rapidly evolving tech industry. Our founders, a group of industry veterans and passionate
                     educators, recognized that conventional learning methods weren't keeping pace with technological
                     advancements.
                   </p>
                   <p className="text-gray-300 mb-4">
                     What started as a small bootcamp with just 20 students has grown into a global education platform
-                    that has transformed the careers of over 50,000 professionals across 30+ countries. Our commitment
+                    that has transformed the careers of over 10,000 professionals across 5+ countries. Our commitment
                     to practical, industry-relevant training has made us a trusted partner for both aspiring tech
                     professionals and companies looking to upskill their workforce.
                   </p>
@@ -322,43 +322,43 @@ const AboutPage = ({ setIsFormOpen }) => {
             <div className="grid md:grid-cols-3 gap-8 animate-on-scroll" id="team-cards">
               {[
                 {
-                  name: "Dr. Sarah Johnson",
+                  name: "Reddy",
                   role: "Founder & CEO",
                   image: "https://randomuser.me/api/portraits/women/23.jpg",
                   bio: "Former Google AI researcher with a Ph.D. in Computer Science from Stanford. Sarah founded LearnX with a vision to make cutting-edge tech education accessible to everyone.",
                   delay: "delay-300",
                 },
                 {
-                  name: "Michael Chen",
-                  role: "Chief Technology Officer",
+                  name: "Bala",
+                  role: "Director & Chief Technology Officer",
                   image: "https://randomuser.me/api/portraits/men/32.jpg",
                   bio: "With 15+ years of experience at Microsoft and Amazon, Michael leads our technology strategy and ensures our platform delivers an exceptional learning experience.",
                   delay: "delay-500",
                 },
                 {
-                  name: "Priya Patel",
-                  role: "Chief Academic Officer",
+                  name: "Ratna Kalyan",
+                  role: "Director & Chief Academic Officer",
                   image: "https://randomuser.me/api/portraits/women/44.jpg",
                   bio: "Former Dean of Computer Science at MIT, Priya oversees our curriculum development and ensures our courses meet the highest academic standards while remaining industry-relevant.",
                   delay: "delay-700",
                 },
                 {
-                  name: "James Wilson",
+                  name: "Santosh",
                   role: "Chief Operating Officer",
                   image: "https://randomuser.me/api/portraits/men/52.jpg",
                   bio: "With a background in scaling educational startups, James ensures that our operations run smoothly and efficiently as we continue to grow globally.",
                   delay: "delay-300",
                 },
                 {
-                  name: "Elena Rodriguez",
-                  role: "VP of Student Success",
+                  name: "Mani",
+                  role: "Chief Success Officer",
                   image: "https://randomuser.me/api/portraits/women/63.jpg",
                   bio: "Passionate about education and student outcomes, Elena leads our student support initiatives and career services to ensure every learner achieves their goals.",
                   delay: "delay-500",
                 },
                 {
-                  name: "David Kim",
-                  role: "VP of Industry Partnerships",
+                  name: "Rudresh",
+                  role: "Cheif Program Officer",
                   image: "https://randomuser.me/api/portraits/men/76.jpg",
                   bio: "David builds and maintains our relationships with industry partners, ensuring our curriculum aligns with employer needs and creating placement opportunities for our graduates.",
                   delay: "delay-700",
