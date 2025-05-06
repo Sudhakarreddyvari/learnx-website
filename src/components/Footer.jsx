@@ -165,7 +165,7 @@ const Footer = ({ setIsContactOpen }) => {
                   />
                 </svg>
                 <a href="tel:+918019333796" className="hover:text-white transition-colors">
-                  +91 80193 33796
+                  +91 8019333796
                 </a>
               </li>
               <li className="flex items-center gap-2 text-gray-400">
@@ -184,7 +184,7 @@ const Footer = ({ setIsContactOpen }) => {
                   />
                 </svg>
                 <a href="mailto:info@learn-x.in" className="hover:text-white transition-colors">
-                  info@learn-x.in
+                  info@learnxacademy.in
                 </a>
               </li>
               <li className="flex items-start gap-2 text-gray-400">
@@ -209,9 +209,9 @@ const Footer = ({ setIsContactOpen }) => {
                   />
                 </svg>
                 <address className="not-italic hover:text-white transition-colors">
-                  123 Tech Park, <br />
-                  Electronic City Phase 1, <br />
-                  Bangalore - 560100
+                  Kavuri Hills, <br />
+                  Madhapur, Hyderabad, <br />
+                  Telangana 500033
                 </address>
               </li>
               <li>
