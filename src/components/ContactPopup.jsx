@@ -57,7 +57,7 @@ const ContactPopup = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-      <div className="bg-white rounded-xl shadow-lg w-full max-w-md overflow-hidden relative">
+      <div className="bg-white rounded-s shadow-lg w-full max-w-md overflow-hidden relative">
         <button
           onClick={onClose}
           className="absolute top-3 right-3 p-1 rounded-full hover:bg-gray-100 transition-colors z-10"
