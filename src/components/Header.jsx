@@ -261,6 +261,81 @@ const Header = ({ hideHeader, setIsContactOpen }) => {
           <button className="md:hidden text-gray-300 hover:text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
+
+          {isMenuOpen && (
+            <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex flex-col">
+              <div className="bg-gray-900 w-full max-w-full h-full min-h-screen p-6 shadow-2xl overflow-y-auto flex flex-col">
+                <button
+                  className="mb-6 text-gray-300 hover:text-white"
+                  onClick={() => setIsMenuOpen(false)}
+                  aria-label="Close mobile menu"
+                >
+                  <X size={28} />
+                </button>
+                <nav>
+                  <ul className="space-y-4">
+                    <li>
+                      <Link to="/" onClick={() => setIsMenuOpen(false)} className="block text-lg text-gray-200 hover:text-white">Home</Link>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => setMobileCoursesOpen(!mobileCoursesOpen)}
+                        className="flex items-center w-full text-lg text-gray-200 hover:text-white"
+                      >
+                        Courses
+                        <ChevronDown size={18} className={`ml-2 transition-transform ${mobileCoursesOpen ? "rotate-180" : ""}`} />
+                      </button>
+                      {mobileCoursesOpen && (
+                        <div className="mt-2 ml-2 space-y-4 max-h-80 overflow-y-auto pr-2">
+                          {courseCategories.map((category, idx) => (
+                            <div key={idx}>
+                              <div className="text-xs font-semibold text-gray-400 mb-1">{category.name}</div>
+                              <ul className="space-y-1">
+                                {category.courses.map((course, cidx) => (
+                                  <li key={cidx}>
+                                    <Link
+                                      to={course.path}
+                                      onClick={() => setIsMenuOpen(false)}
+                                      className="block px-2 py-2 rounded transition-colors bg-gray-800/40 hover:bg-gray-800/70 border border-gray-700/50 hover:border-violet-500/50"
+                                    >
+                                      <div className="flex justify-between items-center mb-1">
+                                        <span className="font-semibold text-white">{course.title}</span>
+                                        <span className="flex gap-1">
+                                          {course.popular && (
+                                            <span className="inline-flex items-center rounded-full bg-rose-500/20 px-2 py-0.5 text-xs font-medium text-rose-400">Popular</span>
+                                          )}
+                                          {course.new && (
+                                            <span className="inline-flex items-center rounded-full bg-emerald-500/20 px-2 py-0.5 text-xs font-medium text-emerald-400">New</span>
+                                          )}
+                                        </span>
+                                      </div>
+                                      <div className="text-xs text-gray-400">{course.description}</div>
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </li>
+                    <li>
+                      <Link to="/about" onClick={() => setIsMenuOpen(false)} className="block text-lg text-gray-200 hover:text-white">About</Link>
+                    </li>
+                    <li>
+                      <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="block text-lg text-gray-200 hover:text-white">Contact</Link>
+                    </li>
+                  </ul>
+                </nav>
+                <button
+                  onClick={() => { setIsContactOpen(true); setIsMenuOpen(false); }}
+                  className="mt-8 w-full py-2 bg-gradient-to-r from-violet-600 to-rose-500 text-white rounded-lg"
+                >
+                  Contact Now
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </header>

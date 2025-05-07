@@ -29,7 +29,6 @@ import RefundPolicyPage from "./pages/refund-policy-page"
 import ThankYouPage from "./pages/thank-you"
 import ScrollToTop from "./ScrollToTop"
 import FloatingContactButtons from "./components/FloatingContactButtons"
-
 import ContactPopup from "./components/ContactPopup"
 
 function App() {
