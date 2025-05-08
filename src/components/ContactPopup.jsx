@@ -68,9 +68,9 @@ const ContactPopup = ({ isOpen, onClose }) => {
 
         <div id="zohoForm" className="p-4">
           <iframe
-            src="https://forms.zohopublic.in/learnxinstitutegm1/form/LeadForm/formperma/InSeUEkSoMeDrbxkpK5QuC-JCkCBkXLv36_wv8cDbQ8?zf_rszfm=1"
+            src="https://forms.zohopublic.in/learnx/form/LeadForm/formperma/InSeUEkSoMeDrbxkpK5QuC-JCkCBkXLv36_wv8cDbQ8"
             frameBorder="0"
-            style={{ width: "100%", height: "400px", border: "none" }}
+            style={{ width: "100%", height: "500px", border: "none" }}
             title="Contact Form"
             allowFullScreen
           ></iframe>
