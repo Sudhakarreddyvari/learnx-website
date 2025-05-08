@@ -11,7 +11,7 @@ const SalesforceCourse = ({ setIsContactOpen }) => {
   // Course data specific to Salesforce
   const courseData = {
     slug: "salesforce",
-    title: "Salesforce Development & Administration",
+    title: "Salesforce Administration & Development",
     subtitle: "Master the world's #1 CRM platform",
     description:
       "Become a Salesforce expert capable of implementing, customizing, and managing Salesforce solutions. Learn administration, development with Apex and Lightning, integration techniques, and best practices to drive business transformation with the Salesforce platform.",
