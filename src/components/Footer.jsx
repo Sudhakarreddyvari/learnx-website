@@ -9,9 +9,9 @@ const Footer = ({ setIsContactOpen }) => {
           {/* Company Info */}
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-violet-600 to-rose-500 flex items-center justify-center">
+              {/*<div className="h-12 w-12 rounded-xl bg-gradient-to-br from-violet-600 to-rose-500 flex items-center justify-center">
                 <span className="font-bold text-white text-xl">LX</span>
-              </div>
+              </div>*/}
               <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-rose-500">
                 LearnX
               </span>
