@@ -87,7 +87,7 @@ const AboutPage = ({ setIsFormOpen }) => {
                       <h3 className="text-2xl font-bold mb-4">Our Team</h3>
                       <p className="text-gray-300 mb-6">
                         Founded in 2020, our dedicated team of educators and industry professionals has been
-                        transforming tech education for over 8 years.
+                        transforming tech education for over 5 years.
                       </p>
                       <div className="flex justify-center gap-4">
                         <div className="px-4 py-2 bg-violet-600/30 rounded-lg text-sm">Passionate</div>
@@ -322,45 +322,45 @@ const AboutPage = ({ setIsFormOpen }) => {
             <div className="grid md:grid-cols-3 gap-8 animate-on-scroll" id="team-cards">
               {[
                 {
-                  name: "Reddy",
+                  name: "Bala",
                   role: "Founder & CEO",
                   image: "https://randomuser.me/api/portraits/women/23.jpg",
-                  bio: "Former Google AI researcher with a Ph.D. in Computer Science from Stanford. Sarah founded LearnX with a vision to make cutting-edge tech education accessible to everyone.",
+                  // bio: "Former Google AI researcher with a Ph.D. in Computer Science from Stanford. Sarah founded LearnX with a vision to make cutting-edge tech education accessible to everyone.",
                   delay: "delay-300",
                 },
                 {
-                  name: "Bala",
-                  role: "Director & Chief Technology Officer",
+                  name: "Kalyan",
+                  role: "Founder & Chief Technology Officer",
                   image: "https://randomuser.me/api/portraits/men/32.jpg",
-                  bio: "With 15+ years of experience at Microsoft and Amazon, Michael leads our technology strategy and ensures our platform delivers an exceptional learning experience.",
+                  // bio: "With 15+ years of experience at Microsoft and Amazon, Michael leads our technology strategy and ensures our platform delivers an exceptional learning experience.",
                   delay: "delay-500",
                 },
                 {
-                  name: "Ratna Kalyan",
+                  name: "Reddy",
                   role: "Director & Chief Academic Officer",
                   image: "https://randomuser.me/api/portraits/women/44.jpg",
-                  bio: "Former Dean of Computer Science at MIT, Priya oversees our curriculum development and ensures our courses meet the highest academic standards while remaining industry-relevant.",
+                  // bio: "Former Dean of Computer Science at MIT, Priya oversees our curriculum development and ensures our courses meet the highest academic standards while remaining industry-relevant.",
                   delay: "delay-700",
                 },
                 {
                   name: "Santosh",
                   role: "Chief Operating Officer",
                   image: "https://randomuser.me/api/portraits/men/52.jpg",
-                  bio: "With a background in scaling educational startups, James ensures that our operations run smoothly and efficiently as we continue to grow globally.",
+                  // bio: "With a background in scaling educational startups, James ensures that our operations run smoothly and efficiently as we continue to grow globally.",
                   delay: "delay-300",
                 },
                 {
                   name: "Mani",
                   role: "Chief Success Officer",
                   image: "https://randomuser.me/api/portraits/women/63.jpg",
-                  bio: "Passionate about education and student outcomes, Elena leads our student support initiatives and career services to ensure every learner achieves their goals.",
+                  // bio: "Passionate about education and student outcomes, Elena leads our student support initiatives and career services to ensure every learner achieves their goals.",
                   delay: "delay-500",
                 },
                 {
                   name: "Rudresh",
                   role: "Cheif Program Officer",
                   image: "https://randomuser.me/api/portraits/men/76.jpg",
-                  bio: "David builds and maintains our relationships with industry partners, ensuring our curriculum aligns with employer needs and creating placement opportunities for our graduates.",
+                  // bio: "Rudresh builds and maintains our relationships with industry partners, ensuring our curriculum aligns with employer needs and creating placement opportunities for our graduates.",
                   delay: "delay-700",
                 },
               ].map((member, index) => (
