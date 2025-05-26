@@ -12,6 +12,7 @@ const Footer = ({ setIsContactOpen }) => {
               {/*<div className="h-12 w-12 rounded-xl bg-gradient-to-br from-violet-600 to-rose-500 flex items-center justify-center">
                 <span className="font-bold text-white text-xl">LX</span>
               </div>*/}
+              <img src="/LearnX logo.png" alt="LearnX Logo" className="h-12 w-12 object-contain" />
               <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-rose-500">
                 LearnX
               </span>
