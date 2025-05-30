@@ -25,7 +25,7 @@ const SalesforceAgentForceCourse = ({ setIsContactOpen }) => {
     students: 2100,
     image:
       "https://images.unsplash.com/photo-1661347333292-b85d6c1fe1a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    price: "$749",
+    price: "₹7,499",
 
     curriculum: [
       {
@@ -163,7 +163,7 @@ const SalesforceAgentForceCourse = ({ setIsContactOpen }) => {
           logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Infosys_logo.svg/1200px-Infosys_logo.svg.png",
         },
       ],
-      averageSalary: "$115,000",
+      averageSalary: "₹7,00,000",
       placementRate: "93%",
       testimonials: [
         {

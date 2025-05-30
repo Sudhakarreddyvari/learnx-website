@@ -25,7 +25,7 @@ const SalesforceCPQCourse = ({ setIsContactOpen }) => {
     students: 1850,
     image:
       "https://images.unsplash.com/photo-1661347333292-b85d6c1fe1a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    price: "$799",
+    price: "₹7,999",
 
     curriculum: [
       {
@@ -150,7 +150,7 @@ const SalesforceCPQCourse = ({ setIsContactOpen }) => {
           logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Slalom_logo_2019.svg/1200px-Slalom_logo_2019.svg.png",
         },
       ],
-      averageSalary: "$120,000",
+      averageSalary: "₹7,00,000",
       placementRate: "94%",
       testimonials: [
         {

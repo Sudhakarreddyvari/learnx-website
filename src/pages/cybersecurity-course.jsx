@@ -25,7 +25,7 @@ const CybersecurityCourse = ({ setIsContactOpen }) => {
     students: 750,
     image:
       "https://images.unsplash.com/photo-1542396784-83def7133907?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    price: "$699",
+    price: "₹6,999",
 
     curriculum: [
       {
@@ -164,7 +164,7 @@ const CybersecurityCourse = ({ setIsContactOpen }) => {
           logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/FireEye_Logo.svg/1200px-FireEye_Logo.svg.png",
         },
       ],
-      averageSalary: "$115,000",
+      averageSalary: "₹15,00,000",
       placementRate: "94%",
       testimonials: [
         {

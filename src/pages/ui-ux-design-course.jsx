@@ -25,7 +25,7 @@ const UIUXDesignCourse = ({ setIsContactOpen }) => {
     students: 2400,
     image:
       "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    price: "$649",
+    price: "₹6,499",
 
     curriculum: [
       {
@@ -162,7 +162,7 @@ const UIUXDesignCourse = ({ setIsContactOpen }) => {
           logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Uber_logo_2018.svg/1200px-Uber_logo_2018.svg.png",
         },
       ],
-      averageSalary: "$110,000",
+      averageSalary: "₹5,00,000",
       placementRate: "93%",
       testimonials: [
         {

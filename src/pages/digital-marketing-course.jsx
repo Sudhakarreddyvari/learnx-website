@@ -25,7 +25,7 @@ const DigitalMarketingCourse = ({ setIsContactOpen }) => {
     students: 2900,
     image:
       "https://images.unsplash.com/photo-1533750516457-a7f992034fec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    price: "$599",
+    price: "₹6,499",
 
     curriculum: [
       {
@@ -163,7 +163,7 @@ const DigitalMarketingCourse = ({ setIsContactOpen }) => {
           logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Dentsu_logo.svg/1200px-Dentsu_logo.svg.png",
         },
       ],
-      averageSalary: "$95,000",
+      averageSalary: "₹7,00,000",
       placementRate: "90%",
       testimonials: [
         {

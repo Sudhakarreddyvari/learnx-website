@@ -25,7 +25,7 @@ const DataScienceCourse = ({ setIsContactOpen }) => {
     students: 1580,
     image:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    price: "$649",
+    price: "₹6,499",
 
     curriculum: [
       {
@@ -151,7 +151,7 @@ const DataScienceCourse = ({ setIsContactOpen }) => {
           logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Accenture.svg/1200px-Accenture.svg.png",
         },
       ],
-      averageSalary: "$105,000",
+      averageSalary: "₹10,00,000",
       placementRate: "90%",
       testimonials: [
         {

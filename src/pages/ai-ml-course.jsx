@@ -25,7 +25,7 @@ const AIMachineLearningCourse = ({ setIsContactOpen }) => {
     students: 1450,
     image:
       "https://images.unsplash.com/photo-1555255707-c07966088b7b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    price: "$699",
+    price: "₹6,999",
 
     curriculum: [
       {
@@ -163,7 +163,7 @@ const AIMachineLearningCourse = ({ setIsContactOpen }) => {
           logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/1200px-Meta_Platforms_Inc._logo.svg.png",
         },
       ],
-      averageSalary: "$110,000",
+      averageSalary: "₹7,00,000",
       placementRate: "92%",
       testimonials: [
         {

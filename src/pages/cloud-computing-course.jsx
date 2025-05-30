@@ -25,7 +25,7 @@ const CloudComputingCourse = ({ setIsContactOpen }) => {
     students: 1950,
     image:
       "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    price: "$649",
+    price: "₹6,499",
 
     curriculum: [
       {
@@ -163,7 +163,7 @@ const CloudComputingCourse = ({ setIsContactOpen }) => {
           logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Deloitte.svg/1200px-Deloitte.svg.png",
         },
       ],
-      averageSalary: "$120,000",
+      averageSalary: "₹7,00,000",
       placementRate: "95%",
       testimonials: [
         {
