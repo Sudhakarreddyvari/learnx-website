@@ -154,7 +154,7 @@ const SalesforceCPQCourse = ({ setIsContactOpen }) => {
       placementRate: "94%",
       testimonials: [
         {
-          name: "Michael Rodriguez",
+          name: "Rajesh",
           role: "CPQ Specialist",
           company: "Accenture",
           image: "https://randomuser.me/api/portraits/men/42.jpg",
@@ -162,7 +162,7 @@ const SalesforceCPQCourse = ({ setIsContactOpen }) => {
             "The Salesforce CPQ course at LearnX provided me with hands-on experience that directly translated to my role at Accenture. The curriculum covered all aspects of CPQ implementation, from basic configuration to advanced features like guided selling and approval workflows.",
         },
         {
-          name: "Sarah Johnson",
+          name: "Lakshmi",
           role: "Salesforce Consultant",
           company: "Deloitte",
           image: "https://randomuser.me/api/portraits/women/33.jpg",

@@ -166,7 +166,7 @@ const UIUXDesignCourse = ({ setIsContactOpen }) => {
       placementRate: "93%",
       testimonials: [
         {
-          name: "Emma Thompson",
+          name: "Bharath",
           role: "UI/UX Designer",
           company: "Google",
           image: "https://randomuser.me/api/portraits/women/32.jpg",
@@ -174,7 +174,7 @@ const UIUXDesignCourse = ({ setIsContactOpen }) => {
             "The UI/UX Design course at LearnX transformed my career. The hands-on projects and industry-relevant curriculum helped me build a portfolio that impressed recruiters. The instructors provided valuable feedback that significantly improved my design skills.",
         },
         {
-          name: "Jason Chen",
+          name: "Kavya",
           role: "Product Designer",
           company: "Airbnb",
           image: "https://randomuser.me/api/portraits/men/36.jpg",

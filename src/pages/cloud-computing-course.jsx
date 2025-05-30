@@ -167,7 +167,7 @@ const CloudComputingCourse = ({ setIsContactOpen }) => {
       placementRate: "95%",
       testimonials: [
         {
-          name: "David Wilson",
+          name: "Raju",
           role: "Cloud Solutions Architect",
           company: "Amazon",
           image: "https://randomuser.me/api/portraits/men/22.jpg",
@@ -175,7 +175,7 @@ const CloudComputingCourse = ({ setIsContactOpen }) => {
             "The Cloud Computing course at LearnX gave me a comprehensive understanding of all major cloud platforms. The hands-on labs and real-world projects were exactly what I needed to transition into a cloud role at AWS.",
         },
         {
-          name: "Emily Zhang",
+          name: "Krishna",
           role: "Azure Cloud Engineer",
           company: "Microsoft",
           image: "https://randomuser.me/api/portraits/women/23.jpg",

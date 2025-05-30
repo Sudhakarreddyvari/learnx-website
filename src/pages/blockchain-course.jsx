@@ -166,7 +166,7 @@ const BlockchainCourse = ({ setIsContactOpen }) => {
       placementRate: "88%",
       testimonials: [
         {
-          name: "Michael Rodriguez",
+          name: "Mounika",
           role: "Blockchain Developer",
           company: "ConsenSys",
           image: "https://randomuser.me/api/portraits/men/35.jpg",
@@ -174,7 +174,7 @@ const BlockchainCourse = ({ setIsContactOpen }) => {
             "The Blockchain course at LearnX provided me with a solid foundation in both theory and practical development. The Solidity and dApp development modules were particularly valuable for my current role at ConsenSys.",
         },
         {
-          name: "Sarah Kim",
+          name: "Sarah Khan",
           role: "DeFi Product Manager",
           company: "Coinbase",
           image: "https://randomuser.me/api/portraits/women/41.jpg",

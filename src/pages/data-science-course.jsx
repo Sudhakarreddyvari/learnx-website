@@ -155,7 +155,7 @@ const DataScienceCourse = ({ setIsContactOpen }) => {
       placementRate: "90%",
       testimonials: [
         {
-          name: "Jennifer Wilson",
+          name: "Chandini",
           role: "Data Scientist",
           company: "Amazon",
           image: "https://randomuser.me/api/portraits/women/45.jpg",
@@ -163,7 +163,7 @@ const DataScienceCourse = ({ setIsContactOpen }) => {
             "The Data Science course at LearnX was incredibly comprehensive. I learned everything from Python to machine learning, and the career support was outstanding. I secured a position at Amazon within weeks of completing the course.",
         },
         {
-          name: "Michael Chen",
+          name: "Rajesh",
           role: "Data Analyst",
           company: "Microsoft",
           image: "https://randomuser.me/api/portraits/men/52.jpg",

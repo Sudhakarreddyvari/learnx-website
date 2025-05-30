@@ -166,7 +166,7 @@ const FullStackDevelopmentCourse = ({ setIsContactOpen }) => {
       placementRate: "95%",
       testimonials: [
         {
-          name: "Daniel Lee",
+          name: "Harish",
           role: "Full Stack Developer",
           company: "Google",
           image: "https://randomuser.me/api/portraits/men/45.jpg",
@@ -174,7 +174,7 @@ const FullStackDevelopmentCourse = ({ setIsContactOpen }) => {
             "The Full Stack Development course at LearnX provided me with a comprehensive understanding of both frontend and backend technologies. The project-based approach helped me build a strong portfolio that impressed recruiters at Google.",
         },
         {
-          name: "Sophia Martinez",
+          name: "Likhitha",
           role: "Software Engineer",
           company: "Microsoft",
           image: "https://randomuser.me/api/portraits/women/38.jpg",

@@ -166,7 +166,7 @@ const BusinessAnalystCourse = ({ setIsContactOpen }) => {
       placementRate: "92%",
       testimonials: [
         {
-          name: "Sarah Johnson",
+          name: "Narasimha",
           role: "Business Analyst",
           company: "Deloitte",
           image: "https://randomuser.me/api/portraits/women/48.jpg",
@@ -174,7 +174,7 @@ const BusinessAnalystCourse = ({ setIsContactOpen }) => {
             "The Business Analysis course at LearnX provided me with a comprehensive understanding of all aspects of the role. The practical exercises and case studies helped me develop the critical thinking skills needed in my current position at Deloitte.",
         },
         {
-          name: "Michael Thompson",
+          name: "Bhavana",
           role: "Senior Business Analyst",
           company: "Accenture",
           image: "https://randomuser.me/api/portraits/men/62.jpg",

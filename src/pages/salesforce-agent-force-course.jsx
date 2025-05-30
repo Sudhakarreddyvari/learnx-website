@@ -167,7 +167,7 @@ const SalesforceAgentForceCourse = ({ setIsContactOpen }) => {
       placementRate: "93%",
       testimonials: [
         {
-          name: "Jennifer Smith",
+          name: "Divya",
           role: "Service Cloud Consultant",
           company: "Deloitte",
           image: "https://randomuser.me/api/portraits/women/56.jpg",
@@ -175,7 +175,7 @@ const SalesforceAgentForceCourse = ({ setIsContactOpen }) => {
             "The Salesforce Agent Force course at LearnX provided me with comprehensive knowledge of Service Cloud configuration and customization. The hands-on projects helped me develop practical skills that I use daily in my consulting role at Deloitte.",
         },
         {
-          name: "David Chen",
+          name: "Mohammad",
           role: "Customer Service Manager",
           company: "IBM",
           image: "https://randomuser.me/api/portraits/men/67.jpg",

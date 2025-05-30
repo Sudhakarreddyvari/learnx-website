@@ -203,7 +203,7 @@ const SalesforceCourse = ({ setIsContactOpen }) => {
       placementRate: "95%",
       testimonials: [
         {
-          name: "Jennifer Smith",
+          name: "John",
           role: "Salesforce Developer",
           company: "Accenture",
           image: "https://randomuser.me/api/portraits/women/56.jpg",
@@ -211,7 +211,7 @@ const SalesforceCourse = ({ setIsContactOpen }) => {
             "The Salesforce course at LearnX provided me with a comprehensive understanding of both administration and development aspects. The hands-on projects helped me build practical skills that I use daily in my role at Accenture.",
         },
         {
-          name: "Robert Chen",
+          name: "Sudharani",
           role: "Salesforce Administrator",
           company: "Deloitte",
           image: "https://randomuser.me/api/portraits/men/67.jpg",

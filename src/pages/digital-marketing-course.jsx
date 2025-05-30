@@ -167,7 +167,7 @@ const DigitalMarketingCourse = ({ setIsContactOpen }) => {
       placementRate: "90%",
       testimonials: [
         {
-          name: "Rachel Green",
+          name: "Raja Singh",
           role: "Digital Marketing Manager",
           company: "HubSpot",
           image: "https://randomuser.me/api/portraits/women/43.jpg",
@@ -175,7 +175,7 @@ const DigitalMarketingCourse = ({ setIsContactOpen }) => {
             "The Digital Marketing course at LearnX provided me with a comprehensive understanding of all marketing channels. The hands-on projects helped me build a portfolio that showcased my skills to potential employers.",
         },
         {
-          name: "Mark Johnson",
+          name: "Anthony",
           role: "SEO Specialist",
           company: "Google",
           image: "https://randomuser.me/api/portraits/men/47.jpg",

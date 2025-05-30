@@ -166,7 +166,7 @@ const AutomationTestingCourse = ({ setIsContactOpen }) => {
       placementRate: "92%",
       testimonials: [
         {
-          name: "Andrew Wilson",
+          name: "Chandu",
           role: "Automation Test Engineer",
           company: "Microsoft",
           image: "https://randomuser.me/api/portraits/men/52.jpg",

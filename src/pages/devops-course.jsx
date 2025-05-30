@@ -168,7 +168,7 @@ const DevOpsCourse = ({ setIsContactOpen }) => {
       placementRate: "92%",
       testimonials: [
         {
-          name: "James Wilson",
+          name: "Ravinder",
           role: "DevOps Engineer",
           company: "Amazon",
           image: "https://randomuser.me/api/portraits/men/29.jpg",

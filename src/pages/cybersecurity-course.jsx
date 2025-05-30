@@ -168,7 +168,7 @@ const CybersecurityCourse = ({ setIsContactOpen }) => {
       placementRate: "94%",
       testimonials: [
         {
-          name: "Alex Johnson",
+          name: "Ganesh",
           role: "Security Analyst",
           company: "Microsoft",
           image: "https://randomuser.me/api/portraits/men/42.jpg",
@@ -176,7 +176,7 @@ const CybersecurityCourse = ({ setIsContactOpen }) => {
             "The Cybersecurity course at LearnX provided me with hands-on experience in real-world security scenarios. The labs and practical exercises were invaluable, and the career support helped me land my dream job at Microsoft.",
         },
         {
-          name: "Sophia Chen",
+          name: "Jhonny",
           role: "Penetration Tester",
           company: "Cisco",
           image: "https://randomuser.me/api/portraits/women/33.jpg",
