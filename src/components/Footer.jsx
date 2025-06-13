@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { Mail, Phone, MapPin, ChevronRight } from "lucide-react"
+import FormButton from "./FormButton"
 
 const Footer = ({ setIsContactOpen }) => {
   return (
@@ -216,13 +217,10 @@ const Footer = ({ setIsContactOpen }) => {
                 </address>
               </li>
               <li>
-                <button
-                  onClick={() => setIsContactOpen(true)}
-                  className="w-full mt-4 px-4 py-2 bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 text-white rounded-lg transition-colors flex items-center justify-center gap-2"
-                >
+                <FormButton variant="primary" className="w-full mt-4 px-4 py-2 rounded-lg flex items-center justify-center gap-2">
                   Contact Us Now
                   <ChevronRight size={16} />
-                </button>
+                </FormButton>
               </li>
             </ul>
           </div>

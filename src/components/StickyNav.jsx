@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { ChevronDown } from "lucide-react"
 import MobileNav from "./MobileNav"
 
-const StickyNav = ({ toggleForm }) => {
+const StickyNav = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isCoursesOpen, setIsCoursesOpen] = useState(false)
   const dropdownRef = useRef(null)
@@ -180,14 +180,13 @@ const StickyNav = ({ toggleForm }) => {
               </ul>
             </nav>
             <button
-              onClick={toggleForm}
               className="py-2 px-6 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-md hover:from-blue-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300"
             >
               Enquire Now
             </button>
           </div>
 
-          <MobileNav toggleForm={toggleForm} />
+          <MobileNav />
         </div>
       </div>
     </header>

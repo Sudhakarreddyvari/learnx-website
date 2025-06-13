@@ -19,34 +19,35 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import { Link } from "react-router-dom"
 import { scrollToTop } from "../utils/scrollUtils"
+import FormButton from "../components/FormButton"
+import { useForm } from "../context/FormContext"
 
-const HomePage = ({ setIsContactOpen }) => {
-  const [isVisible, setIsVisible] = useState({})
+const HomePage = () => {
+  const [isVisible, setIsVisible] = useState({
+    "hero-text": false,
+    "hero-description": false,
+    "hero-buttons": false,
+    "about-heading": false,
+    "about-cards": false,
+    "courses-heading": false,
+    "course-cards": false,
+  })
 
   useEffect(() => {
-    const handleScroll = () => {
-      // Use requestAnimationFrame for smoother performance
-      requestAnimationFrame(() => {
-        // Check for elements to animate on scroll
-        document.querySelectorAll(".animate-on-scroll").forEach((el) => {
-          const rect = el.getBoundingClientRect()
-          // Trigger animations earlier for a more responsive feel
-          const isInView = rect.top <= window.innerHeight * 0.9
-
-          if (isInView) {
-            setIsVisible((prev) => ({ ...prev, [el.id]: true }))
-          }
-        })
+    // Trigger animations
+    const timer = setTimeout(() => {
+      setIsVisible({
+        "hero-text": true,
+        "hero-description": true,
+        "hero-buttons": true,
+        "about-heading": true,
+        "about-cards": true,
+        "courses-heading": true,
+        "course-cards": true,
       })
-    }
+    }, 100)
 
-    // Add passive option for better scroll performance
-    window.addEventListener("scroll", handleScroll, { passive: true })
-
-    // Initial check to show elements that are already in view on load
-    setTimeout(handleScroll, 100)
-
-    return () => window.removeEventListener("scroll", handleScroll)
+    return () => clearTimeout(timer)
   }, [])
 
   return (
@@ -67,11 +68,11 @@ const HomePage = ({ setIsContactOpen }) => {
       </div>
 
       {/* Header */}
-      <Header setIsContactOpen={setIsContactOpen} />
+      <Header />
 
       <main className="relative z-10">
         {/* Hero Section */}
-        <section id="home" className="relative overflow-hidden py-32 md:py-40">
+        <section className="relative overflow-hidden py-56">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-violet-900/20 via-gray-950 to-gray-950"></div>
 
           {/* Animated circuit lines */}
@@ -81,56 +82,46 @@ const HomePage = ({ setIsContactOpen }) => {
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500 to-transparent glow-effect-line"></div>
           <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-rose-500 to-transparent glow-effect-line"></div>
 
-          <div className="container relative mx-auto px-6">
+          <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="space-y-10 animate-on-scroll" id="hero-text">
-                <div
-                  className={`transition-all duration-500 delay-150 transform ${
-                    isVisible["hero-text"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-                  }`}
-                >
-                  <div className="inline-flex items-center px-3 py-1 rounded-full bg-violet-900/30 border border-violet-500/30 text-sm mb-6">
-                    <Zap size={14} className="mr-2 text-violet-400" />
-                    <span>The Future of Tech Education</span>
-                  </div>
-                  <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6">
-                    Future-Proof Your{" "}
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-rose-500 block mt-2">
-                      Tech Career
-                    </span>
-                  </h1>
-                  <div className="w-24 h-1 bg-gradient-to-r from-violet-500 to-rose-500 mx-auto mb-8 rounded-full"></div>
-                  <p className="text-xl md:text-2xl text-gray-300 max-w3xl mx-auto">
-                    Master in-demand skills with industry experts and launch your career in tech with LearnX. Our
-                    comprehensive courses are designed to help you succeed in tomorrow's digital landscape.
-                  </p>
+              <h1 className={`text-4xl md:text-6xl font-bold mb-6 transition-all duration-500 transform ${
+                isVisible["hero-text"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}>
+                Transform Your Career with{" "}
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-rose-500">
+                  LearnX Academy
+                </span>
+              </h1>
+              <p className={`text-xl text-gray-300 mb-10 transition-all duration-500 delay-100 transform ${
+                isVisible["hero-description"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}>
+                Master in-demand skills with our industry-aligned courses and expert-led training programs.
+              </p>
+              {/* Feature Highlights */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-10">
+                <div className="flex items-center gap-2 text-base text-white font-medium bg-gray-900/60 px-4 py-2 rounded-lg border border-violet-500/30">
+                  <Star className="text-yellow-400" size={20} />
+                  100% Placement Assistance
                 </div>
-
-                <div
-                  className={`flex flex-col sm:flex-row gap-5 justify-center transition-all duration-500 delay-250 transform ${
-                    isVisible["hero-text"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-                  }`}
-                >
-                  <button
-                    onClick={() => setIsContactOpen(true)}
-                    className="px-8 py-4 text-base font-medium text-white rounded-md bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 transition-colors flex items-center justify-center gap-2 relative group overflow-hidden"
-                  >
-                    <span className="relative z-10">Explore Courses</span>
-                    <ChevronRight
-                      size={18}
-                      className="relative z-10 group-hover:translate-x-1 transition-transform duration-200"
-                    />
-                    <div className="absolute inset-0 translate-y-[102%] group-hover:translate-y-0 bg-white/10 transition-transform duration-200"></div>
-                    <div className="absolute inset-0 glow-effect opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
-                  </button>
-                  <button
-                    onClick={() => setIsContactOpen(true)}
-                    className="px-8 py-4 text-base font-medium text-white rounded-md border border-violet-700/50 hover:border-violet-500 hover:bg-violet-700/20 transition-all relative group overflow-hidden"
-                  >
-                    <span className="relative z-10">Free Trial</span>
-                    <div className="absolute inset-0 translate-y-[102%] group-hover:translate-y-0 bg-gradient-to-r from-violet-800/20 to-violet-600/20 transition-transform duration-200"></div>
-                  </button>
+                <div className="flex items-center gap-2 text-base text-white font-medium bg-gray-900/60 px-4 py-2 rounded-lg border border-violet-500/30">
+                  <Users className="text-rose-400" size={20} />
+                  One-on-One Mentorship
                 </div>
+                <div className="flex items-center gap-2 text-base text-white font-medium bg-gray-900/60 px-4 py-2 rounded-lg border border-violet-500/30">
+                  <Briefcase className="text-violet-400" size={20} />
+                  Real-Time Projects
+                </div>
+              </div>
+              <div className={`flex flex-col sm:flex-row gap-5 justify-center transition-all duration-500 delay-250 transform ${
+                isVisible["hero-buttons"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}>
+                <Link to="/all-courses" className="flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-gradient-to-r from-violet-500 to-pink-500 text-white font-semibold text-lg shadow-md hover:from-violet-600 hover:to-pink-600 transition-all">
+                  View All Courses
+                  <ChevronRight size={20} className="ml-2" />
+                </Link>
+                <FormButton variant="primary" context="Contact Us" className="px-8 py-4 rounded-lg text-lg font-semibold">
+                  Contact Us
+                </FormButton>
               </div>
             </div>
           </div>
@@ -419,13 +410,10 @@ const HomePage = ({ setIsContactOpen }) => {
                       >
                         View Course
                       </Link>
-                      <button
-                        onClick={() => setIsContactOpen(true)}
-                        className="flex-1 px-4 py-2.5 text-center bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 text-white rounded-lg transition-colors flex items-center justify-center gap-2 group"
-                      >
+                      <FormButton variant="primary" context={`Enroll Now - ${course.title}`} className="flex-1 flex items-center justify-center gap-2">
                         Enroll Now
                         <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
-                      </button>
+                      </FormButton>
                     </div>
                   </div>
                 </div>
@@ -436,7 +424,7 @@ const HomePage = ({ setIsContactOpen }) => {
       </main>
 
       {/* Footer */}
-      <Footer setIsContactOpen={setIsContactOpen} />
+      <Footer />
     </div>
   )
 }

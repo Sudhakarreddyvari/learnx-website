@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Users, Award, BookOpen, Briefcase, Star, CheckCircle, Globe } from "lucide-react"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
+import FormButton from "../components/FormButton"
 
 const AboutPage = ({ setIsFormOpen }) => {
   const [isVisible, setIsVisible] = useState({})
@@ -418,21 +419,12 @@ const AboutPage = ({ setIsFormOpen }) => {
               <div
                 className={`flex flex-col sm:flex-row gap-5 justify-center transition-all duration-1000 delay-500 transform ${isVisible["cta-content"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
               >
-                <button
-                  onClick={() => setIsFormOpen(true)}
-                  className="px-10 py-5 text-base font-medium text-white rounded-md bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 transition-colors relative group overflow-hidden"
-                >
+                <FormButton variant="primary" context="Explore Courses" className="px-10 py-5 text-base font-medium">
                   <span className="relative z-10">Explore Courses</span>
-                  <div className="absolute inset-0 translate-y-full group-hover:translate-y-0 bg-white/10 transition-transform duration-300"></div>
-                  <div className="absolute inset-0 glow-effect opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </button>
-                <button
-                  onClick={() => setIsFormOpen(true)}
-                  className="px-10 py-5 text-base font-medium text-white rounded-md border border-violet-500/50 hover:border-violet-500 hover:bg-violet-700/20 transition-all relative group overflow-hidden"
-                >
+                </FormButton>
+                <FormButton variant="secondary" context="Contact Us" className="px-10 py-5 text-base font-medium">
                   <span className="relative z-10">Contact Us</span>
-                  <div className="absolute inset-0 translate-y-full group-hover:translate-y-0 bg-gradient-to-r from-violet-800/20 to-violet-600/20 transition-transform duration-300"></div>
-                </button>
+                </FormButton>
               </div>
             </div>
           </div>

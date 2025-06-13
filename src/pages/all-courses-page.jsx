@@ -6,6 +6,7 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import { Link } from "react-router-dom"
 import { scrollToTop } from "../utils/scrollUtils"
+import FormButton from "../components/FormButton"
 
 const AllCoursesPage = ({ setIsContactOpen }) => {
   const [searchTerm, setSearchTerm] = useState("")
@@ -494,14 +495,14 @@ const AllCoursesPage = ({ setIsContactOpen }) => {
         <section className="py-10">
           <div className="container mx-auto px-6">
             {/* Update the course card styling to ensure consistent sizing */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredAndSortedCourses.length > 0 ? (
                 filteredAndSortedCourses.map((course) => (
                   <div
                     key={course.id}
-                    className="backdrop-blur-md border border-violet-500/20 rounded-xl overflow-hidden group relative transition-all duration-300 hover:transform hover:scale-[1.02] hover:shadow-lg hover:shadow-violet-500/10 h-full flex flex-col"
+                    className="w-full backdrop-blur-md border border-violet-500/20 rounded-xl overflow-hidden group relative transition-all duration-300 hover:transform hover:scale-[1.02] hover:shadow-lg hover:shadow-violet-500/10 h-full flex flex-col"
                   >
-                    <div className="bg-gray-900/60 p-6 flex flex-col flex-grow">
+                    <div className="bg-gray-900/60 p-4 sm:p-6 flex flex-col flex-grow">
                       <h3 className="text-2xl font-bold mb-2">{course.title}</h3>
                       <p className="text-gray-300 mb-4">{course.shortDescription}</p>
 
@@ -547,16 +548,10 @@ const AllCoursesPage = ({ setIsContactOpen }) => {
                         >
                           View Course
                         </Link>
-                        <button
-                          onClick={(e) => {
-                            e.preventDefault()
-                            setIsContactOpen(true)
-                          }}
-                          className="flex-1 px-4 py-2.5 text-center bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 text-white rounded-lg transition-colors flex items-center justify-center gap-2 group"
-                        >
+                        <FormButton variant="primary" context="Enroll Now" className="flex-1 flex items-center justify-center gap-2">
                           Enroll Now
                           <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-                        </button>
+                        </FormButton>
                       </div>
                     </div>
                   </div>
@@ -595,17 +590,9 @@ const AllCoursesPage = ({ setIsContactOpen }) => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-5 justify-center">
-                <button
-                  onClick={(e) => {
-                    e.preventDefault()
-                    setIsContactOpen(true)
-                  }}
-                  className="px-8 py-4 text-base font-medium text-white rounded-md bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 transition-colors relative group overflow-hidden"
-                >
+                <FormButton variant="primary" context="Get Personalized Guidance" className="px-8 py-4 text-base font-medium">
                   <span className="relative z-10">Get Personalized Guidance</span>
-                  <div className="absolute inset-0 translate-y-full group-hover:translate-y-0 bg-white/10 transition-transform duration-300"></div>
-                  <div className="absolute inset-0 glow-effect opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </button>
+                </FormButton>
                 <a
                   href="#"
                   className="px-8 py-4 text-base font-medium text-white rounded-md border border-violet-500/50 hover:border-violet-500 hover:bg-violet-700/20 transition-all relative group overflow-hidden"

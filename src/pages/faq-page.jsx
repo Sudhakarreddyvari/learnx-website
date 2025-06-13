@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { HelpCircle, ChevronDown, ChevronUp, Search, MessageSquare } from "lucide-react"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
+import FormButton from "../components/FormButton"
 
 const FAQPage = ({ setIsFormOpen }) => {
   const [searchTerm, setSearchTerm] = useState("")
@@ -338,14 +339,9 @@ const FAQPage = ({ setIsFormOpen }) => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-5 justify-center">
-                <button
-                  onClick={() => setIsFormOpen(true)}
-                  className="px-8 py-4 text-base font-medium text-white rounded-md bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 transition-colors relative group overflow-hidden"
-                >
+                <FormButton variant="primary" context="Contact Support" className="px-8 py-4 text-base font-medium">
                   <span className="relative z-10">Contact Support</span>
-                  <div className="absolute inset-0 translate-y-full group-hover:translate-y-0 bg-white/10 transition-transform duration-300"></div>
-                  <div className="absolute inset-0 glow-effect opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </button>
+                </FormButton>
                 <a
                   href="/contact"
                   className="px-8 py-4 text-base font-medium text-white rounded-md border border-violet-500/50 hover:border-violet-500 hover:bg-violet-700/20 transition-all relative group overflow-hidden"

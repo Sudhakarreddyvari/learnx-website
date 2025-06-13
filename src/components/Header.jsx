@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react"
+import FormButton from "./FormButton"
 
 const Header = ({ hideHeader, setIsContactOpen }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -247,13 +248,10 @@ const Header = ({ hideHeader, setIsContactOpen }) => {
           </div>
 
           <div className="hidden md:flex">
-            <button
-              onClick={() => setIsContactOpen(true)}
-              className="px-6 py-2 text-white rounded-lg bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 transition-colors flex items-center gap-2"
-            >
+            <FormButton variant="primary" className="px-6 py-2 rounded-lg flex items-center gap-2 text-white font-medium">
               Contact Now
               <ChevronRight size={16} />
-            </button>
+            </FormButton>
           </div>
 
           <button className="md:hidden text-gray-300 hover:text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -325,12 +323,9 @@ const Header = ({ hideHeader, setIsContactOpen }) => {
                     </li>
                   </ul>
                 </nav>
-                <button
-                  onClick={() => { setIsContactOpen(true); setIsMenuOpen(false); }}
-                  className="mt-8 w-full py-2 bg-gradient-to-r from-violet-600 to-rose-500 text-white rounded-lg"
-                >
+                <FormButton variant="primary" className="mt-8 w-full py-2 rounded-lg">
                   Contact Now
-                </button>
+                </FormButton>
               </div>
             </div>
           )}

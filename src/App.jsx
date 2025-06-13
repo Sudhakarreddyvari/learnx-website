@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react"
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 import "./App.css"
 import HomePage from "./pages/HomePage"
@@ -29,23 +28,24 @@ import RefundPolicyPage from "./pages/refund-policy-page"
 import ThankYouPage from "./pages/thank-you"
 import ScrollToTop from "./ScrollToTop"
 import FloatingContactButtons from "./components/FloatingContactButtons"
-import ContactPopup from "./components/ContactPopup"
+import ContactFormPopup from "./components/ContactFormPopup"
+import { FormProvider, useForm } from "./context/FormContext"
 
-function App() {
-  const [isContactOpen, setIsContactOpen] = useState(false)
+function AppContent() {
+  const { isFormOpen, setIsFormOpen } = useForm()
 
   // Function to wrap each route component with necessary props
   const withContactPopup = (Component) => {
-    return (props) => <Component {...props} setIsContactOpen={setIsContactOpen} />
+    return (props) => <Component {...props} setIsFormOpen={setIsFormOpen} />
   }
 
   return (
-    <Router>
+    <>
       <ScrollToTop />
       {/* Floating action buttons */}
       <FloatingContactButtons whatsappNumber="+91 80193 33796" phoneNumber="+91 80193 33796" />
       
-      <ContactPopup isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+      <ContactFormPopup isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
       <Routes>
         <Route path="/" element={withContactPopup(HomePage)()} />
         <Route path="/about" element={withContactPopup(AboutPage)()} />
@@ -73,6 +73,16 @@ function App() {
         <Route path="/refund-policy" element={withContactPopup(RefundPolicyPage)()} />
         <Route path="/thank-you" element={<ThankYouPage />} />
       </Routes>
+    </>
+  )
+}
+
+function App() {
+  return (
+    <Router>
+      <FormProvider>
+        <AppContent />
+      </FormProvider>
     </Router>
   )
 }
