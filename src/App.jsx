@@ -30,6 +30,13 @@ import ScrollToTop from "./ScrollToTop"
 import FloatingContactButtons from "./components/FloatingContactButtons"
 import ContactFormPopup from "./components/ContactFormPopup"
 import { FormProvider, useForm } from "./context/FormContext"
+import FullStackPythonCourse from "./pages/full-stack-python-course"
+import FullStackJavaCourse from "./pages/full-stack-java-course"
+import FullStackMernCourse from "./pages/full-stack-mern-course"
+import AwsCourse from "./pages/aws-course"
+import DataAnalyticsCourse from "./pages/data-analytics-course"
+import PowerBiCourse from "./pages/powerbi-course"
+import ServiceNowCourse from "./pages/servicenow-course"
 
 function AppContent() {
   const { isFormOpen, setIsFormOpen } = useForm()
@@ -61,7 +68,7 @@ function AppContent() {
         <Route path="/devops-course" element={withContactPopup(DevopsCourse)()} />
         <Route path="/ui-ux-design-course" element={withContactPopup(UiUxDesignCourse)()} />
         <Route path="/full-stack-development-course" element={withContactPopup(FullStackDevelopmentCourse)()} />
-        <Route path="/digital-marketing-course" element={withContactPopup(DigitalMarketingCourse)()} />
+        <Route path="/digital-marketing" element={withContactPopup(DigitalMarketingCourse)()} />
         <Route path="/automation-testing-course" element={withContactPopup(AutomationTestingCourse)()} />
         <Route path="/salesforce-course" element={withContactPopup(SalesforceCourse)()} />
         <Route path="/salesforce-cpq-course" element={withContactPopup(SalesforceCpqCourse)()} />
@@ -72,6 +79,13 @@ function AppContent() {
         <Route path="/terms-of-service" element={withContactPopup(TermsOfServicePage)()} />
         <Route path="/refund-policy" element={withContactPopup(RefundPolicyPage)()} />
         <Route path="/thank-you" element={<ThankYouPage />} />
+        <Route path="/full-stack-python-course" element={withContactPopup(FullStackPythonCourse)()} />
+        <Route path="/full-stack-java-course" element={withContactPopup(FullStackJavaCourse)()} />
+        <Route path="/full-stack-mern-course" element={withContactPopup(FullStackMernCourse)()} />
+        <Route path="/aws-course" element={withContactPopup(AwsCourse)()} />
+        <Route path="/data-analytics" element={withContactPopup(DataAnalyticsCourse)()} />
+        <Route path="/powerbi" element={withContactPopup(PowerBiCourse)()} />
+        <Route path="/servicenow" element={withContactPopup(ServiceNowCourse)()} />
       </Routes>
     </>
   )

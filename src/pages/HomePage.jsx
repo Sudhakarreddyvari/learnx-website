@@ -278,19 +278,6 @@ const HomePage = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 animate-on-scroll" id="course-cards">
               {[
                 {
-                  title: "Full Stack Development",
-                  description: "Master both frontend and backend technologies to build complete web applications",
-                  rating: 4.8,
-                  reviews: 1120,
-                  duration: "6 months",
-                  level: "Intermediate to Advanced",
-                  students: 13500,
-                  technologies: ["JavaScript", "React", "Node.js"],
-                  path: "/full-stack-development-course",
-                  delay: "delay-300",
-                  slug: "full-stack-development-course",
-                },
-                {
                   title: "AI & Machine Learning",
                   description: "Build intelligent systems and implement machine learning algorithms",
                   rating: 4.9,
@@ -317,17 +304,17 @@ const HomePage = () => {
                   slug: "data-science-course",
                 },
                 {
-                  title: "Cybersecurity",
-                  description: "Master the art of defending digital systems and networks",
-                  rating: 4.7,
-                  reviews: 850,
-                  duration: "4 months",
+                  title: "Full Stack Python Development",
+                  description: "Build robust web apps with Python, Django, Flask, React, and cloud deployment.",
+                  rating: 4.9,
+                  reviews: 980,
+                  duration: "6 months",
                   level: "Intermediate to Advanced",
-                  students: 9800,
-                  technologies: ["Network Security", "Ethical Hacking", "Cryptography"],
-                  path: "/cybersecurity-course",
+                  students: 9000,
+                  technologies: ["Python", "Django", "Flask", "React"],
+                  path: "/full-stack-python-course",
                   delay: "delay-600",
-                  slug: "cybersecurity-course",
+                  slug: "full-stack-python-course",
                 },
                 {
                   title: "UI/UX Design",
@@ -343,31 +330,40 @@ const HomePage = () => {
                   slug: "ui-ux-design-course",
                 },
                 {
-                  title: "Cloud Computing",
-                  description: "Learn to design, deploy and manage applications in the cloud",
+                  title: "Salesforce",
+                  description: "Become a certified Salesforce professional and advance your career",
                   rating: 4.8,
-                  reviews: 720,
+                  reviews: 670,
                   duration: "4 months",
                   level: "Beginner to Intermediate",
-                  students: 8500,
-                  technologies: ["AWS", "Azure", "Google Cloud"],
-                  path: "/cloud-computing-course",
+                  students: 7500,
+                  technologies: ["Salesforce Admin", "Apex", "Lightning"],
+                  path: "/salesforce-course",
                   delay: "delay-800",
-                  slug: "cloud-computing-course",
+                  slug: "salesforce-course",
+                },
+                {
+                  title: "Business Analyst",
+                  description: "Analyze business domains and processes",
+                  rating: 4.7,
+                  reviews: 620,
+                  duration: "3 months",
+                  level: "Beginner to Intermediate",
+                  students: 7200,
+                  technologies: ["Requirements Analysis", "Process Modeling", "Data Analysis"],
+                  path: "/business-analyst-course",
+                  delay: "delay-900",
+                  slug: "business-analyst-course",
                 },
               ].map((course, index) => (
                 <div
                   key={index}
                   className={`backdrop-blur-md border border-violet-500/20 rounded-xl overflow-hidden group relative transition-all duration-500 ${course.delay
-                    .replace("delay-300", "delay-150")
                     .replace("delay-400", "delay-175")
                     .replace("delay-500", "delay-200")
                     .replace("delay-600", "delay-225")
                     .replace("delay-700", "delay-250")
-                    .replace(
-                      "delay-800",
-                      "delay-275",
-                    )} transform ${isVisible["course-cards"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+                  } transform ${isVisible["course-cards"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
                 >
                   <div className="bg-gray-900/60 p-6">
                     <h3 className="text-2xl font-bold mb-2">{course.title}</h3>

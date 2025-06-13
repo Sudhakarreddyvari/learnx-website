@@ -220,13 +220,10 @@ const Header = ({ hideHeader, setIsContactOpen }) => {
                             Get personalized recommendations based on your career goals
                           </p>
                         </div>
-                        <button
-                          onClick={() => setIsContactOpen(true)}
-                          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 text-white rounded-lg transition-colors"
-                        >
+                        <FormButton variant="primary" context="Get Expert Advice" className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 text-white rounded-lg transition-colors">
                           Get Expert Advice
                           <ChevronRight size={16} />
-                        </button>
+                        </FormButton>
                       </div>
                     </div>
                   </div>
