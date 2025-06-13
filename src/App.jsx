@@ -50,7 +50,7 @@ function AppContent() {
     <>
       <ScrollToTop />
       {/* Floating action buttons */}
-      <FloatingContactButtons whatsappNumber="+91 80193 33796" phoneNumber="+91 80193 33796" />
+      <FloatingContactButtons whatsappNumber="+91 80193 33796" phoneNumber="+918019333796" />
       
       <ContactFormPopup isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
       <Routes>
