@@ -39,6 +39,7 @@ import PowerBiCourse from "./pages/powerbi-course"
 import ServiceNowCourse from "./pages/servicenow-course"
 import SalesforceHealthCloudCourse from "./pages/salesforce-health-cloud-course"
 import SalesforceDataCloudCourse from "./pages/salesforce-data-cloud-course"
+import FullstackWithAICourse from "./pages/fullstack-with-ai-course"
 
 function AppContent() {
   const { isFormOpen, setIsFormOpen } = useForm()
@@ -90,6 +91,7 @@ function AppContent() {
         <Route path="/servicenow" element={withContactPopup(ServiceNowCourse)()} />
         <Route path="/salesforce-health-cloud-course" element={withContactPopup(SalesforceHealthCloudCourse)()} />
         <Route path="/salesforce-data-cloud-course" element={withContactPopup(SalesforceDataCloudCourse)()} />
+        <Route path="/fullstack-with-ai-course" element={withContactPopup(FullstackWithAICourse)()} />
       </Routes>
     </>
   )

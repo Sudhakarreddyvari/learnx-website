@@ -44,6 +44,19 @@ const Header = ({ hideHeader, setIsContactOpen }) => {
           description: "Create intuitive and engaging user experiences",
           popular: true,
         },
+        {
+          title: "Fullstack MERN",
+          path: "/full-stack-mern-course",
+          description: "Master MERN stack for full-stack web development",
+          popular: true,
+        },
+        {
+          title: "Fullstack With AI",
+          path: "/fullstack-with-ai-course",
+          description: "Master Fullstack with AI for advanced web development",
+          new: true,
+          popular: true,
+        },
       ],
     },
     {
@@ -148,11 +161,11 @@ const Header = ({ hideHeader, setIsContactOpen }) => {
                 </Link>
 
                 {/* Mega Menu */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-[1000px] rounded-xl bg-gray-900/95 backdrop-blur-lg shadow-xl border border-violet-500/20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 -translate-y-3 group-hover:translate-y-0">
-                  <div className="relative p-6">
+                <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-[1200px] rounded-xl bg-gray-900/95 backdrop-blur-lg shadow-xl border border-violet-500/20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 -translate-y-3 group-hover:translate-y-0 flex justify-center">
+                  <div className="relative p-6 w-[1200px] mx-auto">
                     {/* Header section */}
                     <div className="relative mb-6 flex justify-between items-center">
-                      <h3 className="text-lg font-bold text-white">Explore Our Courses</h3>
+                      <h3 className="text-lg font-bold text-white">All Courses</h3>
                       <Link
                         to="/courses"
                         className="text-sm text-violet-400 hover:text-violet-300 flex items-center gap-1"
@@ -174,56 +187,131 @@ const Header = ({ hideHeader, setIsContactOpen }) => {
                         </svg>
                       </Link>
                     </div>
-
-                    {/* Main mega menu grid */}
-                    <div className="relative grid grid-cols-4 gap-6">
-                      {courseCategories.map((category, idx) => (
-                        <div key={idx} className="space-y-4">
-                          <h4 className="text-sm font-semibold text-gray-400 mb-3">{category.name}</h4>
-                          <div className="space-y-4">
-                            {category.courses.map((course, courseIdx) => (
-                              <Link
-                                key={courseIdx}
-                                to={course.path}
-                                className="block bg-gray-800/40 hover:bg-gray-800/70 border border-gray-700/50 hover:border-violet-500/50 rounded-lg p-4 transition-all"
-                              >
-                                <div className="mb-2 flex justify-between">
-                                  <div className="flex gap-1">
-                                    {course.popular && (
-                                      <span className="inline-flex items-center rounded-full bg-rose-500/20 px-2 py-1 text-xs font-medium text-rose-400">
-                                        Popular
-                                      </span>
-                                    )}
-                                    {course.new && (
-                                      <span className="inline-flex items-center rounded-full bg-emerald-500/20 px-2 py-1 text-xs font-medium text-emerald-400">
-                                        New
-                                      </span>
-                                    )}
-                                  </div>
-                                </div>
-                                <h5 className="font-semibold text-white mb-1">{course.title}</h5>
-                                <p className="text-xs text-gray-400">{course.description}</p>
-                              </Link>
+                    {/* List of all courses in four columns with categories */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-h-[500px] overflow-y-auto w-full mx-auto">
+                      {[
+                        {
+                          category: "Programming & Development",
+                          courses: [
+                            { title: "Fullstack Python", path: "/full-stack-python-course" },
+                            { title: "Fullstack Java", path: "/full-stack-java-course" },
+                            { title: "Fullstack MERN", path: "/full-stack-mern-course" },
+                            { title: "Fullstack With AI", path: "/fullstack-with-ai-course" },
+                            { title: "UI/UX Design", path: "/ui-ux-design-course" },
+                          ],
+                        },
+                        {
+                          category: "Data & AI",
+                          courses: [
+                            { title: "AI & Machine Learning", path: "/ai-ml-course" },
+                            { title: "Data Science", path: "/data-science-course" },
+                            { title: "Data Analytics", path: "/data-analytics" },
+                            { title: "Power BI", path: "/powerbi" },
+                          ],
+                        },
+                        {
+                          category: "Security & Infrastructure",
+                          courses: [
+                            { title: "DevOps", path: "/devops-course" },
+                            { title: "AWS", path: "/aws-course" },
+                            { title: "Cyber Security", path: "/cybersecurity-course" },
+                            { title: "ServiceNow", path: "/servicenow" },
+                          ],
+                        },
+                        {
+                          category: "Salesforce Ecosystem",
+                          courses: [
+                            { title: "Salesforce Development", path: "/salesforce-course" },
+                            { title: "Salesforce CPQ", path: "/salesforce-cpq-course" },
+                            { title: "Salesforce Agentforce", path: "/salesforce-agent-force-course" },
+                            { title: "Salesforce Health Cloud", path: "/salesforce-health-cloud-course" },
+                            { title: "Salesforce Data Cloud", path: "/salesforce-data-cloud-course" },
+                          ],
+                        },
+                        {
+                          category: "Business",
+                          courses: [
+                            { title: "Business Analyst", path: "/business-analyst-course" },
+                          ],
+                        },
+                        {
+                          category: "Testing",
+                          courses: [
+                            { title: "Automation Testing", path: "/automation-testing-course" },
+                          ],
+                        },
+                        {
+                          category: "Marketing",
+                          courses: [
+                            { title: "Digital Marketing", path: "/digital-marketing" },
+                          ],
+                        },
+                        {
+                          category: "Blockchain",
+                          courses: [
+                            { title: "Blockchain", path: "/blockchain-course" },
+                          ],
+                        },
+                      ].map((col, colIdx) => (
+                        <div key={colIdx}>
+                          <h4 className="text-sm font-semibold text-violet-400 mb-2">{col.category}</h4>
+                          <ul className="space-y-2">
+                            {col.courses.map((course, idx) => (
+                              <li key={idx} className="flex items-center gap-2">
+                                <Link to={course.path} className="block px-4 py-2 rounded hover:bg-violet-900/30 text-white text-base">
+                                  {course.title}
+                                </Link>
+                                {(() => {
+                                  // Add tags for popular and new courses
+                                  const popularCourses = [
+                                    "Fullstack Python",
+                                    "Fullstack Java",
+                                    "AI & Machine Learning",
+                                    "Data Science",
+                                    "UI/UX Design",
+                                    "AWS",
+                                    "Data Analytics",
+                                    "Fullstack MERN",
+                                    "Digital Marketing",
+                                  ];
+                                  const newCourses = [
+                                    "Salesforce Health Cloud",
+                                    "Salesforce Data Cloud",
+                                    "Power BI",
+                                    "ServiceNow",
+                                    "Automation Testing",
+                                    "Salesforce Agentforce",
+                                    "Salesforce CPQ",
+                                  ];
+                                  return (
+                                    <>
+                                      {popularCourses.includes(course.title) && (
+                                        <span className="inline-flex items-center rounded-full bg-rose-500/20 px-2 py-0.5 text-xs font-medium text-rose-400 ml-1">Popular</span>
+                                      )}
+                                      {newCourses.includes(course.title) && (
+                                        <span className="inline-flex items-center rounded-full bg-emerald-500/20 px-2 py-0.5 text-xs font-medium text-emerald-400 ml-1">New</span>
+                                      )}
+                                    </>
+                                  );
+                                })()}
+                              </li>
                             ))}
-                          </div>
+                          </ul>
                         </div>
                       ))}
                     </div>
-
-                    {/* Footer/CTA section */}
-                    <div className="relative mt-6 p-4 bg-gradient-to-r from-violet-900/30 to-rose-900/30 rounded-lg border border-violet-500/20">
-                      <div className="flex flex-wrap items-center justify-between gap-4">
+                    {/* CTA Section below all courses list */}
+                    <div className="relative mt-6 p-4 bg-gradient-to-r from-violet-900/30 to-rose-900/30 rounded-lg border border-violet-500/20 flex flex-wrap items-center justify-between gap-4">
                         <div>
                           <h4 className="text-white font-semibold">Not sure which course to choose?</h4>
                           <p className="text-sm text-gray-300">
                             Get personalized recommendations based on your career goals
                           </p>
                         </div>
-                        <FormButton variant="primary" context="Get Expert Advice" className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 text-white rounded-lg transition-colors">
+                      <FormButton variant="primary" context="Get Expert Advice" className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-rose-500 hover:from-violet-700 hover:to-rose-600 text-white rounded-lg transition-colors">
                           Get Expert Advice
                           <ChevronRight size={16} />
                         </FormButton>
-                      </div>
                     </div>
                   </div>
                 </div>
