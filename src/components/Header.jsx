@@ -27,21 +27,22 @@ const Header = ({ hideHeader, setIsContactOpen }) => {
       name: "Programming & Development",
       courses: [
         {
-          title: "Full Stack Development",
-          path: "/full-stack-development-course",
-          description: "Master both frontend and backend technologies",
+          title: "Fullstack Python",
+          path: "/full-stack-python-course",
+          description: "Master Python for both frontend and backend web development",
           popular: true,
         },
         {
-          title: "UI/UX Design",
+          title: "Fullstack Java",
+          path: "/full-stack-java-course",
+          description: "Master Java, Spring Boot, React, and cloud deployment for enterprise web apps",
+          popular: true,
+        },
+        {
+          title: "UI/UX",
           path: "/ui-ux-design-course",
           description: "Create intuitive and engaging user experiences",
           popular: true,
-        },
-        {
-          title: "DevOps",
-          path: "/devops-course",
-          description: "Bridge the gap between development and operations",
         },
       ],
     },
@@ -61,10 +62,9 @@ const Header = ({ hideHeader, setIsContactOpen }) => {
           popular: true,
         },
         {
-          title: "Business Analyst",
-          path: "/business-analyst-course",
-          description: "Analyze business domains and processes",
-          new: true,
+          title: "Data Analytics",
+          path: "/data-analytics",
+          description: "Analyze and visualize data for business insights",
         },
       ],
     },
@@ -72,21 +72,20 @@ const Header = ({ hideHeader, setIsContactOpen }) => {
       name: "Security & Infrastructure",
       courses: [
         {
-          title: "Cybersecurity",
+          title: "DevOps",
+          path: "/devops-course",
+          description: "Bridge the gap between development and operations",
+        },
+        {
+          title: "AWS",
+          path: "/aws-course",
+          description: "Master AWS cloud infrastructure and services",
+        },
+        {
+          title: "Cyber Security",
           path: "/cybersecurity-course",
           description: "Protect systems and networks from digital attacks",
           popular: true,
-        },
-        {
-          title: "Cloud Computing",
-          path: "/cloud-computing-course",
-          description: "Design, deploy and manage cloud applications",
-        },
-        {
-          title: "Blockchain",
-          path: "/blockchain-course",
-          description: "Develop decentralized blockchain applications",
-          new: true,
         },
       ],
     },
@@ -106,7 +105,7 @@ const Header = ({ hideHeader, setIsContactOpen }) => {
           new: true,
         },
         {
-          title: "Salesforce Agent Force",
+          title: "Salesforce Agentforce",
           path: "/salesforce-agent-force-course",
           description: "Deliver exceptional customer service experiences",
           new: true,

@@ -125,23 +125,33 @@ const Footer = ({ setIsContactOpen }) => {
             <h3 className="text-lg font-semibold text-white mb-4">Popular Courses</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/full-stack-development-course" className="text-gray-400 hover:text-white transition-colors">
-                  Full Stack Development
+                <Link to="/full-stack-python-course" className="text-gray-400 hover:text-white transition-colors">
+                  Fullstack Python
                 </Link>
               </li>
               <li>
-                <Link to="/data-science-course" className="text-gray-400 hover:text-white transition-colors">
-                  Data Science
+                <Link to="/salesforce-course" className="text-gray-400 hover:text-white transition-colors">
+                  Salesforce Development
                 </Link>
               </li>
               <li>
-                <Link to="/ai-ml-course" className="text-gray-400 hover:text-white transition-colors">
-                  AI & Machine Learning
+                <Link to="/business-analyst-course" className="text-gray-400 hover:text-white transition-colors">
+                  Business Analyst
                 </Link>
               </li>
               <li>
-                <Link to="/cybersecurity-course" className="text-gray-400 hover:text-white transition-colors">
-                  Cybersecurity
+                <Link to="/full-stack-java-course" className="text-gray-400 hover:text-white transition-colors">
+                  Fullstack Java
+                </Link>
+              </li>
+              <li>
+                <Link to="/devops-course" className="text-gray-400 hover:text-white transition-colors">
+                  Devops
+                </Link>
+              </li>
+              <li>
+                <Link to="/aws-course" className="text-gray-400 hover:text-white transition-colors">
+                  AWS
                 </Link>
               </li>
             </ul>

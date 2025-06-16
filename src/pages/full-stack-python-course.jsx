@@ -29,77 +29,89 @@ const FullStackPythonCourse = ({ setIsContactOpen }) => {
 
     curriculum: [
       {
-        title: "Python Programming Fundamentals",
-        duration: "2 Weeks",
-        topics: [
-          "Python syntax, data types, and control structures",
-          "Functions, modules, and packages",
-          "Object-oriented programming in Python",
-          "File handling and error management",
-          "Virtual environments and package management",
-          "Version control with Git and GitHub",
-        ],
-      },
-      {
-        title: "Frontend Development with React",
-        duration: "3 Weeks",
-        topics: [
-          "React fundamentals and component architecture",
-          "State management with hooks and context API",
-          "Routing with React Router",
-          "Form handling and validation",
-          "API integration and data fetching",
-          "Testing React applications",
-        ],
-      },
-      {
-        title: "Backend Development with Django & Flask",
+        title: "Foundations of Web Development",
         duration: "4 Weeks",
         topics: [
-          "Django project structure and app creation",
-          "ORM and database migrations",
-          "Building RESTful APIs with Django REST Framework",
-          "Authentication and permissions",
-          "Flask microservices and API development",
-          "Testing and debugging Python backends",
+          "Building Blocks of Web Design - HTML",
+          "HTML syntax, elements, and document structure",
+          "Core HTML elements and semantic HTML",
+          "Forms, multimedia, and advanced HTML features",
+          "CSS Fundamentals and Box Model",
+          "Typography, colors, and visual effects",
+          "Responsive design and advanced CSS features",
+          "Bootstrap essentials and components"
         ],
       },
       {
-        title: "Databases and Data Modeling",
-        duration: "2 Weeks",
+        title: "JavaScript and TypeScript",
+        duration: "4 Weeks",
         topics: [
-          "Relational databases (PostgreSQL, MySQL) with Django",
-          "NoSQL databases (MongoDB) integration",
-          "Database schema design and migrations",
-          "ORM tools (Django ORM, SQLAlchemy)",
-          "Data validation and security",
-          "Caching strategies (Redis)",
+          "Core JavaScript concepts and ES6 features",
+          "Functions, scope, and control structures",
+          "DOM manipulation and event handling",
+          "Asynchronous JavaScript and APIs",
+          "TypeScript fundamentals and types",
+          "Object-oriented programming with TypeScript",
+          "Interfaces, abstract classes, and modules",
+          "Advanced TypeScript features and best practices"
         ],
       },
       {
-        title: "Full Stack Integration & Advanced Topics",
+        title: "React.js Frontend Framework",
         duration: "3 Weeks",
         topics: [
-          "Connecting React frontend to Python backends",
-          "JWT authentication and session management",
-          "WebSockets for real-time features",
-          "File uploads and media handling",
-          "Deployment with Docker and cloud platforms",
-          "Performance optimization and monitoring",
+          "React fundamentals and ES6 essentials",
+          "Components, JSX, and state management",
+          "React hooks and lifecycle methods",
+          "Advanced React features and hooks",
+          "Application architecture and routing",
+          "Form handling and Redux integration",
+          "Performance optimization and testing",
+          "React best practices and deployment"
         ],
       },
       {
-        title: "DevOps & Cloud Deployment",
-        duration: "2 Weeks",
+        title: "Python Programming",
+        duration: "3 Weeks",
         topics: [
-          "CI/CD pipelines for Python web apps",
-          "Containerization with Docker",
-          "Cloud deployment (AWS, Heroku, Vercel)",
-          "Environment configuration and secrets management",
-          "Monitoring and logging",
-          "Scaling and load balancing",
+          "Python fundamentals and setup",
+          "Control structures and functions",
+          "Strings, collections, and data structures",
+          "Advanced collections and sequences",
+          "Functional programming in Python",
+          "File handling and modules",
+          "Object-oriented programming",
+          "Exception handling and regular expressions"
         ],
       },
+      {
+        title: "Django and FastAPI Frameworks",
+        duration: "4 Weeks",
+        topics: [
+          "Django project setup and core concepts",
+          "Models, views, and URL routing",
+          "Forms, admin interface, and authentication",
+          "Django REST Framework and API development",
+          "FastAPI introduction and core concepts",
+          "Request/response models and dependency injection",
+          "Database integration and ORM",
+          "Authentication, WebSockets, and deployment"
+        ],
+      },
+      {
+        title: "Cloud & DevOps",
+        duration: "2 Weeks",
+        topics: [
+          "Cloud computing basics and service models",
+          "DevOps practices and version control",
+          "CI/CD pipelines and automation",
+          "Containerization with Docker",
+          "Infrastructure and configuration management",
+          "Scalable application design",
+          "Cloud-native services and databases",
+          "Security best practices and deployment"
+        ],
+      }
     ],
 
     certifications: [

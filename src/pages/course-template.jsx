@@ -602,6 +602,73 @@ const CourseTemplate = ({
                     </div>
                   </div>
                 )}
+
+                {/* Benefits Tab */}
+                {activeTab === "benefits" && (
+                  <div
+                    id="section-benefits"
+                    className="backdrop-blur-md border border-violet-500/20 rounded-xl p-8 bg-gray-900/60"
+                  >
+                    <div className="flex items-center mb-8">
+                      <span className="text-violet-400 mr-3" style={{fontSize:24}}>🎯</span>
+                      <h3 className="text-2xl font-bold relative inline-block">
+                        Placement Benefits
+                        <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-violet-500 to-rose-500 opacity-50"></span>
+                      </h3>
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-8">
+                      <div className="flex items-start gap-4">
+                        <span className="text-2xl">🏆</span>
+                        <div>
+                          <div className="font-semibold">Profiles highlighted on hirist.com</div>
+                          <div className="text-gray-300">Get access to an abundance of job openings</div>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-4">
+                        <span className="text-2xl">🏢</span>
+                        <div>
+                          <div className="font-semibold">1200+ Companies Hiring</div>
+                          <div className="text-gray-300">Expanded job search with a vast network of companies hiring.</div>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-4">
+                        <span className="text-2xl">🌟</span>
+                        <div>
+                          <div className="font-semibold">Profiles highlighted on naukri.com</div>
+                          <div className="text-gray-300">Make a distinct mark for yourself on India's leading job portal.</div>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-4">
+                        <span className="text-2xl">🤝</span>
+                        <div>
+                          <div className="font-semibold">Dedicated placement team</div>
+                          <div className="text-gray-300">Guiding and motivating you every step of the way.</div>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-4">
+                        <span className="text-2xl">👥</span>
+                        <div>
+                          <div className="font-semibold">50+ Members placement team</div>
+                          <div className="text-gray-300">A dedicated team to help you get placed in your dream company.</div>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-4">
+                        <span className="text-2xl">📲</span>
+                        <div>
+                          <div className="font-semibold">Job openings shared every day</div>
+                          <div className="text-gray-300">We send job openings daily to your WhatsApp directly</div>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-4">
+                        <span className="text-2xl">🔗</span>
+                        <div>
+                          <div className="font-semibold">LinkedIn Optimisation</div>
+                          <div className="text-gray-300">Get your LinkedIn profile optimised for better visibility and opportunities.</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

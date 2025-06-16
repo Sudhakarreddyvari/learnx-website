@@ -29,77 +29,89 @@ const FullStackJavaCourse = ({ setIsContactOpen }) => {
 
     curriculum: [
       {
-        title: "Java Programming Fundamentals",
-        duration: "2 Weeks",
-        topics: [
-          "Java syntax, data types, and control structures",
-          "Object-oriented programming in Java",
-          "Exception handling and file I/O",
-          "Collections framework and generics",
-          "Maven/Gradle and project structure",
-          "Version control with Git and GitHub",
-        ],
-      },
-      {
-        title: "Frontend Development with React",
-        duration: "3 Weeks",
-        topics: [
-          "React fundamentals and component architecture",
-          "State management with hooks and context API",
-          "Routing with React Router",
-          "Form handling and validation",
-          "API integration and data fetching",
-          "Testing React applications",
-        ],
-      },
-      {
-        title: "Backend Development with Spring Boot",
+        title: "Foundations of Web Development",
         duration: "4 Weeks",
         topics: [
-          "Spring Boot project setup and configuration",
-          "RESTful API development with Spring MVC",
-          "Data persistence with Hibernate/JPA",
-          "Authentication and authorization (JWT, OAuth)",
-          "Exception handling and logging",
-          "Testing and debugging Java backends",
+          "HTML fundamentals and semantic markup",
+          "CSS styling and box model",
+          "Advanced CSS layouts and positioning",
+          "Responsive design and Bootstrap",
+          "JavaScript core concepts and DOM manipulation",
+          "TypeScript fundamentals and advanced features",
+          "Modern web development practices",
+          "Accessibility and performance optimization"
         ],
       },
       {
-        title: "Databases and Data Modeling",
-        duration: "2 Weeks",
-        topics: [
-          "Relational databases (MySQL, PostgreSQL) integration",
-          "Database schema design and migrations",
-          "ORM tools (Hibernate, JPA)",
-          "Data validation and security",
-          "Caching strategies (Redis)",
-          "Database performance tuning",
-        ],
-      },
-      {
-        title: "Full Stack Integration & Advanced Topics",
+        title: "React.js Frontend Framework",
         duration: "3 Weeks",
         topics: [
-          "Connecting React frontend to Java backends",
-          "JWT authentication and session management",
-          "WebSockets for real-time features",
-          "File uploads and media handling",
-          "Deployment with Docker and cloud platforms",
-          "Performance optimization and monitoring",
+          "React fundamentals and ES6 essentials",
+          "Components, JSX, and state management",
+          "React hooks and lifecycle methods",
+          "Advanced React features and hooks",
+          "Application architecture and routing",
+          "Form handling and Redux integration",
+          "Performance optimization and testing",
+          "React best practices and deployment"
         ],
       },
       {
-        title: "DevOps & Cloud Deployment",
-        duration: "2 Weeks",
+        title: "Core Java Programming",
+        duration: "3 Weeks",
         topics: [
-          "CI/CD pipelines for Java web apps",
-          "Containerization with Docker",
-          "Cloud deployment (AWS, Heroku, Vercel)",
-          "Environment configuration and secrets management",
-          "Monitoring and logging",
-          "Scaling and load balancing",
+          "Java fundamentals and environment setup",
+          "Object-oriented programming concepts",
+          "Exception handling and multithreading",
+          "Collections framework and generics",
+          "Advanced data handling and Stream API",
+          "File I/O and regular expressions",
+          "Java coding conventions and best practices",
+          "Unit testing and debugging techniques"
         ],
       },
+      {
+        title: "Advanced Java Development",
+        duration: "3 Weeks",
+        topics: [
+          "Java Enterprise essentials and JDBC",
+          "Servlets and JSP fundamentals",
+          "Hibernate ORM and advanced mapping",
+          "Spring Framework core concepts",
+          "Dependency injection and AOP",
+          "Spring MVC and RESTful services",
+          "Database integration and security",
+          "Testing and deployment strategies"
+        ],
+      },
+      {
+        title: "Spring Boot & Microservices",
+        duration: "3 Weeks",
+        topics: [
+          "Spring Boot fundamentals and setup",
+          "RESTful API development",
+          "Microservices architecture",
+          "Service discovery and API gateway",
+          "Docker and containerization",
+          "Spring Cloud services",
+          "Reactive programming with WebFlux",
+          "Security and monitoring"
+        ],
+      },
+      {
+        title: "Cloud & DevOps",
+        duration: "2 Weeks",
+        topics: [
+          "Cloud computing fundamentals",
+          "DevOps practices and Git",
+          "CI/CD pipelines and automation",
+          "Docker and container management",
+          "Cloud deployment and scaling",
+          "Infrastructure as Code",
+          "Monitoring and logging",
+          "Security best practices"
+        ],
+      }
     ],
 
     certifications: [

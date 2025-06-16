@@ -49,6 +49,8 @@ const MobileNavigation = ({ activeTab, setActiveTab, onStickyChange }) => {
         return "Certifications"
       case "career":
         return "Career Counselling"
+      case "benefits":
+        return "Benefits"
       default:
         return tab
     }
@@ -100,7 +102,7 @@ const MobileNavigation = ({ activeTab, setActiveTab, onStickyChange }) => {
 
         {isOpen && (
           <div className="absolute top-full left-0 right-0 mt-2 bg-gray-800/95 backdrop-blur-md rounded-lg border border-violet-500/20 overflow-hidden z-30">
-            {["curriculum", "placements", "certifications", "career"].map((tab) => (
+            {["curriculum", "placements", "certifications", "career", "benefits"].map((tab) => (
               <button
                 key={tab}
                 onClick={() => handleTabClick(tab)}

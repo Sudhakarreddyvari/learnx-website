@@ -95,7 +95,7 @@ const StickyNavigation = ({ activeTab, setActiveTab, onStickyChange }) => {
       >
         <div className="container mx-auto px-6">
           <div className="flex flex-wrap justify-center gap-4">
-            {["curriculum", "placements", "certifications", "career"].map((tab) => (
+            {['curriculum', 'placements', 'certifications', 'career', 'benefits'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => handleTabClick(tab)}
@@ -106,10 +106,11 @@ const StickyNavigation = ({ activeTab, setActiveTab, onStickyChange }) => {
                 }`}
               >
                 <span className="relative z-10">
-                  {tab === "curriculum" && "Curriculum"}
-                  {tab === "placements" && "Placements"}
-                  {tab === "certifications" && "Certifications"}
-                  {tab === "career" && "Career Counselling"}
+                  {tab === 'curriculum' && 'Curriculum'}
+                  {tab === 'placements' && 'Placements'}
+                  {tab === 'certifications' && 'Certifications'}
+                  {tab === 'career' && 'Career Counselling'}
+                  {tab === 'benefits' && 'Benefits'}
                 </span>
                 {activeTab === tab && <div className="absolute inset-0 glow-effect-small opacity-50"></div>}
               </button>
