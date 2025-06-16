@@ -111,23 +111,25 @@ const PowerBiCourse = ({ setIsContactOpen }) => {
     ],
 
     placements: {
-      companies: [
-        {
-          name: "Microsoft",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/1200px-Microsoft_logo.svg.png",
-        },
-        {
-          name: "IBM",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/1200px-IBM_logo.svg.png",
-        },
-        {
-          name: "Accenture",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Accenture.svg/1200px-Accenture.svg.png",
-        },
-        {
-          name: "Deloitte",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Deloitte_Logo.svg/1200px-Deloitte_Logo.svg.png",
-        },
+      hiringPartners: [
+        "TCS",
+        "HCL",
+        "Infosys",
+        "Tech Mahindra",
+        "Wipro",
+        "Mphasis",
+        "Accenture",
+        "IBM",
+        "Coforge",
+        "Cognizant",
+        "Persistent",
+        "Birlasoft",
+        "Capgemini",
+        "Cisco",
+        "Flipkart",
+        "Intuit",
+        "Redington",
+        "LTI"
       ],
       averageSalary: "₹7,50,000",
       placementRate: "95%",

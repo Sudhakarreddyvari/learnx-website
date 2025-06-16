@@ -414,7 +414,7 @@ const CourseTemplate = ({
                           </div>
                         </div>
                         <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-rose-500 mb-2">
-                          {courseData.placements.companies.length}+
+                          {courseData.placements.hiringPartners ? courseData.placements.hiringPartners.length : 0}+
                         </div>
                         <div className="text-gray-300">Hiring Partners</div>
                       </div>
@@ -425,17 +425,17 @@ const CourseTemplate = ({
                       <h4 className="text-xl font-semibold">Our Hiring Partners</h4>
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 mb-12">
-                      {courseData.placements.companies.map((company, i) => (
+                      {(courseData.placements.hiringPartners || []).map((company, i) => (
                         <div
                           key={i}
                           className="bg-gray-800/50 rounded-lg p-4 flex items-center justify-center h-20 border border-gray-700/50 hover:border-violet-500/30 transition-colors"
                         >
                           <div className="text-center">
                             <div className="w-10 h-10 rounded-full bg-violet-900/20 flex items-center justify-center mx-auto mb-2">
-                              <span className="font-bold text-violet-400">{company.name.charAt(0)}</span>
+                              <span className="font-bold text-violet-400">{company.charAt(0)}</span>
                             </div>
                             <span className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
-                              {company.name}
+                              {company}
                             </span>
                           </div>
                         </div>

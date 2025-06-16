@@ -137,31 +137,25 @@ const AIMachineLearningCourse = ({ setIsContactOpen }) => {
     ],
 
     placements: {
-      companies: [
-        {
-          name: "Google",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png",
-        },
-        {
-          name: "Microsoft",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/1200px-Microsoft_logo.svg.png",
-        },
-        {
-          name: "Amazon",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1200px-Amazon_logo.svg.png",
-        },
-        {
-          name: "IBM",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/1200px-IBM_logo.svg.png",
-        },
-        {
-          name: "NVIDIA",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Nvidia_logo.svg/1200px-Nvidia_logo.svg.png",
-        },
-        {
-          name: "Meta",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/1200px-Meta_Platforms_Inc._logo.svg.png",
-        },
+      hiringPartners: [
+        "TCS",
+        "HCL",
+        "Infosys",
+        "Tech Mahindra",
+        "Wipro",
+        "Mphasis",
+        "Accenture",
+        "IBM",
+        "Coforge",
+        "Cognizant",
+        "Persistent",
+        "Birlasoft",
+        "Capgemini",
+        "Cisco",
+        "Flipkart",
+        "Intuit",
+        "Redington",
+        "LTI"
       ],
       averageSalary: "₹7,00,000",
       placementRate: "92%",

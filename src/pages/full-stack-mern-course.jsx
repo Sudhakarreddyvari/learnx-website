@@ -29,75 +29,88 @@ const FullStackMernCourse = ({ setIsContactOpen }) => {
 
     curriculum: [
       {
-        title: "JavaScript & Node.js Fundamentals",
-        duration: "2 Weeks",
-        topics: [
-          "JavaScript ES6+ syntax and features",
-          "Node.js runtime and core modules",
-          "Asynchronous programming and promises",
-          "NPM/Yarn and project structure",
-          "Version control with Git and GitHub",
-        ],
-      },
-      {
-        title: "Frontend Development with React",
-        duration: "3 Weeks",
-        topics: [
-          "React fundamentals and component architecture",
-          "State management with hooks and context API",
-          "Routing with React Router",
-          "Form handling and validation",
-          "API integration and data fetching",
-          "Testing React applications",
-        ],
-      },
-      {
-        title: "Backend Development with Express.js",
-        duration: "3 Weeks",
-        topics: [
-          "Express.js fundamentals and routing",
-          "RESTful API development",
-          "Middleware and error handling",
-          "Authentication and authorization (JWT)",
-          "File uploads and static assets",
-          "Testing and debugging Node.js backends",
-        ],
-      },
-      {
-        title: "Database Integration with MongoDB",
-        duration: "2 Weeks",
-        topics: [
-          "MongoDB fundamentals and data modeling",
-          "CRUD operations with Mongoose",
-          "Schema design and validation",
-          "Aggregation framework",
-          "Indexing and performance tuning",
-          "Database security best practices",
-        ],
-      },
-      {
-        title: "Full Stack Integration & Advanced Topics",
+        title: "Foundations of Web Development",
         duration: "4 Weeks",
         topics: [
-          "Connecting React frontend to Express/Node.js backend",
-          "JWT authentication and session management",
-          "WebSockets for real-time features",
-          "Deployment with Docker and cloud platforms",
-          "Performance optimization and monitoring",
-          "CI/CD pipelines for MERN apps",
+          "Building Blocks of Web Design - HTML",
+          "HTML syntax, elements, and document structure",
+          "Core HTML elements and semantic HTML",
+          "Forms, multimedia, and advanced HTML features",
+          "CSS Fundamentals and Box Model",
+          "Typography, colors, and visual effects",
+          "Responsive design and advanced CSS features",
+          "Bootstrap essentials and components"
         ],
       },
       {
-        title: "DevOps & Cloud Deployment",
-        duration: "2 Weeks",
+        title: "JavaScript - Building Blocks to Advanced Scripts",
+        duration: "4 Weeks",
         topics: [
-          "Containerization with Docker",
-          "Cloud deployment (AWS, Heroku, Vercel)",
-          "Environment configuration and secrets management",
-          "Monitoring and logging",
-          "Scaling and load balancing",
+          "Core JavaScript Concepts",
+          "Variables, Data Types, Operators",
+          "Functions and Scope",
+          "Control Structures and Data Handling",
+          "Arrays and Object Methods",
+          "DOM Manipulation and Events",
+          "Asynchronous JavaScript",
+          "Modern JavaScript Features"
         ],
       },
+      {
+        title: "TypeScript Essentials",
+        duration: "3 Weeks",
+        topics: [
+          "Introduction to TypeScript",
+          "TypeScript Fundamentals",
+          "Advanced Types and Interfaces",
+          "Object-Oriented Programming",
+          "Modules and Namespaces",
+          "TypeScript with React",
+          "Type Safety and Best Practices"
+        ],
+      },
+      {
+        title: "React.js Frontend Framework",
+        duration: "5 Weeks",
+        topics: [
+          "React Fundamentals and ES6",
+          "Components and JSX",
+          "State and Props Management",
+          "React Hooks and Lifecycle",
+          "Advanced React Features",
+          "Application Architecture",
+          "Performance Optimization",
+          "Testing and Best Practices"
+        ],
+      },
+      {
+        title: "MERN Stack (Node, Express, MongoDB)",
+        duration: "5 Weeks",
+        topics: [
+          "Node.js and JavaScript Essentials",
+          "Express.js Fundamentals",
+          "RESTful API Development",
+          "MongoDB Basics and CRUD",
+          "MongoDB Integration with Node.js",
+          "Authentication and Security",
+          "Real-time Communication",
+          "Advanced MERN Features"
+        ],
+      },
+      {
+        title: "Cloud & DevOps For FullStack MERN",
+        duration: "5 Weeks",
+        topics: [
+          "Cloud Computing Basics",
+          "DevOps Practices",
+          "Version Control with Git",
+          "CI/CD Pipelines",
+          "Docker and Containers",
+          "Cloud Deployment",
+          "Infrastructure Management",
+          "Security and Best Practices"
+        ],
+      }
     ],
 
     certifications: [
@@ -122,31 +135,25 @@ const FullStackMernCourse = ({ setIsContactOpen }) => {
     ],
 
     placements: {
-      companies: [
-        {
-          name: "Google",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png",
-        },
-        {
-          name: "Microsoft",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/1200px-Microsoft_logo.svg.png",
-        },
-        {
-          name: "Amazon",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1200px-Amazon_logo.svg.png",
-        },
-        {
-          name: "Facebook",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/F_icon.svg/1200px-F_icon.svg.png",
-        },
-        {
-          name: "Shopify",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Shopify_logo_2018.svg/1200px-Shopify_logo_2018.svg.png",
-        },
-        {
-          name: "Salesforce",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Salesforce.com_logo.svg/1200px-Salesforce.com_logo.svg.png",
-        },
+      hiringPartners: [
+        "TCS",
+        "HCL",
+        "Infosys",
+        "Tech Mahindra",
+        "Wipro",
+        "Mphasis",
+        "Accenture",
+        "IBM",
+        "Coforge",
+        "Cognizant",
+        "Persistent",
+        "Birlasoft",
+        "Capgemini",
+        "Cisco",
+        "Flipkart",
+        "Intuit",
+        "Redington",
+        "LTI"
       ],
       averageSalary: "₹7,60,000",
       placementRate: "97%",

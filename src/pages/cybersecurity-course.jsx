@@ -138,31 +138,25 @@ const CybersecurityCourse = ({ setIsContactOpen }) => {
     ],
 
     placements: {
-      companies: [
-        {
-          name: "Microsoft",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/1200px-Microsoft_logo.svg.png",
-        },
-        {
-          name: "Cisco",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/1200px-Cisco_logo_blue_2016.svg.png",
-        },
-        {
-          name: "IBM",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/1200px-IBM_logo.svg.png",
-        },
-        {
-          name: "Deloitte",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Deloitte.svg/1200px-Deloitte.svg.png",
-        },
-        {
-          name: "Accenture",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Accenture.svg/1200px-Accenture.svg.png",
-        },
-        {
-          name: "FireEye",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/FireEye_Logo.svg/1200px-FireEye_Logo.svg.png",
-        },
+      hiringPartners: [
+        "TCS",
+        "HCL",
+        "Infosys",
+        "Tech Mahindra",
+        "Wipro",
+        "Mphasis",
+        "Accenture",
+        "IBM",
+        "Coforge",
+        "Cognizant",
+        "Persistent",
+        "Birlasoft",
+        "Capgemini",
+        "Cisco",
+        "Flipkart",
+        "Intuit",
+        "Redington",
+        "LTI"
       ],
       averageSalary: "₹15,00,000",
       placementRate: "94%",

@@ -136,31 +136,25 @@ const UIUXDesignCourse = ({ setIsContactOpen }) => {
     ],
 
     placements: {
-      companies: [
-        {
-          name: "Google",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png",
-        },
-        {
-          name: "Apple",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1200px-Apple_logo_black.svg.png",
-        },
-        {
-          name: "Microsoft",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/1200px-Microsoft_logo.svg.png",
-        },
-        {
-          name: "Adobe",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Adobe_Systems_logo_and_wordmark.svg/1200px-Adobe_Systems_logo_and_wordmark.svg.png",
-        },
-        {
-          name: "Airbnb",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_logo_B%C3%A9lo.svg/1200px-Airbnb_logo_B%C3%A9lo.svg.png",
-        },
-        {
-          name: "Uber",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Uber_logo_2018.svg/1200px-Uber_logo_2018.svg.png",
-        },
+      hiringPartners: [
+        "TCS",
+        "HCL",
+        "Infosys",
+        "Tech Mahindra",
+        "Wipro",
+        "Mphasis",
+        "Accenture",
+        "IBM",
+        "Coforge",
+        "Cognizant",
+        "Persistent",
+        "Birlasoft",
+        "Capgemini",
+        "Cisco",
+        "Flipkart",
+        "Intuit",
+        "Redington",
+        "LTI"
       ],
       averageSalary: "₹5,00,000",
       placementRate: "93%",

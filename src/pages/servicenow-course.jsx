@@ -101,27 +101,25 @@ const ServiceNowCourse = ({ setIsContactOpen }) => {
     ],
 
     placements: {
-      companies: [
-        {
-          name: "ServiceNow",
-          logo: "https://www.servicenow.com/content/dam/servicenow-assets/public/en-us/images/company/brand/servicenow-logo.png",
-        },
-        {
-          name: "Accenture",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Accenture.svg/1200px-Accenture.svg.png",
-        },
-        {
-          name: "Deloitte",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Deloitte_Logo.svg/1200px-Deloitte_Logo.svg.png",
-        },
-        {
-          name: "Infosys",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Infosys_logo.svg/1200px-Infosys_logo.svg.png",
-        },
-        {
-          name: "Cognizant",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Cognizant_logo_2022.svg/1200px-Cognizant_logo_2022.svg.png",
-        },
+      hiringPartners: [
+        "TCS",
+        "HCL",
+        "Infosys",
+        "Tech Mahindra",
+        "Wipro",
+        "Mphasis",
+        "Accenture",
+        "IBM",
+        "Coforge",
+        "Cognizant",
+        "Persistent",
+        "Birlasoft",
+        "Capgemini",
+        "Cisco",
+        "Flipkart",
+        "Intuit",
+        "Redington",
+        "LTI"
       ],
       averageSalary: "₹8,00,000",
       placementRate: "96%",

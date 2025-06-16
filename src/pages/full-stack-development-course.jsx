@@ -136,6 +136,26 @@ const FullStackDevelopmentCourse = ({ setIsContactOpen }) => {
     ],
 
     placements: {
+      hiringPartners: [
+        "TCS",
+        "HCL",
+        "Infosys",
+        "Tech Mahindra",
+        "Wipro",
+        "Mphasis",
+        "Accenture",
+        "IBM",
+        "Coforge",
+        "Cognizant",
+        "Persistent",
+        "Birlasoft",
+        "Capgemini",
+        "Cisco",
+        "Flipkart",
+        "Intuit",
+        "Redington",
+        "LTI"
+      ],
       companies: [
         {
           name: "Google",
